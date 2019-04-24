@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weichu.jinxiaocun.demo.mapper.caigoushenqingshangping.CaigoushenqingshangpingMapper">
+
+    <select id="getCaigoushenqingshangpingById" resultType="com.weichu.jinxiaocun.demo.bean.Caigoushenqingshangping" >
+        select
+                cgsqsp_id as cgsqspId,
+                cgsq_id as cgsqId,
+                sp_id as spId,
+                cgsqsp_sl as cgsqspSl,
+                cgsqsp_jg as cgsqspJg,
+                cgsqsp_zg as cgsqspZg,
+                cgsqsp_kp as cgsqspKp,
+                cgsqsp_bz as cgsqspBz
+        from caigoushenqingshangping
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getCaigoushenqingshangpingListByMap" resultType="com.weichu.jinxiaocun.demo.bean.Caigoushenqingshangping" parameterType="java.util.Map">
+        select
+                cgsqsp_id as cgsqspId,
+                cgsq_id as cgsqId,
+                sp_id as spId,
+                cgsqsp_sl as cgsqspSl,
+                cgsqsp_jg as cgsqspJg,
+                cgsqsp_zg as cgsqspZg,
+                cgsqsp_kp as cgsqspKp,
+                cgsqsp_bz as cgsqspBz
+        from caigoushenqingshangping
+        <trim prefix="where" prefixOverrides="and | or">
+                    <if test="cgsqspId != null and cgsqspId!=''">
+                        and cgsqsp_id=#{cgsqspId}
+                    </if>
+                    <if test="cgsqId != null and cgsqId!=''">
+                        and cgsq_id=#{cgsqId}
+                    </if>
+                    <if test="spId != null and spId!=''">
+                        and sp_id=#{spId}
+                    </if>
+                    <if test="cgsqspSl != null and cgsqspSl!=''">
+                        and cgsqsp_sl=#{cgsqspSl}
+                    </if>
+                    <if test="cgsqspJg != null and cgsqspJg!=''">
+                        and cgsqsp_jg=#{cgsqspJg}
+                    </if>
+                    <if test="cgsqspZg != null and cgsqspZg!=''">
+                        and cgsqsp_zg=#{cgsqspZg}
+                    </if>
+                    <if test="cgsqspKp != null and cgsqspKp!=''">
+                        and cgsqsp_kp=#{cgsqspKp}
+                    </if>
+        </trim>
+         order by creationDate desc
+        <if test="beginPos != null and beginPos!='' and pageSize != null  and pageSize !='' ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getCaigoushenqingshangpingCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from caigoushenqingshangping
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="cgsqspId != null and cgsqspId!=''">
+                    and cgsqsp_id=#{cgsqspId}
+                </if>
+                <if test="cgsqId != null and cgsqId!=''">
+                    and cgsq_id=#{cgsqId}
+                </if>
+                <if test="spId != null and spId!=''">
+                    and sp_id=#{spId}
+                </if>
+                <if test="cgsqspSl != null and cgsqspSl!=''">
+                    and cgsqsp_sl=#{cgsqspSl}
+                </if>
+                <if test="cgsqspJg != null and cgsqspJg!=''">
+                    and cgsqsp_jg=#{cgsqspJg}
+                </if>
+                <if test="cgsqspZg != null and cgsqspZg!=''">
+                    and cgsqsp_zg=#{cgsqspZg}
+                </if>
+                <if test="cgsqspKp != null and cgsqspKp!=''">
+                    and cgsqsp_kp=#{cgsqspKp}
+                </if>
+                <if test="cgsqspBz != null and cgsqspBz!=''">
+                    and cgsqsp_bz=#{cgsqspBz}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertCaigoushenqingshangping" parameterType="com.weichu.jinxiaocun.demo.bean.Caigoushenqingshangping">
+        insert into caigoushenqingshangping(
+                        cgsqsp_id,
+                        cgsq_id,
+                        sp_id,
+                        cgsqsp_sl,
+                        cgsqsp_jg,
+                        cgsqsp_zg,
+                        cgsqsp_kp,
+                        cgsqsp_bz)
+        values(
+                     #{cgsqspId},
+                     #{cgsqId},
+                     #{spId},
+                     #{cgsqspSl},
+                     #{cgsqspJg},
+                     #{cgsqspZg},
+                     #{cgsqspKp},
+                    #{cgsqspBz})
+    </insert>
+
+    <update id="updateCaigoushenqingshangping" parameterType="com.weichu.jinxiaocun.demo.bean.Caigoushenqingshangping">
+        update caigoushenqingshangping
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                    <if test="cgsqspId != null and cgsqspId!=''">
+                        cgsqsp_id=#{cgsqspId},
+                    </if>
+                    <if test="cgsqId != null and cgsqId!=''">
+                        cgsq_id=#{cgsqId},
+                    </if>
+                    <if test="spId != null and spId!=''">
+                        sp_id=#{spId},
+                    </if>
+                    <if test="cgsqspSl != null and cgsqspSl!=''">
+                        cgsqsp_sl=#{cgsqspSl},
+                    </if>
+                    <if test="cgsqspJg != null and cgsqspJg!=''">
+                        cgsqsp_jg=#{cgsqspJg},
+                    </if>
+                    <if test="cgsqspZg != null and cgsqspZg!=''">
+                        cgsqsp_zg=#{cgsqspZg},
+                    </if>
+                    <if test="cgsqspKp != null and cgsqspKp!=''">
+                        cgsqsp_kp=#{cgsqspKp},
+                    </if>
+                    <if test="cgsqspBz != null and cgsqspBz!=''">
+                        cgsqsp_bz=#{cgsqspBz}
+                    </if>
+        </trim>
+    </update>
+
+    <delete id="deleteCaigoushenqingshangpingById" parameterType="Long">
+        delete from caigoushenqingshangping where id = #{id}
+    </delete>
+</mapper>

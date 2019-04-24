@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weichu.jinxiaocun.demo.mapper.yuangong.YuangongMapper">
+
+    <select id="getYuangongById" resultType="com.weichu.jinxiaocun.demo.bean.Yuangong" >
+        select
+                yg_id as ygId,
+                yg_name as ygName,
+                yg_sfz as ygSfz,
+                yg_gj as ygGj,
+                yg_dz as ygDz,
+                yg_dh as ygDh,
+                yg_dm as ygDm
+        from yuangong
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getYuangongListByMap" resultType="com.weichu.jinxiaocun.demo.bean.Yuangong" parameterType="java.util.Map">
+        select
+                yg_id as ygId,
+                yg_name as ygName,
+                yg_sfz as ygSfz,
+                yg_gj as ygGj,
+                yg_dz as ygDz,
+                yg_dh as ygDh,
+                yg_dm as ygDm
+        from yuangong
+        <trim prefix="where" prefixOverrides="and | or">
+                    <if test="ygId != null and ygId!=''">
+                        and yg_id=#{ygId}
+                    </if>
+                    <if test="ygName != null and ygName!=''">
+                        and yg_name=#{ygName}
+                    </if>
+                    <if test="ygSfz != null and ygSfz!=''">
+                        and yg_sfz=#{ygSfz}
+                    </if>
+                    <if test="ygGj != null and ygGj!=''">
+                        and yg_gj=#{ygGj}
+                    </if>
+                    <if test="ygDz != null and ygDz!=''">
+                        and yg_dz=#{ygDz}
+                    </if>
+                    <if test="ygDh != null and ygDh!=''">
+                        and yg_dh=#{ygDh}
+                    </if>
+        </trim>
+         order by creationDate desc
+        <if test="beginPos != null and beginPos!='' and pageSize != null  and pageSize !='' ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getYuangongCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from yuangong
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="ygId != null and ygId!=''">
+                    and yg_id=#{ygId}
+                </if>
+                <if test="ygName != null and ygName!=''">
+                    and yg_name=#{ygName}
+                </if>
+                <if test="ygSfz != null and ygSfz!=''">
+                    and yg_sfz=#{ygSfz}
+                </if>
+                <if test="ygGj != null and ygGj!=''">
+                    and yg_gj=#{ygGj}
+                </if>
+                <if test="ygDz != null and ygDz!=''">
+                    and yg_dz=#{ygDz}
+                </if>
+                <if test="ygDh != null and ygDh!=''">
+                    and yg_dh=#{ygDh}
+                </if>
+                <if test="ygDm != null and ygDm!=''">
+                    and yg_dm=#{ygDm}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertYuangong" parameterType="com.weichu.jinxiaocun.demo.bean.Yuangong">
+        insert into yuangong(
+                        yg_id,
+                        yg_name,
+                        yg_sfz,
+                        yg_gj,
+                        yg_dz,
+                        yg_dh,
+                        yg_dm)
+        values(
+                     #{ygId},
+                     #{ygName},
+                     #{ygSfz},
+                     #{ygGj},
+                     #{ygDz},
+                     #{ygDh},
+                    #{ygDm})
+    </insert>
+
+    <update id="updateYuangong" parameterType="com.weichu.jinxiaocun.demo.bean.Yuangong">
+        update yuangong
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                    <if test="ygId != null and ygId!=''">
+                        yg_id=#{ygId},
+                    </if>
+                    <if test="ygName != null and ygName!=''">
+                        yg_name=#{ygName},
+                    </if>
+                    <if test="ygSfz != null and ygSfz!=''">
+                        yg_sfz=#{ygSfz},
+                    </if>
+                    <if test="ygGj != null and ygGj!=''">
+                        yg_gj=#{ygGj},
+                    </if>
+                    <if test="ygDz != null and ygDz!=''">
+                        yg_dz=#{ygDz},
+                    </if>
+                    <if test="ygDh != null and ygDh!=''">
+                        yg_dh=#{ygDh},
+                    </if>
+                    <if test="ygDm != null and ygDm!=''">
+                        yg_dm=#{ygDm}
+                    </if>
+        </trim>
+    </update>
+
+    <delete id="deleteYuangongById" parameterType="Long">
+        delete from yuangong where id = #{id}
+    </delete>
+</mapper>

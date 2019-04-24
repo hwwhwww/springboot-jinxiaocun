@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weichu.jinxiaocun.demo.mapper.shangpingleibie.ShangpingleibieMapper">
+
+    <select id="getShangpingleibieById" resultType="com.weichu.jinxiaocun.demo.bean.Shangpingleibie" >
+        select
+                splb_id as splbId,
+                splb_name as splbName
+        from shangpingleibie
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getShangpingleibieListByMap" resultType="com.weichu.jinxiaocun.demo.bean.Shangpingleibie" parameterType="java.util.Map">
+        select
+                splb_id as splbId,
+                splb_name as splbName
+        from shangpingleibie
+        <trim prefix="where" prefixOverrides="and | or">
+                    <if test="splbId != null and splbId!=''">
+                        and splb_id=#{splbId}
+                    </if>
+        </trim>
+         order by creationDate desc
+        <if test="beginPos != null and beginPos!='' and pageSize != null  and pageSize !='' ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getShangpingleibieCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from shangpingleibie
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="splbId != null and splbId!=''">
+                    and splb_id=#{splbId}
+                </if>
+                <if test="splbName != null and splbName!=''">
+                    and splb_name=#{splbName}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertShangpingleibie" parameterType="com.weichu.jinxiaocun.demo.bean.Shangpingleibie">
+        insert into shangpingleibie(
+                        splb_id,
+                        splb_name)
+        values(
+                     #{splbId},
+                    #{splbName})
+    </insert>
+
+    <update id="updateShangpingleibie" parameterType="com.weichu.jinxiaocun.demo.bean.Shangpingleibie">
+        update shangpingleibie
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                    <if test="splbId != null and splbId!=''">
+                        splb_id=#{splbId},
+                    </if>
+                    <if test="splbName != null and splbName!=''">
+                        splb_name=#{splbName}
+                    </if>
+        </trim>
+    </update>
+
+    <delete id="deleteShangpingleibieById" parameterType="Long">
+        delete from shangpingleibie where id = #{id}
+    </delete>
+</mapper>

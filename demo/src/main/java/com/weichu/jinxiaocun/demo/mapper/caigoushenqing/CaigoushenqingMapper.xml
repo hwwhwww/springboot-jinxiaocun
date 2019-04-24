@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weichu.jinxiaocun.demo.mapper.caigoushenqing.CaigoushenqingMapper">
+
+    <select id="getCaigoushenqingById" resultType="com.weichu.jinxiaocun.demo.bean.Caigoushenqing" >
+        select
+                cgsq_id as cgsqId,
+                cgsq_xh as cgsqXh,
+                yg_id as ygId,
+                cgsq_rq as cgsqRq,
+                cgsq_qx as cgsqQx,
+                cgsq_sh as cgsqSh,
+                cgsq_zje as cgsqZje,
+                cgsq_bz as cgsqBz
+        from caigoushenqing
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getCaigoushenqingListByMap" resultType="com.weichu.jinxiaocun.demo.bean.Caigoushenqing" parameterType="java.util.Map">
+        select
+                cgsq_id as cgsqId,
+                cgsq_xh as cgsqXh,
+                yg_id as ygId,
+                cgsq_rq as cgsqRq,
+                cgsq_qx as cgsqQx,
+                cgsq_sh as cgsqSh,
+                cgsq_zje as cgsqZje,
+                cgsq_bz as cgsqBz
+        from caigoushenqing
+        <trim prefix="where" prefixOverrides="and | or">
+                    <if test="cgsqId != null and cgsqId!=''">
+                        and cgsq_id=#{cgsqId}
+                    </if>
+                    <if test="cgsqXh != null and cgsqXh!=''">
+                        and cgsq_xh=#{cgsqXh}
+                    </if>
+                    <if test="ygId != null and ygId!=''">
+                        and yg_id=#{ygId}
+                    </if>
+                    <if test="cgsqRq != null and cgsqRq!=''">
+                        and cgsq_rq=#{cgsqRq}
+                    </if>
+                    <if test="cgsqQx != null and cgsqQx!=''">
+                        and cgsq_qx=#{cgsqQx}
+                    </if>
+                    <if test="cgsqSh != null and cgsqSh!=''">
+                        and cgsq_sh=#{cgsqSh}
+                    </if>
+                    <if test="cgsqZje != null and cgsqZje!=''">
+                        and cgsq_zje=#{cgsqZje}
+                    </if>
+        </trim>
+         order by creationDate desc
+        <if test="beginPos != null and beginPos!='' and pageSize != null  and pageSize !='' ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getCaigoushenqingCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from caigoushenqing
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="cgsqId != null and cgsqId!=''">
+                    and cgsq_id=#{cgsqId}
+                </if>
+                <if test="cgsqXh != null and cgsqXh!=''">
+                    and cgsq_xh=#{cgsqXh}
+                </if>
+                <if test="ygId != null and ygId!=''">
+                    and yg_id=#{ygId}
+                </if>
+                <if test="cgsqRq != null and cgsqRq!=''">
+                    and cgsq_rq=#{cgsqRq}
+                </if>
+                <if test="cgsqQx != null and cgsqQx!=''">
+                    and cgsq_qx=#{cgsqQx}
+                </if>
+                <if test="cgsqSh != null and cgsqSh!=''">
+                    and cgsq_sh=#{cgsqSh}
+                </if>
+                <if test="cgsqZje != null and cgsqZje!=''">
+                    and cgsq_zje=#{cgsqZje}
+                </if>
+                <if test="cgsqBz != null and cgsqBz!=''">
+                    and cgsq_bz=#{cgsqBz}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertCaigoushenqing" parameterType="com.weichu.jinxiaocun.demo.bean.Caigoushenqing">
+        insert into caigoushenqing(
+                        cgsq_id,
+                        cgsq_xh,
+                        yg_id,
+                        cgsq_rq,
+                        cgsq_qx,
+                        cgsq_sh,
+                        cgsq_zje,
+                        cgsq_bz)
+        values(
+                     #{cgsqId},
+                     #{cgsqXh},
+                     #{ygId},
+                     #{cgsqRq},
+                     #{cgsqQx},
+                     #{cgsqSh},
+                     #{cgsqZje},
+                    #{cgsqBz})
+    </insert>
+
+    <update id="updateCaigoushenqing" parameterType="com.weichu.jinxiaocun.demo.bean.Caigoushenqing">
+        update caigoushenqing
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                    <if test="cgsqId != null and cgsqId!=''">
+                        cgsq_id=#{cgsqId},
+                    </if>
+                    <if test="cgsqXh != null and cgsqXh!=''">
+                        cgsq_xh=#{cgsqXh},
+                    </if>
+                    <if test="ygId != null and ygId!=''">
+                        yg_id=#{ygId},
+                    </if>
+                    <if test="cgsqRq != null and cgsqRq!=''">
+                        cgsq_rq=#{cgsqRq},
+                    </if>
+                    <if test="cgsqQx != null and cgsqQx!=''">
+                        cgsq_qx=#{cgsqQx},
+                    </if>
+                    <if test="cgsqSh != null and cgsqSh!=''">
+                        cgsq_sh=#{cgsqSh},
+                    </if>
+                    <if test="cgsqZje != null and cgsqZje!=''">
+                        cgsq_zje=#{cgsqZje},
+                    </if>
+                    <if test="cgsqBz != null and cgsqBz!=''">
+                        cgsq_bz=#{cgsqBz}
+                    </if>
+        </trim>
+    </update>
+
+    <delete id="deleteCaigoushenqingById" parameterType="Long">
+        delete from caigoushenqing where id = #{id}
+    </delete>
+</mapper>
