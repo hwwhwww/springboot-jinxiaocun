@@ -4,6 +4,7 @@ public class E {
 
     public void e(){
         System.out.println("测试");
+        System.out.println("输出");
     }
 
 
