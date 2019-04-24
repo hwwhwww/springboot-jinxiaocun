@@ -8,9 +8,9 @@ public interface XiaoshoudingdanchukuMapper {
 
 	public Xiaoshoudingdanchuku getXiaoshoudingdanchukuById(@Param(value = "id") Long id)throws Exception;
 
-	public List<Xiaoshoudingdanchuku>	getXiaoshoudingdanchukuListByMap(Map<String,Object> param)throws Exception;
+	public List<Xiaoshoudingdanchuku>	getXiaoshoudingdanchukuListByMap(Map<String, Object> param)throws Exception;
 
-	public Integer getXiaoshoudingdanchukuCountByMap(Map<String,Object> param)throws Exception;
+	public Integer getXiaoshoudingdanchukuCountByMap(Map<String, Object> param)throws Exception;
 
 	public Integer insertXiaoshoudingdanchuku(Xiaoshoudingdanchuku xiaoshoudingdanchuku)throws Exception;
 

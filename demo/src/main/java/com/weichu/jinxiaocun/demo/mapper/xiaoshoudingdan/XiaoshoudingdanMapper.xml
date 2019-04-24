@@ -13,7 +13,7 @@
                 xsdd_bz as xsddBz,
                 ke_id as keId,
                 xsy_id as xsyId,
-                xsddsp_id as xsddspId
+                sp_id as spId
         from xiaoshoudingdan
         <trim prefix="where" prefixOverrides="and | or">
             <if test="id != null">
@@ -31,7 +31,7 @@
                 xsdd_bz as xsddBz,
                 ke_id as keId,
                 xsy_id as xsyId,
-                xsddsp_id as xsddspId
+                sp_id as spId
         from xiaoshoudingdan
         <trim prefix="where" prefixOverrides="and | or">
                     <if test="xsddId != null and xsddId!=''">
@@ -86,8 +86,8 @@
                 <if test="xsyId != null and xsyId!=''">
                     and xsy_id=#{xsyId}
                 </if>
-                <if test="xsddspId != null and xsddspId!=''">
-                    and xsddsp_id=#{xsddspId}
+                <if test="spId != null and spId!=''">
+                    and sp_id=#{spId}
                 </if>
         </trim>
     </select>
@@ -101,7 +101,7 @@
                         xsdd_bz,
                         ke_id,
                         xsy_id,
-                        xsddsp_id)
+                        sp_id)
         values(
                      #{xsddId},
                      #{xsddBh},
@@ -110,7 +110,7 @@
                      #{xsddBz},
                      #{keId},
                      #{xsyId},
-                    #{xsddspId})
+                    #{spId})
     </insert>
 
     <update id="updateXiaoshoudingdan" parameterType="com.weichu.jinxiaocun.demo.bean.Xiaoshoudingdan">
@@ -137,8 +137,8 @@
                     <if test="xsyId != null and xsyId!=''">
                         xsy_id=#{xsyId},
                     </if>
-                    <if test="xsddspId != null and xsddspId!=''">
-                        xsddsp_id=#{xsddspId}
+                    <if test="spId != null and spId!=''">
+                        sp_id=#{spId}
                     </if>
         </trim>
     </update>

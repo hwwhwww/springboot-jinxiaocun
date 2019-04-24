@@ -11,9 +11,9 @@ public interface XiaoshoudingdanchukuService {
 
     public Xiaoshoudingdanchuku getXiaoshoudingdanchukuById(Long id)throws Exception;
 
-    public List<Xiaoshoudingdanchuku>	getXiaoshoudingdanchukuListByMap(Map<String,Object> param)throws Exception;
+    public List<Xiaoshoudingdanchuku>	getXiaoshoudingdanchukuListByMap(Map<String, Object> param)throws Exception;
 
-    public Integer getXiaoshoudingdanchukuCountByMap(Map<String,Object> param)throws Exception;
+    public Integer getXiaoshoudingdanchukuCountByMap(Map<String, Object> param)throws Exception;
 
     public Integer itriptxAddXiaoshoudingdanchuku(Xiaoshoudingdanchuku xiaoshoudingdanchuku)throws Exception;
 

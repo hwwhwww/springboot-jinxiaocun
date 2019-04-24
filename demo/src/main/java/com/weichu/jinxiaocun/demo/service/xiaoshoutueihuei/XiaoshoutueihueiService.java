@@ -11,9 +11,9 @@ public interface XiaoshoutueihueiService {
 
     public Xiaoshoutueihuei getXiaoshoutueihueiById(Long id)throws Exception;
 
-    public List<Xiaoshoutueihuei>	getXiaoshoutueihueiListByMap(Map<String,Object> param)throws Exception;
+    public List<Xiaoshoutueihuei>	getXiaoshoutueihueiListByMap(Map<String, Object> param)throws Exception;
 
-    public Integer getXiaoshoutueihueiCountByMap(Map<String,Object> param)throws Exception;
+    public Integer getXiaoshoutueihueiCountByMap(Map<String, Object> param)throws Exception;
 
     public Integer itriptxAddXiaoshoutueihuei(Xiaoshoutueihuei xiaoshoutueihuei)throws Exception;
 

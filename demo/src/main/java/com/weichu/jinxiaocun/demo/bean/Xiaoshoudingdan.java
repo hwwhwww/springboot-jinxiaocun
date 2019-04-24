@@ -19,8 +19,8 @@ public class Xiaoshoudingdan implements Serializable {
         private Integer keId;
         //连接销售员id
         private Integer xsyId;
-        //连接销售订单商品id
-        private Integer xsddspId;
+        //连接商品id
+        private Integer spId;
         //get set 方法
         public void setXsddId (Integer  xsddId){
             this.xsddId=xsddId;
@@ -64,10 +64,10 @@ public class Xiaoshoudingdan implements Serializable {
         public  Integer getXsyId(){
             return this.xsyId;
         }
-        public void setXsddspId (Integer  xsddspId){
-            this.xsddspId=xsddspId;
+        public void setSpId (Integer  spId){
+            this.spId=spId;
         }
-        public  Integer getXsddspId(){
-            return this.xsddspId;
+        public  Integer getSpId(){
+            return this.spId;
         }
 }

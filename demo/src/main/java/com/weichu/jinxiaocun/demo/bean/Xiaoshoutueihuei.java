@@ -11,8 +11,6 @@ public class Xiaoshoutueihuei implements Serializable {
         private String xsthId;
         //退回日期
         private Date xsthRq;
-        //退回客户
-        private String xsthKh;
         //操作员
         private String xsthZzy;
         //备注
@@ -39,12 +37,6 @@ public class Xiaoshoutueihuei implements Serializable {
         }
         public  Date getXsthRq(){
             return this.xsthRq;
-        }
-        public void setXsthKh (String  xsthKh){
-            this.xsthKh=xsthKh;
-        }
-        public  String getXsthKh(){
-            return this.xsthKh;
         }
         public void setXsthZzy (String  xsthZzy){
             this.xsthZzy=xsthZzy;
