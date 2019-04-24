@@ -5,6 +5,16 @@ private int id;
 
 private String name ;
 
+private  String add;
+
+    public String getAdd() {
+        return add;
+    }
+
+    public void setAdd(String add) {
+        this.add = add;
+    }
+
     public int getId() {
         return id;
     }
