@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weichu.jinxiaocun.demo.mapper.caigoudingdanshangping.CaigoudingdanshangpingMapper">
+
+    <select id="getCaigoudingdanshangpingById" resultType="com.weichu.jinxiaocun.demo.bean.Caigoudingdanshangping" >
+        select
+                cgdd_id as cgddId,
+                sp_id as spId,
+                cgddsp_sl as cgddspSl,
+                cgddsp_jg as cgddspJg,
+                cgddsp_zg as cgddspZg,
+                cgddsp_fp as cgddspFp,
+                cgddsp_bz as cgddspBz
+        from caigoudingdanshangping
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getCaigoudingdanshangpingListByMap" resultType="com.weichu.jinxiaocun.demo.bean.Caigoudingdanshangping" parameterType="java.util.Map">
+        select
+                cgdd_id as cgddId,
+                sp_id as spId,
+                cgddsp_sl as cgddspSl,
+                cgddsp_jg as cgddspJg,
+                cgddsp_zg as cgddspZg,
+                cgddsp_fp as cgddspFp,
+                cgddsp_bz as cgddspBz
+        from caigoudingdanshangping
+        <trim prefix="where" prefixOverrides="and | or">
+                    <if test="cgddId != null and cgddId!=''">
+                        and cgdd_id=#{cgddId}
+                    </if>
+                    <if test="spId != null and spId!=''">
+                        and sp_id=#{spId}
+                    </if>
+                    <if test="cgddspSl != null and cgddspSl!=''">
+                        and cgddsp_sl=#{cgddspSl}
+                    </if>
+                    <if test="cgddspJg != null and cgddspJg!=''">
+                        and cgddsp_jg=#{cgddspJg}
+                    </if>
+                    <if test="cgddspZg != null and cgddspZg!=''">
+                        and cgddsp_zg=#{cgddspZg}
+                    </if>
+                    <if test="cgddspFp != null and cgddspFp!=''">
+                        and cgddsp_fp=#{cgddspFp}
+                    </if>
+        </trim>
+         order by creationDate desc
+        <if test="beginPos != null and beginPos!='' and pageSize != null  and pageSize !='' ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getCaigoudingdanshangpingCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from caigoudingdanshangping
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="cgddId != null and cgddId!=''">
+                    and cgdd_id=#{cgddId}
+                </if>
+                <if test="spId != null and spId!=''">
+                    and sp_id=#{spId}
+                </if>
+                <if test="cgddspSl != null and cgddspSl!=''">
+                    and cgddsp_sl=#{cgddspSl}
+                </if>
+                <if test="cgddspJg != null and cgddspJg!=''">
+                    and cgddsp_jg=#{cgddspJg}
+                </if>
+                <if test="cgddspZg != null and cgddspZg!=''">
+                    and cgddsp_zg=#{cgddspZg}
+                </if>
+                <if test="cgddspFp != null and cgddspFp!=''">
+                    and cgddsp_fp=#{cgddspFp}
+                </if>
+                <if test="cgddspBz != null and cgddspBz!=''">
+                    and cgddsp_bz=#{cgddspBz}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertCaigoudingdanshangping" parameterType="com.weichu.jinxiaocun.demo.bean.Caigoudingdanshangping">
+        insert into caigoudingdanshangping(
+                        cgdd_id,
+                        sp_id,
+                        cgddsp_sl,
+                        cgddsp_jg,
+                        cgddsp_zg,
+                        cgddsp_fp,
+                        cgddsp_bz)
+        values(
+                     #{cgddId},
+                     #{spId},
+                     #{cgddspSl},
+                     #{cgddspJg},
+                     #{cgddspZg},
+                     #{cgddspFp},
+                    #{cgddspBz})
+    </insert>
+
+    <update id="updateCaigoudingdanshangping" parameterType="com.weichu.jinxiaocun.demo.bean.Caigoudingdanshangping">
+        update caigoudingdanshangping
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                    <if test="cgddId != null and cgddId!=''">
+                        cgdd_id=#{cgddId},
+                    </if>
+                    <if test="spId != null and spId!=''">
+                        sp_id=#{spId},
+                    </if>
+                    <if test="cgddspSl != null and cgddspSl!=''">
+                        cgddsp_sl=#{cgddspSl},
+                    </if>
+                    <if test="cgddspJg != null and cgddspJg!=''">
+                        cgddsp_jg=#{cgddspJg},
+                    </if>
+                    <if test="cgddspZg != null and cgddspZg!=''">
+                        cgddsp_zg=#{cgddspZg},
+                    </if>
+                    <if test="cgddspFp != null and cgddspFp!=''">
+                        cgddsp_fp=#{cgddspFp},
+                    </if>
+                    <if test="cgddspBz != null and cgddspBz!=''">
+                        cgddsp_bz=#{cgddspBz}
+                    </if>
+        </trim>
+    </update>
+
+    <delete id="deleteCaigoudingdanshangpingById" parameterType="Long">
+        delete from caigoudingdanshangping where id = #{id}
+    </delete>
+</mapper>

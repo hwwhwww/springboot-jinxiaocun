@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weichu.jinxiaocun.demo.mapper.yonghu.YonghuMapper">
+
+    <select id="getYonghuById" resultType="com.weichu.jinxiaocun.demo.bean.Yonghu" >
+        select
+                yh_id as yhId,
+                yh_yhm as yhYhm,
+                yh_mm as yhMm,
+                yh_xm as yhXm,
+                yh_xb as yhXb,
+                yh_dh as yhDh,
+                yh_yx as yhYx,
+                yh_dz as yhDz,
+                yh_sj as yhSj,
+                yh_qq as yhQq,
+                yh_zt as yhZt,
+                yh_ms as yhMs
+        from yonghu
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getYonghuListByMap" resultType="com.weichu.jinxiaocun.demo.bean.Yonghu" parameterType="java.util.Map">
+        select
+                yh_id as yhId,
+                yh_yhm as yhYhm,
+                yh_mm as yhMm,
+                yh_xm as yhXm,
+                yh_xb as yhXb,
+                yh_dh as yhDh,
+                yh_yx as yhYx,
+                yh_dz as yhDz,
+                yh_sj as yhSj,
+                yh_qq as yhQq,
+                yh_zt as yhZt,
+                yh_ms as yhMs
+        from yonghu
+        <trim prefix="where" prefixOverrides="and | or">
+                    <if test="yhId != null and yhId!=''">
+                        and yh_id=#{yhId}
+                    </if>
+                    <if test="yhYhm != null and yhYhm!=''">
+                        and yh_yhm=#{yhYhm}
+                    </if>
+                    <if test="yhMm != null and yhMm!=''">
+                        and yh_mm=#{yhMm}
+                    </if>
+                    <if test="yhXm != null and yhXm!=''">
+                        and yh_xm=#{yhXm}
+                    </if>
+                    <if test="yhXb != null and yhXb!=''">
+                        and yh_xb=#{yhXb}
+                    </if>
+                    <if test="yhDh != null and yhDh!=''">
+                        and yh_dh=#{yhDh}
+                    </if>
+                    <if test="yhYx != null and yhYx!=''">
+                        and yh_yx=#{yhYx}
+                    </if>
+                    <if test="yhDz != null and yhDz!=''">
+                        and yh_dz=#{yhDz}
+                    </if>
+                    <if test="yhSj != null and yhSj!=''">
+                        and yh_sj=#{yhSj}
+                    </if>
+                    <if test="yhQq != null and yhQq!=''">
+                        and yh_qq=#{yhQq}
+                    </if>
+                    <if test="yhZt != null and yhZt!=''">
+                        and yh_zt=#{yhZt}
+                    </if>
+        </trim>
+         order by creationDate desc
+        <if test="beginPos != null and beginPos!='' and pageSize != null  and pageSize !='' ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getYonghuCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from yonghu
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="yhId != null and yhId!=''">
+                    and yh_id=#{yhId}
+                </if>
+                <if test="yhYhm != null and yhYhm!=''">
+                    and yh_yhm=#{yhYhm}
+                </if>
+                <if test="yhMm != null and yhMm!=''">
+                    and yh_mm=#{yhMm}
+                </if>
+                <if test="yhXm != null and yhXm!=''">
+                    and yh_xm=#{yhXm}
+                </if>
+                <if test="yhXb != null and yhXb!=''">
+                    and yh_xb=#{yhXb}
+                </if>
+                <if test="yhDh != null and yhDh!=''">
+                    and yh_dh=#{yhDh}
+                </if>
+                <if test="yhYx != null and yhYx!=''">
+                    and yh_yx=#{yhYx}
+                </if>
+                <if test="yhDz != null and yhDz!=''">
+                    and yh_dz=#{yhDz}
+                </if>
+                <if test="yhSj != null and yhSj!=''">
+                    and yh_sj=#{yhSj}
+                </if>
+                <if test="yhQq != null and yhQq!=''">
+                    and yh_qq=#{yhQq}
+                </if>
+                <if test="yhZt != null and yhZt!=''">
+                    and yh_zt=#{yhZt}
+                </if>
+                <if test="yhMs != null and yhMs!=''">
+                    and yh_ms=#{yhMs}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertYonghu" parameterType="com.weichu.jinxiaocun.demo.bean.Yonghu">
+        insert into yonghu(
+                        yh_id,
+                        yh_yhm,
+                        yh_mm,
+                        yh_xm,
+                        yh_xb,
+                        yh_dh,
+                        yh_yx,
+                        yh_dz,
+                        yh_sj,
+                        yh_qq,
+                        yh_zt,
+                        yh_ms)
+        values(
+                     #{yhId},
+                     #{yhYhm},
+                     #{yhMm},
+                     #{yhXm},
+                     #{yhXb},
+                     #{yhDh},
+                     #{yhYx},
+                     #{yhDz},
+                     #{yhSj},
+                     #{yhQq},
+                     #{yhZt},
+                    #{yhMs})
+    </insert>
+
+    <update id="updateYonghu" parameterType="com.weichu.jinxiaocun.demo.bean.Yonghu">
+        update yonghu
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                    <if test="yhId != null and yhId!=''">
+                        yh_id=#{yhId},
+                    </if>
+                    <if test="yhYhm != null and yhYhm!=''">
+                        yh_yhm=#{yhYhm},
+                    </if>
+                    <if test="yhMm != null and yhMm!=''">
+                        yh_mm=#{yhMm},
+                    </if>
+                    <if test="yhXm != null and yhXm!=''">
+                        yh_xm=#{yhXm},
+                    </if>
+                    <if test="yhXb != null and yhXb!=''">
+                        yh_xb=#{yhXb},
+                    </if>
+                    <if test="yhDh != null and yhDh!=''">
+                        yh_dh=#{yhDh},
+                    </if>
+                    <if test="yhYx != null and yhYx!=''">
+                        yh_yx=#{yhYx},
+                    </if>
+                    <if test="yhDz != null and yhDz!=''">
+                        yh_dz=#{yhDz},
+                    </if>
+                    <if test="yhSj != null and yhSj!=''">
+                        yh_sj=#{yhSj},
+                    </if>
+                    <if test="yhQq != null and yhQq!=''">
+                        yh_qq=#{yhQq},
+                    </if>
+                    <if test="yhZt != null and yhZt!=''">
+                        yh_zt=#{yhZt},
+                    </if>
+                    <if test="yhMs != null and yhMs!=''">
+                        yh_ms=#{yhMs}
+                    </if>
+        </trim>
+    </update>
+
+    <delete id="deleteYonghuById" parameterType="Long">
+        delete from yonghu where id = #{id}
+    </delete>
+</mapper>

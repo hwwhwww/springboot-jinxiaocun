@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weichu.jinxiaocun.demo.mapper.denglujilu.DenglujiluMapper">
+
+    <select id="getDenglujiluById" resultType="com.weichu.jinxiaocun.demo.bean.Denglujilu" >
+        select
+                dl_id as dlId,
+                dl_yhm as dlYhm,
+                dl_sj as dlSj,
+                dl_IP as dlIP
+        from denglujilu
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getDenglujiluListByMap" resultType="com.weichu.jinxiaocun.demo.bean.Denglujilu" parameterType="java.util.Map">
+        select
+                dl_id as dlId,
+                dl_yhm as dlYhm,
+                dl_sj as dlSj,
+                dl_IP as dlIP
+        from denglujilu
+        <trim prefix="where" prefixOverrides="and | or">
+                    <if test="dlId != null and dlId!=''">
+                        and dl_id=#{dlId}
+                    </if>
+                    <if test="dlYhm != null and dlYhm!=''">
+                        and dl_yhm=#{dlYhm}
+                    </if>
+                    <if test="dlSj != null and dlSj!=''">
+                        and dl_sj=#{dlSj}
+                    </if>
+        </trim>
+         order by creationDate desc
+        <if test="beginPos != null and beginPos!='' and pageSize != null  and pageSize !='' ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getDenglujiluCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from denglujilu
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="dlId != null and dlId!=''">
+                    and dl_id=#{dlId}
+                </if>
+                <if test="dlYhm != null and dlYhm!=''">
+                    and dl_yhm=#{dlYhm}
+                </if>
+                <if test="dlSj != null and dlSj!=''">
+                    and dl_sj=#{dlSj}
+                </if>
+                <if test="dlIP != null and dlIP!=''">
+                    and dl_IP=#{dlIP}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertDenglujilu" parameterType="com.weichu.jinxiaocun.demo.bean.Denglujilu">
+        insert into denglujilu(
+                        dl_id,
+                        dl_yhm,
+                        dl_sj,
+                        dl_IP)
+        values(
+                     #{dlId},
+                     #{dlYhm},
+                     #{dlSj},
+                    #{dlIP})
+    </insert>
+
+    <update id="updateDenglujilu" parameterType="com.weichu.jinxiaocun.demo.bean.Denglujilu">
+        update denglujilu
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                    <if test="dlId != null and dlId!=''">
+                        dl_id=#{dlId},
+                    </if>
+                    <if test="dlYhm != null and dlYhm!=''">
+                        dl_yhm=#{dlYhm},
+                    </if>
+                    <if test="dlSj != null and dlSj!=''">
+                        dl_sj=#{dlSj},
+                    </if>
+                    <if test="dlIP != null and dlIP!=''">
+                        dl_IP=#{dlIP}
+                    </if>
+        </trim>
+    </update>
+
+    <delete id="deleteDenglujiluById" parameterType="Long">
+        delete from denglujilu where id = #{id}
+    </delete>
+</mapper>

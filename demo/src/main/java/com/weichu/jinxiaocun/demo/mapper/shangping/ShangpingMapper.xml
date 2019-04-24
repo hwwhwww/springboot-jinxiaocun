@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weichu.jinxiaocun.demo.mapper.shangping.ShangpingMapper">
+
+    <select id="getShangpingById" resultType="com.weichu.jinxiaocun.demo.bean.Shangping" >
+        select
+                sp_id as spId,
+                sp_bh as spBh,
+                sp_name as spName,
+                splb_id as splbId,
+                dw_id as dwId,
+                sp_cgdj as spCgdj,
+                sp_xsdj as spXsdj,
+                sp_bz as spBz
+        from shangping
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getShangpingListByMap" resultType="com.weichu.jinxiaocun.demo.bean.Shangping" parameterType="java.util.Map">
+        select
+                sp_id as spId,
+                sp_bh as spBh,
+                sp_name as spName,
+                splb_id as splbId,
+                dw_id as dwId,
+                sp_cgdj as spCgdj,
+                sp_xsdj as spXsdj,
+                sp_bz as spBz
+        from shangping
+        <trim prefix="where" prefixOverrides="and | or">
+                    <if test="spId != null and spId!=''">
+                        and sp_id=#{spId}
+                    </if>
+                    <if test="spBh != null and spBh!=''">
+                        and sp_bh=#{spBh}
+                    </if>
+                    <if test="spName != null and spName!=''">
+                        and sp_name=#{spName}
+                    </if>
+                    <if test="splbId != null and splbId!=''">
+                        and splb_id=#{splbId}
+                    </if>
+                    <if test="dwId != null and dwId!=''">
+                        and dw_id=#{dwId}
+                    </if>
+                    <if test="spCgdj != null and spCgdj!=''">
+                        and sp_cgdj=#{spCgdj}
+                    </if>
+                    <if test="spXsdj != null and spXsdj!=''">
+                        and sp_xsdj=#{spXsdj}
+                    </if>
+        </trim>
+         order by creationDate desc
+        <if test="beginPos != null and beginPos!='' and pageSize != null  and pageSize !='' ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getShangpingCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from shangping
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="spId != null and spId!=''">
+                    and sp_id=#{spId}
+                </if>
+                <if test="spBh != null and spBh!=''">
+                    and sp_bh=#{spBh}
+                </if>
+                <if test="spName != null and spName!=''">
+                    and sp_name=#{spName}
+                </if>
+                <if test="splbId != null and splbId!=''">
+                    and splb_id=#{splbId}
+                </if>
+                <if test="dwId != null and dwId!=''">
+                    and dw_id=#{dwId}
+                </if>
+                <if test="spCgdj != null and spCgdj!=''">
+                    and sp_cgdj=#{spCgdj}
+                </if>
+                <if test="spXsdj != null and spXsdj!=''">
+                    and sp_xsdj=#{spXsdj}
+                </if>
+                <if test="spBz != null and spBz!=''">
+                    and sp_bz=#{spBz}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertShangping" parameterType="com.weichu.jinxiaocun.demo.bean.Shangping">
+        insert into shangping(
+                        sp_id,
+                        sp_bh,
+                        sp_name,
+                        splb_id,
+                        dw_id,
+                        sp_cgdj,
+                        sp_xsdj,
+                        sp_bz)
+        values(
+                     #{spId},
+                     #{spBh},
+                     #{spName},
+                     #{splbId},
+                     #{dwId},
+                     #{spCgdj},
+                     #{spXsdj},
+                    #{spBz})
+    </insert>
+
+    <update id="updateShangping" parameterType="com.weichu.jinxiaocun.demo.bean.Shangping">
+        update shangping
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                    <if test="spId != null and spId!=''">
+                        sp_id=#{spId},
+                    </if>
+                    <if test="spBh != null and spBh!=''">
+                        sp_bh=#{spBh},
+                    </if>
+                    <if test="spName != null and spName!=''">
+                        sp_name=#{spName},
+                    </if>
+                    <if test="splbId != null and splbId!=''">
+                        splb_id=#{splbId},
+                    </if>
+                    <if test="dwId != null and dwId!=''">
+                        dw_id=#{dwId},
+                    </if>
+                    <if test="spCgdj != null and spCgdj!=''">
+                        sp_cgdj=#{spCgdj},
+                    </if>
+                    <if test="spXsdj != null and spXsdj!=''">
+                        sp_xsdj=#{spXsdj},
+                    </if>
+                    <if test="spBz != null and spBz!=''">
+                        sp_bz=#{spBz}
+                    </if>
+        </trim>
+    </update>
+
+    <delete id="deleteShangpingById" parameterType="Long">
+        delete from shangping where id = #{id}
+    </delete>
+</mapper>
