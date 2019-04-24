@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weichu.jinxiaocun.demo.mapper.rukumingxi.RukumingxiMapper">
+
+    <select id="getRukumingxiById" resultType="com.weichu.jinxiaocun.demo.bean.Rukumingxi" >
+        select
+                rkmx_id as rkmxId,
+                rkmx_bh as rkmxBh,
+                sp_id as spId,
+                rkmx_spmc as rkmxSpmc,
+                dw_id as dwId,
+                rkmx_dj as rkmxDj,
+                rkmx_sl as rkmxSl,
+                rkmx_zje as rkmxZje,
+                rkmx_bz as rkmxBz
+        from rukumingxi
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getRukumingxiListByMap" resultType="com.weichu.jinxiaocun.demo.bean.Rukumingxi" parameterType="java.util.Map">
+        select
+                rkmx_id as rkmxId,
+                rkmx_bh as rkmxBh,
+                sp_id as spId,
+                rkmx_spmc as rkmxSpmc,
+                dw_id as dwId,
+                rkmx_dj as rkmxDj,
+                rkmx_sl as rkmxSl,
+                rkmx_zje as rkmxZje,
+                rkmx_bz as rkmxBz
+        from rukumingxi
+        <trim prefix="where" prefixOverrides="and | or">
+                    <if test="rkmxId != null and rkmxId!=''">
+                        and rkmx_id=#{rkmxId}
+                    </if>
+                    <if test="rkmxBh != null and rkmxBh!=''">
+                        and rkmx_bh=#{rkmxBh}
+                    </if>
+                    <if test="spId != null and spId!=''">
+                        and sp_id=#{spId}
+                    </if>
+                    <if test="rkmxSpmc != null and rkmxSpmc!=''">
+                        and rkmx_spmc=#{rkmxSpmc}
+                    </if>
+                    <if test="dwId != null and dwId!=''">
+                        and dw_id=#{dwId}
+                    </if>
+                    <if test="rkmxDj != null and rkmxDj!=''">
+                        and rkmx_dj=#{rkmxDj}
+                    </if>
+                    <if test="rkmxSl != null and rkmxSl!=''">
+                        and rkmx_sl=#{rkmxSl}
+                    </if>
+                    <if test="rkmxZje != null and rkmxZje!=''">
+                        and rkmx_zje=#{rkmxZje}
+                    </if>
+        </trim>
+         order by creationDate desc
+        <if test="beginPos != null and beginPos!='' and pageSize != null  and pageSize !='' ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getRukumingxiCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from rukumingxi
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="rkmxId != null and rkmxId!=''">
+                    and rkmx_id=#{rkmxId}
+                </if>
+                <if test="rkmxBh != null and rkmxBh!=''">
+                    and rkmx_bh=#{rkmxBh}
+                </if>
+                <if test="spId != null and spId!=''">
+                    and sp_id=#{spId}
+                </if>
+                <if test="rkmxSpmc != null and rkmxSpmc!=''">
+                    and rkmx_spmc=#{rkmxSpmc}
+                </if>
+                <if test="dwId != null and dwId!=''">
+                    and dw_id=#{dwId}
+                </if>
+                <if test="rkmxDj != null and rkmxDj!=''">
+                    and rkmx_dj=#{rkmxDj}
+                </if>
+                <if test="rkmxSl != null and rkmxSl!=''">
+                    and rkmx_sl=#{rkmxSl}
+                </if>
+                <if test="rkmxZje != null and rkmxZje!=''">
+                    and rkmx_zje=#{rkmxZje}
+                </if>
+                <if test="rkmxBz != null and rkmxBz!=''">
+                    and rkmx_bz=#{rkmxBz}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertRukumingxi" parameterType="com.weichu.jinxiaocun.demo.bean.Rukumingxi">
+        insert into rukumingxi(
+                        rkmx_id,
+                        rkmx_bh,
+                        sp_id,
+                        rkmx_spmc,
+                        dw_id,
+                        rkmx_dj,
+                        rkmx_sl,
+                        rkmx_zje,
+                        rkmx_bz)
+        values(
+                     #{rkmxId},
+                     #{rkmxBh},
+                     #{spId},
+                     #{rkmxSpmc},
+                     #{dwId},
+                     #{rkmxDj},
+                     #{rkmxSl},
+                     #{rkmxZje},
+                    #{rkmxBz})
+    </insert>
+
+    <update id="updateRukumingxi" parameterType="com.weichu.jinxiaocun.demo.bean.Rukumingxi">
+        update rukumingxi
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                    <if test="rkmxId != null and rkmxId!=''">
+                        rkmx_id=#{rkmxId},
+                    </if>
+                    <if test="rkmxBh != null and rkmxBh!=''">
+                        rkmx_bh=#{rkmxBh},
+                    </if>
+                    <if test="spId != null and spId!=''">
+                        sp_id=#{spId},
+                    </if>
+                    <if test="rkmxSpmc != null and rkmxSpmc!=''">
+                        rkmx_spmc=#{rkmxSpmc},
+                    </if>
+                    <if test="dwId != null and dwId!=''">
+                        dw_id=#{dwId},
+                    </if>
+                    <if test="rkmxDj != null and rkmxDj!=''">
+                        rkmx_dj=#{rkmxDj},
+                    </if>
+                    <if test="rkmxSl != null and rkmxSl!=''">
+                        rkmx_sl=#{rkmxSl},
+                    </if>
+                    <if test="rkmxZje != null and rkmxZje!=''">
+                        rkmx_zje=#{rkmxZje},
+                    </if>
+                    <if test="rkmxBz != null and rkmxBz!=''">
+                        rkmx_bz=#{rkmxBz}
+                    </if>
+        </trim>
+    </update>
+
+    <delete id="deleteRukumingxiById" parameterType="Long">
+        delete from rukumingxi where id = #{id}
+    </delete>
+</mapper>

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weichu.jinxiaocun.demo.mapper.yonghuJs.YonghuJsMapper">
+
+    <select id="getYonghuJsById" resultType="com.weichu.jinxiaocun.demo.bean.YonghuJs" >
+        select
+                yj_id as yjId,
+                yh_id as yhId,
+                js_id as jsId
+        from yonghu_js
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getYonghuJsListByMap" resultType="com.weichu.jinxiaocun.demo.bean.YonghuJs" parameterType="java.util.Map">
+        select
+                yj_id as yjId,
+                yh_id as yhId,
+                js_id as jsId
+        from yonghu_js
+        <trim prefix="where" prefixOverrides="and | or">
+                    <if test="yjId != null and yjId!=''">
+                        and yj_id=#{yjId}
+                    </if>
+                    <if test="yhId != null and yhId!=''">
+                        and yh_id=#{yhId}
+                    </if>
+        </trim>
+         order by creationDate desc
+        <if test="beginPos != null and beginPos!='' and pageSize != null  and pageSize !='' ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getYonghuJsCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from yonghu_js
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="yjId != null and yjId!=''">
+                    and yj_id=#{yjId}
+                </if>
+                <if test="yhId != null and yhId!=''">
+                    and yh_id=#{yhId}
+                </if>
+                <if test="jsId != null and jsId!=''">
+                    and js_id=#{jsId}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertYonghuJs" parameterType="com.weichu.jinxiaocun.demo.bean.YonghuJs">
+        insert into yonghu_js(
+                        yj_id,
+                        yh_id,
+                        js_id)
+        values(
+                     #{yjId},
+                     #{yhId},
+                    #{jsId})
+    </insert>
+
+    <update id="updateYonghuJs" parameterType="com.weichu.jinxiaocun.demo.bean.YonghuJs">
+        update yonghu_js
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                    <if test="yjId != null and yjId!=''">
+                        yj_id=#{yjId},
+                    </if>
+                    <if test="yhId != null and yhId!=''">
+                        yh_id=#{yhId},
+                    </if>
+                    <if test="jsId != null and jsId!=''">
+                        js_id=#{jsId}
+                    </if>
+        </trim>
+    </update>
+
+    <delete id="deleteYonghuJsById" parameterType="Long">
+        delete from yonghu_js where id = #{id}
+    </delete>
+</mapper>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weichu.jinxiaocun.demo.mapper.xiaoshoudingdan.XiaoshoudingdanMapper">
+
+    <select id="getXiaoshoudingdanById" resultType="com.weichu.jinxiaocun.demo.bean.Xiaoshoudingdan" >
+        select
+                xsdd_id as xsddId,
+                xsdd_bh as xsddBh,
+                xsdd_rq as xsddRq,
+                xsdd_shbz as xsddShbz,
+                xsdd_bz as xsddBz,
+                ke_id as keId,
+                xsy_id as xsyId,
+                xsddsp_id as xsddspId
+        from xiaoshoudingdan
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getXiaoshoudingdanListByMap" resultType="com.weichu.jinxiaocun.demo.bean.Xiaoshoudingdan" parameterType="java.util.Map">
+        select
+                xsdd_id as xsddId,
+                xsdd_bh as xsddBh,
+                xsdd_rq as xsddRq,
+                xsdd_shbz as xsddShbz,
+                xsdd_bz as xsddBz,
+                ke_id as keId,
+                xsy_id as xsyId,
+                xsddsp_id as xsddspId
+        from xiaoshoudingdan
+        <trim prefix="where" prefixOverrides="and | or">
+                    <if test="xsddId != null and xsddId!=''">
+                        and xsdd_id=#{xsddId}
+                    </if>
+                    <if test="xsddBh != null and xsddBh!=''">
+                        and xsdd_bh=#{xsddBh}
+                    </if>
+                    <if test="xsddRq != null and xsddRq!=''">
+                        and xsdd_rq=#{xsddRq}
+                    </if>
+                    <if test="xsddShbz != null and xsddShbz!=''">
+                        and xsdd_shbz=#{xsddShbz}
+                    </if>
+                    <if test="xsddBz != null and xsddBz!=''">
+                        and xsdd_bz=#{xsddBz}
+                    </if>
+                    <if test="keId != null and keId!=''">
+                        and ke_id=#{keId}
+                    </if>
+                    <if test="xsyId != null and xsyId!=''">
+                        and xsy_id=#{xsyId}
+                    </if>
+        </trim>
+         order by creationDate desc
+        <if test="beginPos != null and beginPos!='' and pageSize != null  and pageSize !='' ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getXiaoshoudingdanCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from xiaoshoudingdan
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="xsddId != null and xsddId!=''">
+                    and xsdd_id=#{xsddId}
+                </if>
+                <if test="xsddBh != null and xsddBh!=''">
+                    and xsdd_bh=#{xsddBh}
+                </if>
+                <if test="xsddRq != null and xsddRq!=''">
+                    and xsdd_rq=#{xsddRq}
+                </if>
+                <if test="xsddShbz != null and xsddShbz!=''">
+                    and xsdd_shbz=#{xsddShbz}
+                </if>
+                <if test="xsddBz != null and xsddBz!=''">
+                    and xsdd_bz=#{xsddBz}
+                </if>
+                <if test="keId != null and keId!=''">
+                    and ke_id=#{keId}
+                </if>
+                <if test="xsyId != null and xsyId!=''">
+                    and xsy_id=#{xsyId}
+                </if>
+                <if test="xsddspId != null and xsddspId!=''">
+                    and xsddsp_id=#{xsddspId}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertXiaoshoudingdan" parameterType="com.weichu.jinxiaocun.demo.bean.Xiaoshoudingdan">
+        insert into xiaoshoudingdan(
+                        xsdd_id,
+                        xsdd_bh,
+                        xsdd_rq,
+                        xsdd_shbz,
+                        xsdd_bz,
+                        ke_id,
+                        xsy_id,
+                        xsddsp_id)
+        values(
+                     #{xsddId},
+                     #{xsddBh},
+                     #{xsddRq},
+                     #{xsddShbz},
+                     #{xsddBz},
+                     #{keId},
+                     #{xsyId},
+                    #{xsddspId})
+    </insert>
+
+    <update id="updateXiaoshoudingdan" parameterType="com.weichu.jinxiaocun.demo.bean.Xiaoshoudingdan">
+        update xiaoshoudingdan
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                    <if test="xsddId != null and xsddId!=''">
+                        xsdd_id=#{xsddId},
+                    </if>
+                    <if test="xsddBh != null and xsddBh!=''">
+                        xsdd_bh=#{xsddBh},
+                    </if>
+                    <if test="xsddRq != null and xsddRq!=''">
+                        xsdd_rq=#{xsddRq},
+                    </if>
+                    <if test="xsddShbz != null and xsddShbz!=''">
+                        xsdd_shbz=#{xsddShbz},
+                    </if>
+                    <if test="xsddBz != null and xsddBz!=''">
+                        xsdd_bz=#{xsddBz},
+                    </if>
+                    <if test="keId != null and keId!=''">
+                        ke_id=#{keId},
+                    </if>
+                    <if test="xsyId != null and xsyId!=''">
+                        xsy_id=#{xsyId},
+                    </if>
+                    <if test="xsddspId != null and xsddspId!=''">
+                        xsddsp_id=#{xsddspId}
+                    </if>
+        </trim>
+    </update>
+
+    <delete id="deleteXiaoshoudingdanById" parameterType="Long">
+        delete from xiaoshoudingdan where id = #{id}
+    </delete>
+</mapper>

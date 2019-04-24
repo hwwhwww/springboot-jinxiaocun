@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weichu.jinxiaocun.demo.mapper.kehu.KehuMapper">
+
+    <select id="getKehuById" resultType="com.weichu.jinxiaocun.demo.bean.Kehu" >
+        select
+                kh_id as khId,
+                kh_name as khName,
+                kh_yx as khYx,
+                kh_dh as khDh,
+                khfl_id as khflId
+        from kehu
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getKehuListByMap" resultType="com.weichu.jinxiaocun.demo.bean.Kehu" parameterType="java.util.Map">
+        select
+                kh_id as khId,
+                kh_name as khName,
+                kh_yx as khYx,
+                kh_dh as khDh,
+                khfl_id as khflId
+        from kehu
+        <trim prefix="where" prefixOverrides="and | or">
+                    <if test="khId != null and khId!=''">
+                        and kh_id=#{khId}
+                    </if>
+                    <if test="khName != null and khName!=''">
+                        and kh_name=#{khName}
+                    </if>
+                    <if test="khYx != null and khYx!=''">
+                        and kh_yx=#{khYx}
+                    </if>
+                    <if test="khDh != null and khDh!=''">
+                        and kh_dh=#{khDh}
+                    </if>
+        </trim>
+         order by creationDate desc
+        <if test="beginPos != null and beginPos!='' and pageSize != null  and pageSize !='' ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getKehuCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from kehu
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="khId != null and khId!=''">
+                    and kh_id=#{khId}
+                </if>
+                <if test="khName != null and khName!=''">
+                    and kh_name=#{khName}
+                </if>
+                <if test="khYx != null and khYx!=''">
+                    and kh_yx=#{khYx}
+                </if>
+                <if test="khDh != null and khDh!=''">
+                    and kh_dh=#{khDh}
+                </if>
+                <if test="khflId != null and khflId!=''">
+                    and khfl_id=#{khflId}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertKehu" parameterType="com.weichu.jinxiaocun.demo.bean.Kehu">
+        insert into kehu(
+                        kh_id,
+                        kh_name,
+                        kh_yx,
+                        kh_dh,
+                        khfl_id)
+        values(
+                     #{khId},
+                     #{khName},
+                     #{khYx},
+                     #{khDh},
+                    #{khflId})
+    </insert>
+
+    <update id="updateKehu" parameterType="com.weichu.jinxiaocun.demo.bean.Kehu">
+        update kehu
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                    <if test="khId != null and khId!=''">
+                        kh_id=#{khId},
+                    </if>
+                    <if test="khName != null and khName!=''">
+                        kh_name=#{khName},
+                    </if>
+                    <if test="khYx != null and khYx!=''">
+                        kh_yx=#{khYx},
+                    </if>
+                    <if test="khDh != null and khDh!=''">
+                        kh_dh=#{khDh},
+                    </if>
+                    <if test="khflId != null and khflId!=''">
+                        khfl_id=#{khflId}
+                    </if>
+        </trim>
+    </update>
+
+    <delete id="deleteKehuById" parameterType="Long">
+        delete from kehu where id = #{id}
+    </delete>
+</mapper>

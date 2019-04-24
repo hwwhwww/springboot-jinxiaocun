@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weichu.jinxiaocun.demo.mapper.kehufenlei.KehufenleiMapper">
+
+    <select id="getKehufenleiById" resultType="com.weichu.jinxiaocun.demo.bean.Kehufenlei" >
+        select
+                khfl_id as khflId,
+                khfl_name as khflName
+        from kehufenlei
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getKehufenleiListByMap" resultType="com.weichu.jinxiaocun.demo.bean.Kehufenlei" parameterType="java.util.Map">
+        select
+                khfl_id as khflId,
+                khfl_name as khflName
+        from kehufenlei
+        <trim prefix="where" prefixOverrides="and | or">
+                    <if test="khflId != null and khflId!=''">
+                        and khfl_id=#{khflId}
+                    </if>
+        </trim>
+         order by creationDate desc
+        <if test="beginPos != null and beginPos!='' and pageSize != null  and pageSize !='' ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getKehufenleiCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from kehufenlei
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="khflId != null and khflId!=''">
+                    and khfl_id=#{khflId}
+                </if>
+                <if test="khflName != null and khflName!=''">
+                    and khfl_name=#{khflName}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertKehufenlei" parameterType="com.weichu.jinxiaocun.demo.bean.Kehufenlei">
+        insert into kehufenlei(
+                        khfl_id,
+                        khfl_name)
+        values(
+                     #{khflId},
+                    #{khflName})
+    </insert>
+
+    <update id="updateKehufenlei" parameterType="com.weichu.jinxiaocun.demo.bean.Kehufenlei">
+        update kehufenlei
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                    <if test="khflId != null and khflId!=''">
+                        khfl_id=#{khflId},
+                    </if>
+                    <if test="khflName != null and khflName!=''">
+                        khfl_name=#{khflName}
+                    </if>
+        </trim>
+    </update>
+
+    <delete id="deleteKehufenleiById" parameterType="Long">
+        delete from kehufenlei where id = #{id}
+    </delete>
+</mapper>
