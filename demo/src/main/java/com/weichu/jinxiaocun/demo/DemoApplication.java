@@ -7,11 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class DemoApplication {
 
     public static void main(String[] args) {
-        System.out.println("第一个团队项目");
-        System.out.println("123");
-        System.out.println("1111111111111111111");
-        System.out.println("yayaya");
-        System.out.println("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
         SpringApplication.run(DemoApplication.class, args);
     }
 

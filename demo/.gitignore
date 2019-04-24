@@ -1,29 +1,64 @@
-HELP.md
-/target/
-!.mvn/wrapper/maven-wrapper.jar
+## HELP.md
+## /target/
+## !.mvn/wrapper/maven-wrapper.jar
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
+## ### STS ###
+## .settings
+## .apt_generated
+## .classpath
+## .factorypath
+## .project
+## .springBeans
+## .sts4-cache
+
+## ### IntelliJ IDEA ###
+## .idea
+## *.iws
+## *.iml
+## *.ipr
+
+## ### NetBeans ###
+## /nbproject/private/
+## /nbbuild/
+## /dist/
+## /nbdist/
+## /.nb-gradle/
+## /build/
+
+## ### VS Code ###
+## .vscode/
+
+
+*.class
+
+package files
+
+*.war
+*.ear
+
+kdiff3 ignore
+target/
+
+eclipse ignore
+.settings/
 .project
-.settings
-.springBeans
-.sts4-cache
+.classpath
 
-### IntelliJ IDEA ###
-.idea
-*.iws
-*.iml
+idea
+.idea/
+/idea/
 *.ipr
+*.iml
+*.iws
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
-/build/
+temp file
 
-### VS Code ###
-.vscode/
+*.log
+*.cache
+*.diff
+*.patch
+*.tmp
+
+system ignore
+.DS_Store
+Thumbs.db
