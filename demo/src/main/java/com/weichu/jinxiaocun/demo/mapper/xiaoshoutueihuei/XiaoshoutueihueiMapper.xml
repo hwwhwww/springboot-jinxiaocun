@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weichu.jinxiaocun.demo.mapper.xiaoshoutueihuei.XiaoshoutueihueiMapper">
+
+    <select id="getXiaoshoutueihueiById" resultType="com.weichu.jinxiaocun.demo.bean.Xiaoshoutueihuei" >
+        select
+                id as id,
+                xsth_id as xsthId,
+                xsth_rq as xsthRq,
+                xsth_kh as xsthKh,
+                xsth_zzy as xsthZzy,
+                xsth_bz as xsthBz,
+                kh_id as khId,
+                xsy_id as xsyId
+        from xiaoshoutueihuei
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getXiaoshoutueihueiListByMap" resultType="com.weichu.jinxiaocun.demo.bean.Xiaoshoutueihuei" parameterType="java.util.Map">
+        select
+                id as id,
+                xsth_id as xsthId,
+                xsth_rq as xsthRq,
+                xsth_kh as xsthKh,
+                xsth_zzy as xsthZzy,
+                xsth_bz as xsthBz,
+                kh_id as khId,
+                xsy_id as xsyId
+        from xiaoshoutueihuei
+        <trim prefix="where" prefixOverrides="and | or">
+                    <if test="id != null and id!=''">
+                        and id=#{id}
+                    </if>
+                    <if test="xsthId != null and xsthId!=''">
+                        and xsth_id=#{xsthId}
+                    </if>
+                    <if test="xsthRq != null and xsthRq!=''">
+                        and xsth_rq=#{xsthRq}
+                    </if>
+                    <if test="xsthKh != null and xsthKh!=''">
+                        and xsth_kh=#{xsthKh}
+                    </if>
+                    <if test="xsthZzy != null and xsthZzy!=''">
+                        and xsth_zzy=#{xsthZzy}
+                    </if>
+                    <if test="xsthBz != null and xsthBz!=''">
+                        and xsth_bz=#{xsthBz}
+                    </if>
+                    <if test="khId != null and khId!=''">
+                        and kh_id=#{khId}
+                    </if>
+        </trim>
+         order by creationDate desc
+        <if test="beginPos != null and beginPos!='' and pageSize != null  and pageSize !='' ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getXiaoshoutueihueiCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from xiaoshoutueihuei
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="id != null and id!=''">
+                    and id=#{id}
+                </if>
+                <if test="xsthId != null and xsthId!=''">
+                    and xsth_id=#{xsthId}
+                </if>
+                <if test="xsthRq != null and xsthRq!=''">
+                    and xsth_rq=#{xsthRq}
+                </if>
+                <if test="xsthKh != null and xsthKh!=''">
+                    and xsth_kh=#{xsthKh}
+                </if>
+                <if test="xsthZzy != null and xsthZzy!=''">
+                    and xsth_zzy=#{xsthZzy}
+                </if>
+                <if test="xsthBz != null and xsthBz!=''">
+                    and xsth_bz=#{xsthBz}
+                </if>
+                <if test="khId != null and khId!=''">
+                    and kh_id=#{khId}
+                </if>
+                <if test="xsyId != null and xsyId!=''">
+                    and xsy_id=#{xsyId}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertXiaoshoutueihuei" parameterType="com.weichu.jinxiaocun.demo.bean.Xiaoshoutueihuei">
+        insert into xiaoshoutueihuei(
+                        xsth_id,
+                        xsth_rq,
+                        xsth_kh,
+                        xsth_zzy,
+                        xsth_bz,
+                        kh_id,
+                        xsy_id)
+        values(
+                     #{xsthId},
+                     #{xsthRq},
+                     #{xsthKh},
+                     #{xsthZzy},
+                     #{xsthBz},
+                     #{khId},
+                    #{xsyId})
+    </insert>
+
+    <update id="updateXiaoshoutueihuei" parameterType="com.weichu.jinxiaocun.demo.bean.Xiaoshoutueihuei">
+        update xiaoshoutueihuei
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                    <if test="id != null and id!=''">
+                        id=#{id},
+                    </if>
+                    <if test="xsthId != null and xsthId!=''">
+                        xsth_id=#{xsthId},
+                    </if>
+                    <if test="xsthRq != null and xsthRq!=''">
+                        xsth_rq=#{xsthRq},
+                    </if>
+                    <if test="xsthKh != null and xsthKh!=''">
+                        xsth_kh=#{xsthKh},
+                    </if>
+                    <if test="xsthZzy != null and xsthZzy!=''">
+                        xsth_zzy=#{xsthZzy},
+                    </if>
+                    <if test="xsthBz != null and xsthBz!=''">
+                        xsth_bz=#{xsthBz},
+                    </if>
+                    <if test="khId != null and khId!=''">
+                        kh_id=#{khId},
+                    </if>
+                    <if test="xsyId != null and xsyId!=''">
+                        xsy_id=#{xsyId}
+                    </if>
+        </trim>
+    </update>
+
+    <delete id="deleteXiaoshoutueihueiById" parameterType="Long">
+        delete from xiaoshoutueihuei where id = #{id}
+    </delete>
+</mapper>

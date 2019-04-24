@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weichu.jinxiaocun.demo.mapper.ziyuanJs.ZiyuanJsMapper">
+
+    <select id="getZiyuanJsById" resultType="com.weichu.jinxiaocun.demo.bean.ZiyuanJs" >
+        select
+                zj_id as zjId,
+                zy_id as zyId,
+                js_id as jsId
+        from ziyuan_js
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getZiyuanJsListByMap" resultType="com.weichu.jinxiaocun.demo.bean.ZiyuanJs" parameterType="java.util.Map">
+        select
+                zj_id as zjId,
+                zy_id as zyId,
+                js_id as jsId
+        from ziyuan_js
+        <trim prefix="where" prefixOverrides="and | or">
+                    <if test="zjId != null and zjId!=''">
+                        and zj_id=#{zjId}
+                    </if>
+                    <if test="zyId != null and zyId!=''">
+                        and zy_id=#{zyId}
+                    </if>
+        </trim>
+         order by creationDate desc
+        <if test="beginPos != null and beginPos!='' and pageSize != null  and pageSize !='' ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getZiyuanJsCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from ziyuan_js
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="zjId != null and zjId!=''">
+                    and zj_id=#{zjId}
+                </if>
+                <if test="zyId != null and zyId!=''">
+                    and zy_id=#{zyId}
+                </if>
+                <if test="jsId != null and jsId!=''">
+                    and js_id=#{jsId}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertZiyuanJs" parameterType="com.weichu.jinxiaocun.demo.bean.ZiyuanJs">
+        insert into ziyuan_js(
+                        zj_id,
+                        zy_id,
+                        js_id)
+        values(
+                     #{zjId},
+                     #{zyId},
+                    #{jsId})
+    </insert>
+
+    <update id="updateZiyuanJs" parameterType="com.weichu.jinxiaocun.demo.bean.ZiyuanJs">
+        update ziyuan_js
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                    <if test="zjId != null and zjId!=''">
+                        zj_id=#{zjId},
+                    </if>
+                    <if test="zyId != null and zyId!=''">
+                        zy_id=#{zyId},
+                    </if>
+                    <if test="jsId != null and jsId!=''">
+                        js_id=#{jsId}
+                    </if>
+        </trim>
+    </update>
+
+    <delete id="deleteZiyuanJsById" parameterType="Long">
+        delete from ziyuan_js where id = #{id}
+    </delete>
+</mapper>

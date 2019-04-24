@@ -1,0 +1,21 @@
+package com.weichu.jinxiaocun.demo.mapper.danwei;
+import com.weichu.jinxiaocun.demo.bean.Danwei;
+import org.apache.ibatis.annotations.Param;
+import java.util.List;
+import java.util.Map;
+
+public interface DanweiMapper {
+
+	public Danwei getDanweiById(@Param(value = "id") Long id)throws Exception;
+
+	public List<Danwei>	getDanweiListByMap(Map<String,Object> param)throws Exception;
+
+	public Integer getDanweiCountByMap(Map<String,Object> param)throws Exception;
+
+	public Integer insertDanwei(Danwei danwei)throws Exception;
+
+	public Integer updateDanwei(Danwei danwei)throws Exception;
+
+	public Integer deleteDanweiById(@Param(value = "id") Long id)throws Exception;
+
+}

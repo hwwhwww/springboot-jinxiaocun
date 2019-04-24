@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weichu.jinxiaocun.demo.mapper.caigoutuihuoshangpin.CaigoutuihuoshangpinMapper">
+
+    <select id="getCaigoutuihuoshangpinById" resultType="com.weichu.jinxiaocun.demo.bean.Caigoutuihuoshangpin" >
+        select
+                cgthsp_id as cgthspId,
+                cgth_id as cgthId,
+                sp_id as spId,
+                cgthsp_sl as cgthspSl,
+                cgthsp_je as cgthspJe,
+                cgthsp_zj as cgthspZj,
+                cgthsp_fp as cgthspFp
+        from caigoutuihuoshangpin
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getCaigoutuihuoshangpinListByMap" resultType="com.weichu.jinxiaocun.demo.bean.Caigoutuihuoshangpin" parameterType="java.util.Map">
+        select
+                cgthsp_id as cgthspId,
+                cgth_id as cgthId,
+                sp_id as spId,
+                cgthsp_sl as cgthspSl,
+                cgthsp_je as cgthspJe,
+                cgthsp_zj as cgthspZj,
+                cgthsp_fp as cgthspFp
+        from caigoutuihuoshangpin
+        <trim prefix="where" prefixOverrides="and | or">
+                    <if test="cgthspId != null and cgthspId!=''">
+                        and cgthsp_id=#{cgthspId}
+                    </if>
+                    <if test="cgthId != null and cgthId!=''">
+                        and cgth_id=#{cgthId}
+                    </if>
+                    <if test="spId != null and spId!=''">
+                        and sp_id=#{spId}
+                    </if>
+                    <if test="cgthspSl != null and cgthspSl!=''">
+                        and cgthsp_sl=#{cgthspSl}
+                    </if>
+                    <if test="cgthspJe != null and cgthspJe!=''">
+                        and cgthsp_je=#{cgthspJe}
+                    </if>
+                    <if test="cgthspZj != null and cgthspZj!=''">
+                        and cgthsp_zj=#{cgthspZj}
+                    </if>
+        </trim>
+         order by creationDate desc
+        <if test="beginPos != null and beginPos!='' and pageSize != null  and pageSize !='' ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getCaigoutuihuoshangpinCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from caigoutuihuoshangpin
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="cgthspId != null and cgthspId!=''">
+                    and cgthsp_id=#{cgthspId}
+                </if>
+                <if test="cgthId != null and cgthId!=''">
+                    and cgth_id=#{cgthId}
+                </if>
+                <if test="spId != null and spId!=''">
+                    and sp_id=#{spId}
+                </if>
+                <if test="cgthspSl != null and cgthspSl!=''">
+                    and cgthsp_sl=#{cgthspSl}
+                </if>
+                <if test="cgthspJe != null and cgthspJe!=''">
+                    and cgthsp_je=#{cgthspJe}
+                </if>
+                <if test="cgthspZj != null and cgthspZj!=''">
+                    and cgthsp_zj=#{cgthspZj}
+                </if>
+                <if test="cgthspFp != null and cgthspFp!=''">
+                    and cgthsp_fp=#{cgthspFp}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertCaigoutuihuoshangpin" parameterType="com.weichu.jinxiaocun.demo.bean.Caigoutuihuoshangpin">
+        insert into caigoutuihuoshangpin(
+                        cgthsp_id,
+                        cgth_id,
+                        sp_id,
+                        cgthsp_sl,
+                        cgthsp_je,
+                        cgthsp_zj,
+                        cgthsp_fp)
+        values(
+                     #{cgthspId},
+                     #{cgthId},
+                     #{spId},
+                     #{cgthspSl},
+                     #{cgthspJe},
+                     #{cgthspZj},
+                    #{cgthspFp})
+    </insert>
+
+    <update id="updateCaigoutuihuoshangpin" parameterType="com.weichu.jinxiaocun.demo.bean.Caigoutuihuoshangpin">
+        update caigoutuihuoshangpin
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                    <if test="cgthspId != null and cgthspId!=''">
+                        cgthsp_id=#{cgthspId},
+                    </if>
+                    <if test="cgthId != null and cgthId!=''">
+                        cgth_id=#{cgthId},
+                    </if>
+                    <if test="spId != null and spId!=''">
+                        sp_id=#{spId},
+                    </if>
+                    <if test="cgthspSl != null and cgthspSl!=''">
+                        cgthsp_sl=#{cgthspSl},
+                    </if>
+                    <if test="cgthspJe != null and cgthspJe!=''">
+                        cgthsp_je=#{cgthspJe},
+                    </if>
+                    <if test="cgthspZj != null and cgthspZj!=''">
+                        cgthsp_zj=#{cgthspZj},
+                    </if>
+                    <if test="cgthspFp != null and cgthspFp!=''">
+                        cgthsp_fp=#{cgthspFp}
+                    </if>
+        </trim>
+    </update>
+
+    <delete id="deleteCaigoutuihuoshangpinById" parameterType="Long">
+        delete from caigoutuihuoshangpin where id = #{id}
+    </delete>
+</mapper>

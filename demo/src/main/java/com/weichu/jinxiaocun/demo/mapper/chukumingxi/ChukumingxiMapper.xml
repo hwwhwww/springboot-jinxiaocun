@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weichu.jinxiaocun.demo.mapper.chukumingxi.ChukumingxiMapper">
+
+    <select id="getChukumingxiById" resultType="com.weichu.jinxiaocun.demo.bean.Chukumingxi" >
+        select
+                ckmx_id as ckmxId,
+                ckmx_bh as ckmxBh,
+                sp_id as spId,
+                ckmx_spmc as ckmxSpmc,
+                dw_id as dwId,
+                ckmx_dj as ckmxDj,
+                ckmx_sl as ckmxSl,
+                ckmx_zje as ckmxZje,
+                ckmx_bz as ckmxBz
+        from chukumingxi
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getChukumingxiListByMap" resultType="com.weichu.jinxiaocun.demo.bean.Chukumingxi" parameterType="java.util.Map">
+        select
+                ckmx_id as ckmxId,
+                ckmx_bh as ckmxBh,
+                sp_id as spId,
+                ckmx_spmc as ckmxSpmc,
+                dw_id as dwId,
+                ckmx_dj as ckmxDj,
+                ckmx_sl as ckmxSl,
+                ckmx_zje as ckmxZje,
+                ckmx_bz as ckmxBz
+        from chukumingxi
+        <trim prefix="where" prefixOverrides="and | or">
+                    <if test="ckmxId != null and ckmxId!=''">
+                        and ckmx_id=#{ckmxId}
+                    </if>
+                    <if test="ckmxBh != null and ckmxBh!=''">
+                        and ckmx_bh=#{ckmxBh}
+                    </if>
+                    <if test="spId != null and spId!=''">
+                        and sp_id=#{spId}
+                    </if>
+                    <if test="ckmxSpmc != null and ckmxSpmc!=''">
+                        and ckmx_spmc=#{ckmxSpmc}
+                    </if>
+                    <if test="dwId != null and dwId!=''">
+                        and dw_id=#{dwId}
+                    </if>
+                    <if test="ckmxDj != null and ckmxDj!=''">
+                        and ckmx_dj=#{ckmxDj}
+                    </if>
+                    <if test="ckmxSl != null and ckmxSl!=''">
+                        and ckmx_sl=#{ckmxSl}
+                    </if>
+                    <if test="ckmxZje != null and ckmxZje!=''">
+                        and ckmx_zje=#{ckmxZje}
+                    </if>
+        </trim>
+         order by creationDate desc
+        <if test="beginPos != null and beginPos!='' and pageSize != null  and pageSize !='' ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getChukumingxiCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from chukumingxi
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="ckmxId != null and ckmxId!=''">
+                    and ckmx_id=#{ckmxId}
+                </if>
+                <if test="ckmxBh != null and ckmxBh!=''">
+                    and ckmx_bh=#{ckmxBh}
+                </if>
+                <if test="spId != null and spId!=''">
+                    and sp_id=#{spId}
+                </if>
+                <if test="ckmxSpmc != null and ckmxSpmc!=''">
+                    and ckmx_spmc=#{ckmxSpmc}
+                </if>
+                <if test="dwId != null and dwId!=''">
+                    and dw_id=#{dwId}
+                </if>
+                <if test="ckmxDj != null and ckmxDj!=''">
+                    and ckmx_dj=#{ckmxDj}
+                </if>
+                <if test="ckmxSl != null and ckmxSl!=''">
+                    and ckmx_sl=#{ckmxSl}
+                </if>
+                <if test="ckmxZje != null and ckmxZje!=''">
+                    and ckmx_zje=#{ckmxZje}
+                </if>
+                <if test="ckmxBz != null and ckmxBz!=''">
+                    and ckmx_bz=#{ckmxBz}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertChukumingxi" parameterType="com.weichu.jinxiaocun.demo.bean.Chukumingxi">
+        insert into chukumingxi(
+                        ckmx_id,
+                        ckmx_bh,
+                        sp_id,
+                        ckmx_spmc,
+                        dw_id,
+                        ckmx_dj,
+                        ckmx_sl,
+                        ckmx_zje,
+                        ckmx_bz)
+        values(
+                     #{ckmxId},
+                     #{ckmxBh},
+                     #{spId},
+                     #{ckmxSpmc},
+                     #{dwId},
+                     #{ckmxDj},
+                     #{ckmxSl},
+                     #{ckmxZje},
+                    #{ckmxBz})
+    </insert>
+
+    <update id="updateChukumingxi" parameterType="com.weichu.jinxiaocun.demo.bean.Chukumingxi">
+        update chukumingxi
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                    <if test="ckmxId != null and ckmxId!=''">
+                        ckmx_id=#{ckmxId},
+                    </if>
+                    <if test="ckmxBh != null and ckmxBh!=''">
+                        ckmx_bh=#{ckmxBh},
+                    </if>
+                    <if test="spId != null and spId!=''">
+                        sp_id=#{spId},
+                    </if>
+                    <if test="ckmxSpmc != null and ckmxSpmc!=''">
+                        ckmx_spmc=#{ckmxSpmc},
+                    </if>
+                    <if test="dwId != null and dwId!=''">
+                        dw_id=#{dwId},
+                    </if>
+                    <if test="ckmxDj != null and ckmxDj!=''">
+                        ckmx_dj=#{ckmxDj},
+                    </if>
+                    <if test="ckmxSl != null and ckmxSl!=''">
+                        ckmx_sl=#{ckmxSl},
+                    </if>
+                    <if test="ckmxZje != null and ckmxZje!=''">
+                        ckmx_zje=#{ckmxZje},
+                    </if>
+                    <if test="ckmxBz != null and ckmxBz!=''">
+                        ckmx_bz=#{ckmxBz}
+                    </if>
+        </trim>
+    </update>
+
+    <delete id="deleteChukumingxiById" parameterType="Long">
+        delete from chukumingxi where id = #{id}
+    </delete>
+</mapper>

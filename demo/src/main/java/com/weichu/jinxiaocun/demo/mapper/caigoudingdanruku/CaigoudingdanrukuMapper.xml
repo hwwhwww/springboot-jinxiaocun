@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weichu.jinxiaocun.demo.mapper.caigoudingdanruku.CaigoudingdanrukuMapper">
+
+    <select id="getCaigoudingdanrukuById" resultType="com.weichu.jinxiaocun.demo.bean.Caigoudingdanruku" >
+        select
+                cgddrk_id as cgddrkId,
+                cgddrk_bh as cgddrkBh,
+                cgdd_id as cgddId,
+                yg_id as ygId,
+                kw_id as kwId,
+                cgddrk_rq as cgddrkRq,
+                cgddrk_zje as cgddrkZje
+        from caigoudingdanruku
+        <trim prefix="where" prefixOverrides="and | or">
+            <if test="id != null">
+                and id=#{id}
+            </if>
+        </trim>
+    </select>
+
+    <select id="getCaigoudingdanrukuListByMap" resultType="com.weichu.jinxiaocun.demo.bean.Caigoudingdanruku" parameterType="java.util.Map">
+        select
+                cgddrk_id as cgddrkId,
+                cgddrk_bh as cgddrkBh,
+                cgdd_id as cgddId,
+                yg_id as ygId,
+                kw_id as kwId,
+                cgddrk_rq as cgddrkRq,
+                cgddrk_zje as cgddrkZje
+        from caigoudingdanruku
+        <trim prefix="where" prefixOverrides="and | or">
+                    <if test="cgddrkId != null and cgddrkId!=''">
+                        and cgddrk_id=#{cgddrkId}
+                    </if>
+                    <if test="cgddrkBh != null and cgddrkBh!=''">
+                        and cgddrk_bh=#{cgddrkBh}
+                    </if>
+                    <if test="cgddId != null and cgddId!=''">
+                        and cgdd_id=#{cgddId}
+                    </if>
+                    <if test="ygId != null and ygId!=''">
+                        and yg_id=#{ygId}
+                    </if>
+                    <if test="kwId != null and kwId!=''">
+                        and kw_id=#{kwId}
+                    </if>
+                    <if test="cgddrkRq != null and cgddrkRq!=''">
+                        and cgddrk_rq=#{cgddrkRq}
+                    </if>
+        </trim>
+         order by creationDate desc
+        <if test="beginPos != null and beginPos!='' and pageSize != null  and pageSize !='' ">
+            limit #{beginPos},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getCaigoudingdanrukuCountByMap" resultType="Integer"  parameterType="java.util.Map">
+        select count(*) from caigoudingdanruku
+        <trim prefix="where" prefixOverrides="and | or">
+                <if test="cgddrkId != null and cgddrkId!=''">
+                    and cgddrk_id=#{cgddrkId}
+                </if>
+                <if test="cgddrkBh != null and cgddrkBh!=''">
+                    and cgddrk_bh=#{cgddrkBh}
+                </if>
+                <if test="cgddId != null and cgddId!=''">
+                    and cgdd_id=#{cgddId}
+                </if>
+                <if test="ygId != null and ygId!=''">
+                    and yg_id=#{ygId}
+                </if>
+                <if test="kwId != null and kwId!=''">
+                    and kw_id=#{kwId}
+                </if>
+                <if test="cgddrkRq != null and cgddrkRq!=''">
+                    and cgddrk_rq=#{cgddrkRq}
+                </if>
+                <if test="cgddrkZje != null and cgddrkZje!=''">
+                    and cgddrk_zje=#{cgddrkZje}
+                </if>
+        </trim>
+    </select>
+
+    <insert id="insertCaigoudingdanruku" parameterType="com.weichu.jinxiaocun.demo.bean.Caigoudingdanruku">
+        insert into caigoudingdanruku(
+                        cgddrk_id,
+                        cgddrk_bh,
+                        cgdd_id,
+                        yg_id,
+                        kw_id,
+                        cgddrk_rq,
+                        cgddrk_zje)
+        values(
+                     #{cgddrkId},
+                     #{cgddrkBh},
+                     #{cgddId},
+                     #{ygId},
+                     #{kwId},
+                     #{cgddrkRq},
+                    #{cgddrkZje})
+    </insert>
+
+    <update id="updateCaigoudingdanruku" parameterType="com.weichu.jinxiaocun.demo.bean.Caigoudingdanruku">
+        update caigoudingdanruku
+        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
+                    <if test="cgddrkId != null and cgddrkId!=''">
+                        cgddrk_id=#{cgddrkId},
+                    </if>
+                    <if test="cgddrkBh != null and cgddrkBh!=''">
+                        cgddrk_bh=#{cgddrkBh},
+                    </if>
+                    <if test="cgddId != null and cgddId!=''">
+                        cgdd_id=#{cgddId},
+                    </if>
+                    <if test="ygId != null and ygId!=''">
+                        yg_id=#{ygId},
+                    </if>
+                    <if test="kwId != null and kwId!=''">
+                        kw_id=#{kwId},
+                    </if>
+                    <if test="cgddrkRq != null and cgddrkRq!=''">
+                        cgddrk_rq=#{cgddrkRq},
+                    </if>
+                    <if test="cgddrkZje != null and cgddrkZje!=''">
+                        cgddrk_zje=#{cgddrkZje}
+                    </if>
+        </trim>
+    </update>
+
+    <delete id="deleteCaigoudingdanrukuById" parameterType="Long">
+        delete from caigoudingdanruku where id = #{id}
+    </delete>
+</mapper>
