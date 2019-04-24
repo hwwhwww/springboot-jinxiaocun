@@ -29,4 +29,5 @@ public class User {
     public void setAdd(String add) {
         this.add = add;
     }
+    private String lan;
 }

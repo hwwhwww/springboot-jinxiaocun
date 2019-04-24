@@ -30,4 +30,5 @@ private  String add;
     public void setName(String name) {
         this.name = name;
     }
+    private String lan;
 }
