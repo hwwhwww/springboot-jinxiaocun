@@ -8,9 +8,9 @@ public interface ShangpingMapper {
 
 	public Shangping getShangpingById(@Param(value = "id") Long id)throws Exception;
 
-	public List<Shangping>	getShangpingListByMap(Map<String,Object> param)throws Exception;
+	public List<Shangping>	getShangpingListByMap(Map<String, Object> param)throws Exception;
 
-	public Integer getShangpingCountByMap(Map<String,Object> param)throws Exception;
+	public Integer getShangpingCountByMap(Map<String, Object> param)throws Exception;
 
 	public Integer insertShangping(Shangping shangping)throws Exception;
 
