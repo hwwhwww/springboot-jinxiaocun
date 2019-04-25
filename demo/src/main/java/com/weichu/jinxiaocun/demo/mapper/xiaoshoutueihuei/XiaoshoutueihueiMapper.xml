@@ -9,7 +9,6 @@
                 id as id,
                 xsth_id as xsthId,
                 xsth_rq as xsthRq,
-                xsth_kh as xsthKh,
                 xsth_zzy as xsthZzy,
                 xsth_bz as xsthBz,
                 kh_id as khId,
@@ -27,7 +26,6 @@
                 id as id,
                 xsth_id as xsthId,
                 xsth_rq as xsthRq,
-                xsth_kh as xsthKh,
                 xsth_zzy as xsthZzy,
                 xsth_bz as xsthBz,
                 kh_id as khId,
@@ -42,9 +40,6 @@
                     </if>
                     <if test="xsthRq != null and xsthRq!=''">
                         and xsth_rq=#{xsthRq}
-                    </if>
-                    <if test="xsthKh != null and xsthKh!=''">
-                        and xsth_kh=#{xsthKh}
                     </if>
                     <if test="xsthZzy != null and xsthZzy!=''">
                         and xsth_zzy=#{xsthZzy}
@@ -74,9 +69,6 @@
                 <if test="xsthRq != null and xsthRq!=''">
                     and xsth_rq=#{xsthRq}
                 </if>
-                <if test="xsthKh != null and xsthKh!=''">
-                    and xsth_kh=#{xsthKh}
-                </if>
                 <if test="xsthZzy != null and xsthZzy!=''">
                     and xsth_zzy=#{xsthZzy}
                 </if>
@@ -96,7 +88,6 @@
         insert into xiaoshoutueihuei(
                         xsth_id,
                         xsth_rq,
-                        xsth_kh,
                         xsth_zzy,
                         xsth_bz,
                         kh_id,
@@ -104,7 +95,6 @@
         values(
                      #{xsthId},
                      #{xsthRq},
-                     #{xsthKh},
                      #{xsthZzy},
                      #{xsthBz},
                      #{khId},
@@ -122,9 +112,6 @@
                     </if>
                     <if test="xsthRq != null and xsthRq!=''">
                         xsth_rq=#{xsthRq},
-                    </if>
-                    <if test="xsthKh != null and xsthKh!=''">
-                        xsth_kh=#{xsthKh},
                     </if>
                     <if test="xsthZzy != null and xsthZzy!=''">
                         xsth_zzy=#{xsthZzy},

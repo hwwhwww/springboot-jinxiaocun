@@ -7,6 +7,8 @@ import java.util.Date;
 public class Shangping implements Serializable {
         //序号
         private Integer spId;
+        //商品的数量
+        private Integer spSl;
         //商品编号
         private String spBh;
         //商品名称
@@ -27,6 +29,12 @@ public class Shangping implements Serializable {
         }
         public  Integer getSpId(){
             return this.spId;
+        }
+        public void setSpSl (Integer  spSl){
+            this.spSl=spSl;
+        }
+        public  Integer getSpSl(){
+            return this.spSl;
         }
         public void setSpBh (String  spBh){
             this.spBh=spBh;

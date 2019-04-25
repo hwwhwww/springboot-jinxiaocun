@@ -11,9 +11,9 @@ public interface ShangpingService {
 
     public Shangping getShangpingById(Long id)throws Exception;
 
-    public List<Shangping>	getShangpingListByMap(Map<String,Object> param)throws Exception;
+    public List<Shangping>	getShangpingListByMap(Map<String, Object> param)throws Exception;
 
-    public Integer getShangpingCountByMap(Map<String,Object> param)throws Exception;
+    public Integer getShangpingCountByMap(Map<String, Object> param)throws Exception;
 
     public Integer itriptxAddShangping(Shangping shangping)throws Exception;
 

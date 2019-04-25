@@ -8,9 +8,9 @@ public interface XiaoshoutueihueiMapper {
 
 	public Xiaoshoutueihuei getXiaoshoutueihueiById(@Param(value = "id") Long id)throws Exception;
 
-	public List<Xiaoshoutueihuei>	getXiaoshoutueihueiListByMap(Map<String,Object> param)throws Exception;
+	public List<Xiaoshoutueihuei>	getXiaoshoutueihueiListByMap(Map<String, Object> param)throws Exception;
 
-	public Integer getXiaoshoutueihueiCountByMap(Map<String,Object> param)throws Exception;
+	public Integer getXiaoshoutueihueiCountByMap(Map<String, Object> param)throws Exception;
 
 	public Integer insertXiaoshoutueihuei(Xiaoshoutueihuei xiaoshoutueihuei)throws Exception;
 

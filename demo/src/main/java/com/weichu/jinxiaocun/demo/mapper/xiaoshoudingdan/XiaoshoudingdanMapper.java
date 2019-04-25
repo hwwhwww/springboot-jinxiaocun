@@ -8,9 +8,9 @@ public interface XiaoshoudingdanMapper {
 
 	public Xiaoshoudingdan getXiaoshoudingdanById(@Param(value = "id") Long id)throws Exception;
 
-	public List<Xiaoshoudingdan>	getXiaoshoudingdanListByMap(Map<String,Object> param)throws Exception;
+	public List<Xiaoshoudingdan>	getXiaoshoudingdanListByMap(Map<String, Object> param)throws Exception;
 
-	public Integer getXiaoshoudingdanCountByMap(Map<String,Object> param)throws Exception;
+	public Integer getXiaoshoudingdanCountByMap(Map<String, Object> param)throws Exception;
 
 	public Integer insertXiaoshoudingdan(Xiaoshoudingdan xiaoshoudingdan)throws Exception;
 

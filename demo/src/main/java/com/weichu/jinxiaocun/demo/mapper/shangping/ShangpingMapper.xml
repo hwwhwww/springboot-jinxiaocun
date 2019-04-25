@@ -7,6 +7,7 @@
     <select id="getShangpingById" resultType="com.weichu.jinxiaocun.demo.bean.Shangping" >
         select
                 sp_id as spId,
+                sp_sl as spSl,
                 sp_bh as spBh,
                 sp_name as spName,
                 splb_id as splbId,
@@ -25,6 +26,7 @@
     <select id="getShangpingListByMap" resultType="com.weichu.jinxiaocun.demo.bean.Shangping" parameterType="java.util.Map">
         select
                 sp_id as spId,
+                sp_sl as spSl,
                 sp_bh as spBh,
                 sp_name as spName,
                 splb_id as splbId,
@@ -36,6 +38,9 @@
         <trim prefix="where" prefixOverrides="and | or">
                     <if test="spId != null and spId!=''">
                         and sp_id=#{spId}
+                    </if>
+                    <if test="spSl != null and spSl!=''">
+                        and sp_sl=#{spSl}
                     </if>
                     <if test="spBh != null and spBh!=''">
                         and sp_bh=#{spBh}
@@ -68,6 +73,9 @@
                 <if test="spId != null and spId!=''">
                     and sp_id=#{spId}
                 </if>
+                <if test="spSl != null and spSl!=''">
+                    and sp_sl=#{spSl}
+                </if>
                 <if test="spBh != null and spBh!=''">
                     and sp_bh=#{spBh}
                 </if>
@@ -95,6 +103,7 @@
     <insert id="insertShangping" parameterType="com.weichu.jinxiaocun.demo.bean.Shangping">
         insert into shangping(
                         sp_id,
+                        sp_sl,
                         sp_bh,
                         sp_name,
                         splb_id,
@@ -104,6 +113,7 @@
                         sp_bz)
         values(
                      #{spId},
+                     #{spSl},
                      #{spBh},
                      #{spName},
                      #{splbId},
@@ -118,6 +128,9 @@
         <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
                     <if test="spId != null and spId!=''">
                         sp_id=#{spId},
+                    </if>
+                    <if test="spSl != null and spSl!=''">
+                        sp_sl=#{spSl},
                     </if>
                     <if test="spBh != null and spBh!=''">
                         sp_bh=#{spBh},
