@@ -19,4 +19,8 @@ public class IndexController {
     public String register(){
         return "register";
     }
+    @RequestMapping("/caigoushenqing")
+    public String caiGouShenQing(){
+        return "kucunchaxun";
+    }
 }
