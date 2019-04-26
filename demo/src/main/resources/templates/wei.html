@@ -9,3 +9,28 @@
 <footer class="bg-primary navbar-fixed-bottom">
     <p class="text-center text-white">版权所有&copy;jinxiaocun</p>
 </footer>
+
+<script src="/js/jquery-1.11.3.js" tppabs="http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/js/jquery-1.11.3.js"></script>
+<script src="/js/bootstrap.js" tppabs="http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/js/bootstrap.js"></script>
+<script>
+    /*Bootlint工具用于对页面中的HTML标签以及Bootstrapclass的使用进行检测*/
+    (function () {
+        var s = document.createElement("script");
+        s.onload = function () {
+            bootlint.showLintReportForCurrentDocument([]);
+        };
+        s.src = "/js/bootlint.js"/*tpa=http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/js/bootlint.js*/;
+        document.body.appendChild(s)
+    })();
+
+    //    添加编辑模态框
+    $('#add').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var recipient = button.data('whatever') // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this)
+        modal.find('.modal-title').text('' + recipient)
+        modal.find('.modal-body input').val(recipient)
+    })
+</script>

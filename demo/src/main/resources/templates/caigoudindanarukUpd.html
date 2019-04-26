@@ -1,21 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<link rel="icon" href="img/logo.png" />
-		<title>进销存管理系统</title>
-		<link href="css/bootstrap.css" tppabs="http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/css/bootstrap.css" rel="stylesheet">
-		<link rel="stylesheet" href="css/mmss.css" tppabs="http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/css/mmss.css" />
-		<link rel="stylesheet" href="css/font-awesome.min.css" tppabs="http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/css/font-awesome.min.css" />
-		<!--[if lt IE 9]>
-    <script src="js/html5shiv.min.js" tppabs="http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/js/html5shiv.min.js"></script>
-    <script src="js/respond.min.js" tppabs="http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/js/respond.min.js"></script>
-    <![endif]-->
-		<style>
+<head th:include="cssAndjs.html">
 
-		</style>
+	<style>
+
+	</style>
 	</head>
 
 	<body>
@@ -89,30 +78,7 @@
 					</div>
 					<!--右侧内容结束-->
 					<div th:include="wei.html"></div>
-		<script src="js/jquery-1.11.3.js" tppabs="http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/js/jquery-1.11.3.js"></script>
-		<script src="js/bootstrap.js" tppabs="http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/js/bootstrap.js"></script>
-		<script>
-			/*Bootlint工具用于对页面中的HTML标签以及Bootstrapclass的使用进行检测*/
-			(function() {
-				var s = document.createElement("script");
-				s.onload = function() {
-					bootlint.showLintReportForCurrentDocument([]);
-				};
-				s.src = "js/bootlint.js" /*tpa=http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/js/bootlint.js*/ ;
-				document.body.appendChild(s)
-			})();
 
-			//    添加编辑模态框
-			$('#add').on('show.bs.modal', function(event) {
-				var button = $(event.relatedTarget) // Button that triggered the modal
-				var recipient = button.data('whatever') // Extract info from data-* attributes
-				// If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
-				// Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-				var modal = $(this)
-				modal.find('.modal-title').text('' + recipient)
-				modal.find('.modal-body input').val(recipient)
-			})
-		</script>
 	</body>
 
 </html>
