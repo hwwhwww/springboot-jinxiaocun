@@ -1,6 +1,8 @@
 package com.weichu.jinxiaocun.demo.bean;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
 /***
 *   
 */
@@ -21,7 +23,22 @@ public class Caigoushenqing implements Serializable {
         private double cgsqZje;
         //备注
         private String cgsqBz;
-        //get set 方法
+
+
+
+        //员工映射
+        private Yuangong yuangong;
+
+
+    public Yuangong getYuangong() {
+        return yuangong;
+    }
+
+    public void setYuangong(Yuangong yuangong) {
+        this.yuangong = yuangong;
+    }
+
+    //get set 方法
         public void setCgsqId (Integer  cgsqId){
             this.cgsqId=cgsqId;
         }

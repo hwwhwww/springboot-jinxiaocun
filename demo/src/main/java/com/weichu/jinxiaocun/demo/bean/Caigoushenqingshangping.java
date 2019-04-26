@@ -21,7 +21,38 @@ public class Caigoushenqingshangping implements Serializable {
         private Integer cgsqspKp;
         //备注
         private String cgsqspBz;
-        //get set 方法
+
+        //商品表
+        private Shangping shangping;
+    private Danwei danwei;
+
+    public Danwei getDanwei() {
+        return danwei;
+    }
+
+    public void setDanwei(Danwei danwei) {
+        this.danwei = danwei;
+    }
+
+    private  Caigoushenqing caigoushenqing;
+
+    public Caigoushenqing getCaigoushenqing() {
+        return caigoushenqing;
+    }
+
+    public void setCaigoushenqing(Caigoushenqing caigoushenqing) {
+        this.caigoushenqing = caigoushenqing;
+    }
+
+    public Shangping getShangping() {
+        return shangping;
+    }
+
+    public void setShangping(Shangping shangping) {
+        this.shangping = shangping;
+    }
+
+    //get set 方法
         public void setCgsqspId (Integer  cgsqspId){
             this.cgsqspId=cgsqspId;
         }

@@ -159,4 +159,7 @@
     <delete id="deleteShangpingById" parameterType="Long">
         delete from shangping where id = #{id}
     </delete>
+
+
+
 </mapper>

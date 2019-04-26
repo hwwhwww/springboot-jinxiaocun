@@ -146,4 +146,36 @@
     <delete id="deleteCaigoushenqingshangpingById" parameterType="Long">
         delete from caigoushenqingshangping where id = #{id}
     </delete>
+
+
+    <resultMap id="caigouspMap" type="com.weichu.jinxiaocun.demo.bean.Caigoushenqingshangping">
+        <result property="cgsqspId" column="cgsqsp_id"/>
+        <result property="cgsqId" column="cgsq_id"/>
+        <result property="spId" column="sp_id"/>
+        <result property="cgsqspSl" column="cgsqsp_sl"/>
+        <result property="cgsqspJg" column="cgsqsp_jg"/>
+        <result property="cgsqspZg" column="cgsqsp_zg"/>
+        <association property="shangping" javaType="com.weichu.jinxiaocun.demo.bean.Shangping">
+
+            <result property="spName" column="sp_name"/>
+            <result property="spBh" column="sp_Bh"/>
+
+        </association>
+        <association property="danwei" javaType="com.weichu.jinxiaocun.demo.bean.Danwei">
+            <result property="dwName" column="dw_name"/>
+        </association>
+        <association property="caigoushenqing" javaType="com.weichu.jinxiaocun.demo.bean.Caigoushenqing">
+            <result property="cgsqXh" column="cgsq_xh"/>
+            <result property="cgsqRq" column="cgsq_rq"/>
+        </association>
+    </resultMap>
+
+    <select id="getCaigoushanpinxsList" resultMap="caigouspMap">
+  SELECT sqsp.*,sp.sp_name,sp.sp_Bh,cgsq.cgsq_xh ,cgsq.cgsq_rq ,dw.dw_name FROM caigoushenqingshangping  AS sqsp,shangping  AS sp,caigoushenqing AS cgsq ,danwei AS dw
+ WHERE  cgsq.cgsq_id=sqsp.cgsq_id
+ AND sqsp.sp_id =sp.sp_id
+ AND sp.dw_id=dw.dw_id
+ AND  sqsp.cgsq_id=#{cgsqId}
+    </select>
+
 </mapper>

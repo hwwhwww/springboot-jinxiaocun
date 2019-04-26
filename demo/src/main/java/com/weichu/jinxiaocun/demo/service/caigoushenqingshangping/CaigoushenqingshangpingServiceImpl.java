@@ -38,5 +38,10 @@ public class CaigoushenqingshangpingServiceImpl implements Caigoushenqingshangpi
         return caigoushenqingshangpingMapper.deleteCaigoushenqingshangpingById(id);
     }
 
+    @Override
+    public List<Caigoushenqingshangping> getCaigoushanpinxsList(String cgsqId) {
+        return caigoushenqingshangpingMapper.getCaigoushanpinxsList(cgsqId);
+    }
+
 
 }

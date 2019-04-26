@@ -21,24 +21,29 @@
 							</li>
 							<li class="active">采购管理--采购申请修改</li>
 						</ol>
-					
+
 							<form class="form-horizontal" role="form" >
 							<table cellpadding="2px" cellspacing="2px">
 							<tr>
-							<td><span class=" column left" style="color: #fff;">流水号</span></td><td><input type="text" class="form-control line left"/></td>
-                			<td><span class="column left" style="color: #fff;" > 申请日期</span></td><td><input type="date" class="form-control line left"/></td>
+							<td><span class=" column left" style="color: #fff;">流水号</span></td>
+								<td><input type="text" class="form-control line left" th:value="${cgsq.cgsqXh}"/></td>
+                			<td><span class="column left" style="color: #fff;" > 申请日期</span></td>
+								<td><input type="date" class="form-control line left" th:value="${#dates.format(cgsq.cgsqRq,'yyyy-MM-dd hh:mm:ss')}"/></td>
 							</tr>
 							<tr>
-							<td><span class=" column left" style="color: #fff;">采购人</span></td><td><input type="text" class="form-control line left"/></td>
-                			<td><span class="column left" style="color: #fff;" > 期限</span></td><td><input type="date" class="form-control line left"/></td>
+							<td><span class=" column left" style="color: #fff;">采购人</span></td>
+								<td><input type="text" class="form-control line left" th:value="${cgsq.yuangong.ygName}"/></td>
+                			<td><span class="column left" style="color: #fff;" > 期限</span></td>
+								<td><input type="date" class="form-control line left" th:value="${#dates.format(cgsq.cgsqQx,'yyyy-MM-dd hh:mm:ss')}"/></td>
                 			</tr>
                 			<tr>
-                			<td><span class=" column left" style="color: #fff;">备注</span></td><td><input type="text" class="form-control line left"/></td>
+                			<td><span class=" column left" style="color: #fff;">备注</span></td>
+								<td><input type="text" class="form-control line left" th:value="${cgsq.cgsqBz}"/></td>
                 			<td></td><td> <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add1">保存申请</a></td>
                             </tr>
                 			</table>
 							</form>
-						
+
 
 						<br/><br/>
 						<a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit">添加商品</a>
@@ -57,16 +62,17 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>                     
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        
+                    <tr th:each="cgsqsp:${cgsqspList}">
+                        <td th:text="${cgsqsp.caigoushenqing.cgsqXh}"></td>
+                        <td th:text="${cgsqsp.shangping.spBh}"></td>
+                        <td th:text="${cgsqsp.danwei.dwName}"></td>
+                        <td th:text="${#dates.format(cgsqsp.caigoushenqing.cgsqRq,'yyyy-MM-dd hh:mm:ss')}"></td>
+						<td th:text="${cgsqsp.shangping.spName}"></td>
+                        <td th:text="${cgsq.yuangong.ygName}"></td>
+                        <td th:text="${cgsqsp.cgsqspSl}"></td>
+                        <td th:text="${cgsqsp.cgsqspBz}"></td>
+
+
                     </tr>
 							</tbody>
 						</table>
