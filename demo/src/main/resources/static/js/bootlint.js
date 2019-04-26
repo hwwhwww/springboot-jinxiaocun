@@ -11508,7 +11508,7 @@ var LocationIndex = _location.LocationIndex;
                     if (!seenLint) {
                         if (alertOnFirstProblem) {
                             /*eslint-disable no-alert, no-undef, block-scoped-var */
-                            window.alert("bootlint found errors in this document! See the JavaScript console for details.");// jshint ignore:line
+                            //window.alert("bootlint found errors in this document! See the JavaScript console for details.");// jshint ignore:line
                             /*eslint-enable no-alert, no-undef, block-scoped-var */
                         }
                         seenLint = true;

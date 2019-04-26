@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="img/logo.png"/>
+    <title>进销存管理系统</title>
+    <link href="css/bootstrap.css" tppabs="http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/mmss.css" tppabs="http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/css/mmss.css"/>
+    <link rel="stylesheet" href="css/font-awesome.min.css" tppabs="http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/css/font-awesome.min.css"/>
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.min.js" tppabs="http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/js/html5shiv.min.js"></script>
+    <script src="js/respond.min.js" tppabs="http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+
+    </style>
+</head>
+<body>
+<div th:include="tou.html"></div>
+<div class="col-xs-10">
+    <br/>
+    <ol class="breadcrumb">
+        <li><a href="templates/index.html" tppabs="http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/index.html"><span class="glyphicon glyphicon-home"></span>&nbsp;后台首页</a></li>
+        <li class="active">报表中心 - 入库明细</li>
+    </ol>
+    <div class="input-group line left">
+        <span class="input-group-addon" id="basic-addon2">商品名称</span>
+        <input type="text" class="form-control" placeholder="输入关键字搜索" aria-describedby="basic-addon2">
+    </div>
+    <div class="input-group line left">
+        <span class="input-group-addon" id="basic-addon1">供应商名称</span>
+        <input type="text" class="form-control" placeholder="输入关键字搜索" aria-describedby="basic-addon2">
+    </div>
+
+    <select class="form-control line left">
+        <option>仓库类型</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+    </select>
+    <a href="#" class=" btn btn-primary">查询</a>
+    <a href="#" class=" btn btn-primary">导出</a>
+    <a href="#" class=" btn btn-primary">打印</a>
+    <br/><br/>
+    <table class="table table-bordered table-striped text-center bg-info">
+        <thead >
+        <tr class="info">
+            <th class="text-center">入库单编号</th>
+            <th class="text-center">供应商</th>
+            <th class="text-center">商品编号</th>
+            <th class="text-center">商品名称</th>
+            <th class="text-center">收入仓库</th>
+            <th class="text-center">入库数量</th>
+            <th class="text-center">金额</th>
+            <th class="text-center">入库日期</th>
+            <!--<th class="text-center">操作</th>-->
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>mmss</td>
+            <td>小小</td>
+            <td>女</td>
+            <td>12345678901</td>
+            <td>经理</td>
+            <td>123456</td>
+            <td>无</td>
+            <!-- Modal begin-->
+            <!--添加-->
+
+            <!--Modal end-->
+        </tr>
+        </tbody>
+    </table>
+    <ul class="pagination right">
+        <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+        </li>
+        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+        <li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+    </ul>
+</div>
+
+<div th:include="wei.html"></div>
+<script src="js/jquery-1.11.3.js" tppabs="http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/js/jquery-1.11.3.js"></script>
+<script src="js/bootstrap.js" tppabs="http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/js/bootstrap.js"></script>
+<script>
+    /*Bootlint工具用于对页面中的HTML标签以及Bootstrapclass的使用进行检测*/
+    (function () {
+        var s = document.createElement("script");
+        s.onload = function () {
+            bootlint.showLintReportForCurrentDocument([]);
+        };
+        s.src = "js/bootlint.js"/*tpa=http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/js/bootlint.js*/;
+        document.body.appendChild(s)
+    })();
+
+//    添加编辑模态框
+    $('#add').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var recipient = button.data('whatever') // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this)
+        modal.find('.modal-title').text('' + recipient)
+        modal.find('.modal-body input').val(recipient)
+    })
+</script>
+</body>
+</html>
