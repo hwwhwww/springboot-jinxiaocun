@@ -30,7 +30,7 @@
                 <br/>
                 <ol class="breadcrumb">
                     <li><a href="index.html" tppabs="http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/index.html"><span class="glyphicon glyphicon-home"></span>&nbsp;后台首页</a></li>
-                    <li class="active">基础资料1111 - 表格</li>
+                    <li class="active">基础资料</li>
                 </ol>
                 <div class="input-group line left">
                     <span class="input-group-addon" id="basic-addon2"><span class="glyphicon glyphicon-search"></span></span>
@@ -125,16 +125,16 @@
                         </div>
                         <!--Modal end-->
                     </tr>
-                    <!--<tr th:each="danwei:${danweiList}">-->
-                        <!--<td th:text="${danwei.dwId}"></td>-->
-                        <!--<td th:text="${danwei.dwName}"></td>-->
-                        <!--<td>小小</td>-->
-                        <!--<td>-->
-                            <!--<a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add1">添加</a>-->
-                            <!--<a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit">编辑</a>-->
-                            <!--<a href="#" class="btn btn-primary btn-sm" >删除</a>-->
-                        <!--</td>-->
-                    <!--</tr>-->
+                    <tr th:each="danwei:${danweiList}">
+                        <td th:text="${danwei.dwId}"></td>
+                        <td th:text="${danwei.dwName}"></td>
+                        <td>小小</td>
+                        <td>
+                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add1">添加</a>
+                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit">编辑</a>
+                            <a href="#" class="btn btn-primary btn-sm" >删除</a>
+                        </td>
+                    </tr>
 
                     </tbody>
                 </table>
@@ -152,8 +152,8 @@
             <!--右侧内容结束-->
 
             <div th:include="wei.html"></div>
-<script src="../static/js/jquery-1.11.3.js" tppabs="http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/js/jquery-1.11.3.js"></script>
-<script src="../static/js/bootstrap.js" tppabs="http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/js/bootstrap.js"></script>
+<script src="js/jquery-1.11.3.js" tppabs="http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/js/jquery-1.11.3.js"></script>
+<script src="js/bootstrap.js" tppabs="http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/js/bootstrap.js"></script>
 <script>
     /*Bootlint工具用于对页面中的HTML标签以及Bootstrapclass的使用进行检测*/
     (function () {
