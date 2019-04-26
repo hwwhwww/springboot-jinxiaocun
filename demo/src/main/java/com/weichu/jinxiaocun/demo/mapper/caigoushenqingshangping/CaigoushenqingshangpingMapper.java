@@ -18,4 +18,7 @@ public interface CaigoushenqingshangpingMapper {
 
 	public Integer deleteCaigoushenqingshangpingById(@Param(value = "id") Long id)throws Exception;
 
+
+	public List<Caigoushenqingshangping> getCaigoushanpinxsList(@Param(value = "cgsqId")String cgsqId);
+
 }

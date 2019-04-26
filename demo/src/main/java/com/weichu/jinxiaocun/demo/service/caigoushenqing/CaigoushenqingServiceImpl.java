@@ -38,5 +38,10 @@ public class CaigoushenqingServiceImpl implements CaigoushenqingService {
         return caigoushenqingMapper.deleteCaigoushenqingById(id);
     }
 
+    @Override
+    public List<Caigoushenqing> getCaiGouShengQingList(String cgsqId) {
+        return caigoushenqingMapper.getCaiGouShengQingList(cgsqId);
+    }
+
 
 }

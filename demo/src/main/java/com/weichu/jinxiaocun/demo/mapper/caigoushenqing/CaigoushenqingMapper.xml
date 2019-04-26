@@ -146,4 +146,32 @@
     <delete id="deleteCaigoushenqingById" parameterType="Long">
         delete from caigoushenqing where id = #{id}
     </delete>
+
+
+
+    <resultMap id="caigouMap" type="com.weichu.jinxiaocun.demo.bean.Caigoushenqing">
+        <result  property="cgsqId" column="cgsq_id"/>
+        <result property="cgsqXh" column="cgsq_xh"/>
+        <result property="cgsqRq" column="cgsq_rq"/>
+        <result property="cgsqQx" column="cgsq_qx"/>
+        <result property="cgsqSh" column="cgsq_sh"/>
+        <result property="ygId" column="yg_id"/>
+        <association property="yuangong" javaType="com.weichu.jinxiaocun.demo.bean.Yuangong">
+            <result property="ygId" column="id"/>
+            <result column="yg_name" property="ygName"/>
+        </association>
+
+    </resultMap>
+
+    <select id="getCaiGouShengQingList" resultMap="caigouMap">
+SELECT c.* ,yg.yg_name,yg.yg_id AS id
+ FROM  caigoushenqing  AS c,yuangong AS yg WHERE c.yg_id=yg.`yg_id`
+
+        <if test="cgsqId!=null and cgsqId!=''">
+        and c.cgsq_id=#{cgsqId}
+        </if>
+    </select>
+
+
+
 </mapper>

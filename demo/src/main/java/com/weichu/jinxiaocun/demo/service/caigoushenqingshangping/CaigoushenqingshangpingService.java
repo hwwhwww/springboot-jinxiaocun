@@ -1,5 +1,6 @@
 package com.weichu.jinxiaocun.demo.service.caigoushenqingshangping;
 import com.weichu.jinxiaocun.demo.bean.Caigoushenqingshangping;
+
 import java.util.List;
 import java.util.Map;
 import java.util.List;
@@ -21,4 +22,5 @@ public interface CaigoushenqingshangpingService {
 
     public Integer itriptxDeleteCaigoushenqingshangpingById(Long id)throws Exception;
 
+    public List<Caigoushenqingshangping> getCaigoushanpinxsList(String cgsqId);
 }
