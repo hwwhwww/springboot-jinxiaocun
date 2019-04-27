@@ -37,31 +37,12 @@
                     <thead >
                     <tr class="info">
                         <th class="text-center">序号</th>
-                        <th class="text-center">用户名</th>
-                        <th class="text-center">姓名</th>
-                        <th class="text-center">性别</th>
-                        <th class="text-center">身份证</th>
-                        <th class="text-center">职位</th>
-                        <th class="text-center">邮箱</th>
-                        <th class="text-center">备注</th>
-                        <th class="text-center">操作</th>
+                        <th class="text-center">商品类型</th>
+
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>mmss</td>
-                        <td>小小</td>
-                        <td>女</td>
-                        <td>12345678901</td>
-                        <td>经理</td>
-                        <td>1234567@163.com</td>
-                        <td>无</td>
-                        <td>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add1">添加</a>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit">编辑</a>
-                            <a href="#" class="btn btn-primary btn-sm" >删除</a>
-                        </td>
+
                         <!-- Modal begin-->
                         <!--添加-->
                         <div class="modal fade" id="add1" tabindex="-1" role="dialog" aria-labelledby="add11">
@@ -78,33 +59,10 @@
                                                 <input type="text"/>
                                             </li>
                                             <li>
-                                                <label><span>用户名 ：</span></label>
+                                                <label><span>类别：</span></label>
                                                 <input type="text"/>
                                             </li>
-                                            <li>
-                                                <label><span>姓名 ：</span></label>
-                                                <input type="text"/>
-                                            </li>
-                                            <li>
-                                                <label><span>性别 ：</span></label>
-                                                <input type="text"/>
-                                            </li>
-                                            <li>
-                                                <label><span>身份证 ：</span></label>
-                                                <input type="text"/>
-                                            </li>
-                                            <li>
-                                                <label><span>职位 ：</span></label>
-                                                <input type="text"/>
-                                            </li>
-                                            <li>
-                                                <label><span>邮箱 ：</span></label>
-                                                <input type="text"/>
-                                            </li>
-                                            <li>
-                                                <label><span>备注 ：</span></label>
-                                                <input type="text"/>
-                                            </li>
+
                                         </ul>
                                     </div>
                                     <div class="modal-footer">
@@ -128,33 +86,10 @@
                                                 <input type="text"/>
                                             </li>
                                             <li>
-                                                <label><span>用户名 ：</span></label>
+                                                <label><span>类别：</span></label>
                                                 <input type="text"/>
                                             </li>
-                                            <li>
-                                                <label><span>姓名 ：</span></label>
-                                                <input type="text"/>
-                                            </li>
-                                            <li>
-                                                <label><span>性别 ：</span></label>
-                                                <input type="text"/>
-                                            </li>
-                                            <li>
-                                                <label><span>身份证 ：</span></label>
-                                                <input type="text"/>
-                                            </li>
-                                            <li>
-                                                <label><span>职位 ：</span></label>
-                                                <input type="text"/>
-                                            </li>
-                                            <li>
-                                                <label><span>邮箱 ：</span></label>
-                                                <input type="text"/>
-                                            </li>
-                                            <li>
-                                                <label><span>备注 ：</span></label>
-                                                <input type="text"/>
-                                            </li>
+
                                         </ul>
                                     </div>
                                     <div class="modal-footer">
@@ -166,107 +101,30 @@
                         </div>
                         <!--Modal end-->
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>mmss</td>
+                    <tr th:each="Shangpingleibie:${pageInfo.list}">
+                        <td th:text="${Shangpingleibie.splbId}"></td>
+                        <td th:text="${Shangpingleibie.splbName}"></td>
                         <td>小小</td>
-                        <td>女</td>
-                        <td>12345678901</td>
-                        <td>经理</td>
-                        <td>1234567@163.com</td>
-                        <td>无</td>
+
                         <td>
                             <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="添加">添加</a>
                             <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="编辑">编辑</a>
                             <a href="#" class="btn btn-primary btn-sm">删除</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>mmss</td>
-                        <td>小小</td>
-                        <td>女</td>
-                        <td>12345678901</td>
-                        <td>经理</td>
-                        <td>1234567@163.com</td>
-                        <td>无</td>
-                        <td>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="添加">添加</a>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="编辑">编辑</a>
-                            <a href="#" class="btn btn-primary btn-sm">删除</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>mmss</td>
-                        <td>小小</td>
-                        <td>女</td>
-                        <td>12345678901</td>
-                        <td>经理</td>
-                        <td>1234567@163.com</td>
-                        <td>无</td>
-                        <td>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="添加">添加</a>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="编辑">编辑</a>
-                            <a href="#" class="btn btn-primary btn-sm">删除</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>mmss</td>
-                        <td>小小</td>
-                        <td>女</td>
-                        <td>12345678901</td>
-                        <td>经理</td>
-                        <td>1234567@163.com</td>
-                        <td>无</td>
-                        <td>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="添加">添加</a>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="编辑">编辑</a>
-                            <a href="#" class="btn btn-primary btn-sm">删除</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>mmss</td>
-                        <td>小小</td>
-                        <td>女</td>
-                        <td>12345678901</td>
-                        <td>经理</td>
-                        <td>1234567@163.com</td>
-                        <td>无</td>
-                        <td>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="添加">添加</a>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="编辑">编辑</a>
-                            <a href="#" class="btn btn-primary btn-sm">删除</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>mmss</td>
-                        <td>小小</td>
-                        <td>女</td>
-                        <td>12345678901</td>
-                        <td>经理</td>
-                        <td>1234567@163.com</td>
-                        <td>无</td>
-                        <td>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="添加">添加</a>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="编辑">编辑</a>
-                            <a href="#" class="btn btn-primary btn-sm">删除</a>
-                        </td>
-                    </tr>
+
+
+
+
                     </tbody>
                 </table>
                 <ul class="pagination right">
-                    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+                    <li class="disabled"><a  th:href="@{'/ziliao/shanpleibie?pageNo='+${pageInfo.prePage}}" aria-label="Previous" th:if="${pageInfo!=1}"><span aria-hidden="true" >&laquo;</span></a>
                     </li>
-                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                    <li th:each="k:${#numbers.sequence(1, pageInfo.pages)}">
+                        <a th:href="'/ziliao/shanpleibie?pageNo='+${k}+''" th:text="${k}"></a>
+                    </li>
+                    <li><a href="#" aria-label="Next"  th:href="@{'/ziliao/shanpleibie?pageNo='+${pageInfo.nextPage}}"><span aria-hidden="true" th:if="${pageInfo!=pageInfo.pages}">&raquo;</span></a></li>
                 </ul>
             </div>
             <!--右侧内容结束-->

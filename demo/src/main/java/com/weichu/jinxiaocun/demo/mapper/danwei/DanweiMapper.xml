@@ -25,11 +25,13 @@
                     <if test="dwId != null and dwId!=''">
                         and dw_id=#{dwId}
                     </if>
+            <if test="dwName != null and dwName!=''">
+                and dw_name=#{dwName}
+            </if>
         </trim>
-         order by creationDate desc
-        <if test="beginPos != null and beginPos!='' and pageSize != null  and pageSize !='' ">
+<!--        <if test="beginPos != null and beginPos!='' and pageSize != null  and pageSize !='' ">
             limit #{beginPos},#{pageSize}
-        </if>
+        </if>-->
     </select>
 
     <select id="getDanweiCountByMap" resultType="Integer"  parameterType="java.util.Map">

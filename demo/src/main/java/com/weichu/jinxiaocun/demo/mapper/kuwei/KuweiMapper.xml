@@ -21,32 +21,11 @@
     </select>
 
     <select id="getKuweiListByMap" resultType="com.weichu.jinxiaocun.demo.bean.Kuwei" parameterType="java.util.Map">
-        select
-                kw_id as kwId,
-                kw_name as kwName,
-                kw_sj as kwSj,
-                kw_dz as kwDz,
-                kw_qy as kwQy,
-                yg_id as ygId
-        from kuwei
-        <trim prefix="where" prefixOverrides="and | or">
-                    <if test="kwId != null and kwId!=''">
-                        and kw_id=#{kwId}
-                    </if>
-                    <if test="kwName != null and kwName!=''">
-                        and kw_name=#{kwName}
-                    </if>
-                    <if test="kwSj != null and kwSj!=''">
-                        and kw_sj=#{kwSj}
-                    </if>
-                    <if test="kwDz != null and kwDz!=''">
-                        and kw_dz=#{kwDz}
-                    </if>
-                    <if test="kwQy != null and kwQy!=''">
-                        and kw_qy=#{kwQy}
-                    </if>
-        </trim>
-         order by creationDate desc
+        SELECT       kw_id AS kwId,
+        kw_name AS kwName,
+        kw_sj AS kwSj,
+        kw_dz AS kwDz,
+        kw_qy AS kwQy,`yg_name` AS yuangongName  FROM `kuwei` k,`yuangong` yg WHERE yg.`yg_id`=`k`.`yg_id`
         <if test="beginPos != null and beginPos!='' and pageSize != null  and pageSize !='' ">
             limit #{beginPos},#{pageSize}
         </if>

@@ -7,9 +7,6 @@
     </style>
 </head>
 <body>
-
-
-
             <!--左侧导航开始-->
             <div th:include="tou.html"></div>
             <!--左侧导航结束-->
@@ -29,14 +26,13 @@
                     <option>吨</option>
                     <option>kg</option>
                     <option>包</option>
-                    <option>瓶</option>
+                    <option>瓶</option>2
                     <option>件</option>
                     <option>个</option>
                     <option>斤</option>
-
                 </select>
-                <a href="#" class=" btn btn-primary "><span class="glyphicon glyphicon-search"></span></a>
-                <a href="#" class=" btn btn-primary "><span class="glyphicon glyphicon-download"></span></a>
+                <a href="/ziliao/jiliandwei" class=" btn btn-primary "><span class="glyphicon glyphicon-search"></span></a>
+                <a href="/ziliao/jiliandwei" class=" btn btn-primary "><span class="glyphicon glyphicon-download"></span></a>
                 <br/><br/>
                 <table class="table table-bordered table-striped text-center bg-info">
                     <thead >
@@ -44,11 +40,9 @@
                         <th class="text-center">序号</th>
                         <th class="text-center">单位名称</th>
                         <th class="text-center">单位说明</th>
-
                     </tr>
                     </thead>
                     <tbody>
-
                         <!-- Modal begin-->
                         <!--添加-->
                         <div class="modal fade" id="add1" tabindex="-1" role="dialog" aria-labelledby="add11">
@@ -62,11 +56,11 @@
                                         <ul>
                                             <li>
                                                 <label><span>序号 ：</span></label>
-                                                <input type="text"/>
+                                                <input type="text" th:value="${dwId}"/>
                                             </li>
                                             <li>
                                                 <label><span>单位名称 ：</span></label>
-                                                <input type="text"/>
+                                                <input type="text" th:value="${dwName}"/>
                                             </li>
                                             <li>
                                                 <label><span>单位说明：</span></label>
@@ -114,7 +108,7 @@
                         </div>
                         <!--Modal end-->
                     </tr>
-                    <tr th:each="danwei:${danweiList}">
+                    <tr th:each="danwei:${pageInfo.list}">
                         <td th:text="${danwei.dwId}"></td>
                         <td th:text="${danwei.dwName}"></td>
                         <td>小小</td>
@@ -128,14 +122,12 @@
                     </tbody>
                 </table>
                 <ul class="pagination right">
-                    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
+                    <li class="disabled"><a  th:href="@{'/ziliao/jiliandwei?pageNo='+${pageInfo.prePage}}" aria-label="Previous" th:if="${pageInfo!=1}"><span aria-hidden="true" >&laquo;</span></a>
                     </li>
-                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+                    <li th:each="k:${#numbers.sequence(1, pageInfo.pages)}">
+                        <a th:href="'/ziliao/jiliandwei?pageNo='+${k}+''" th:text="${k}"></a>
+                    </li>
+                    <li><a href="#" aria-label="Next"  th:href="@{'/ziliao/jiliandwei?pageNo='+${pageInfo.nextPage}}"><span aria-hidden="true" th:if="${pageInfo!=pageInfo.pages}">&raquo;</span></a></li>
                 </ul>
             </div>
             <!--右侧内容结束-->
@@ -144,3 +136,7 @@
 
 </body>
 </html>
+
+
+
+

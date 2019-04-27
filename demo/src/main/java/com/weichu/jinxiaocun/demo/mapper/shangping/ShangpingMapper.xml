@@ -24,44 +24,20 @@
     </select>
 
     <select id="getShangpingListByMap" resultType="com.weichu.jinxiaocun.demo.bean.Shangping" parameterType="java.util.Map">
-        select
-                sp_id as spId,
-                sp_sl as spSl,
-                sp_bh as spBh,
-                sp_name as spName,
-                splb_id as splbId,
-                dw_id as dwId,
-                sp_cgdj as spCgdj,
-                sp_xsdj as spXsdj,
-                sp_bz as spBz
-        from shangping
-        <trim prefix="where" prefixOverrides="and | or">
-                    <if test="spId != null and spId!=''">
-                        and sp_id=#{spId}
-                    </if>
-                    <if test="spSl != null and spSl!=''">
-                        and sp_sl=#{spSl}
-                    </if>
-                    <if test="spBh != null and spBh!=''">
-                        and sp_bh=#{spBh}
-                    </if>
-                    <if test="spName != null and spName!=''">
-                        and sp_name=#{spName}
-                    </if>
-                    <if test="splbId != null and splbId!=''">
-                        and splb_id=#{splbId}
-                    </if>
-                    <if test="dwId != null and dwId!=''">
-                        and dw_id=#{dwId}
-                    </if>
-                    <if test="spCgdj != null and spCgdj!=''">
-                        and sp_cgdj=#{spCgdj}
-                    </if>
-                    <if test="spXsdj != null and spXsdj!=''">
-                        and sp_xsdj=#{spXsdj}
-                    </if>
-        </trim>
-         order by creationDate desc
+
+        SELECT
+        sp_id AS spId,
+        sp_bh AS spBh,
+        sp_name AS spName,
+        splb_id AS splbId,
+        (SELECT `splb_name` FROM shangpingleibie WHERE shangping.`splb_id` = `splb_id`) AS splbName,
+        dw_id AS dwId,
+        (SELECT `dw_name` FROM `danwei` WHERE shangping.`dw_id` = dw_id) AS dwname,
+        sp_cgdj AS spCgdj,
+        sp_xsdj AS spXsdj,
+        sp_bz AS spBz
+        FROM shangping
+
         <if test="beginPos != null and beginPos!='' and pageSize != null  and pageSize !='' ">
             limit #{beginPos},#{pageSize}
         </if>

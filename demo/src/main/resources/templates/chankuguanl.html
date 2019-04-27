@@ -36,27 +36,25 @@
                 <table class="table table-bordered table-striped text-center bg-info">
                     <thead >
                     <tr class="info">
-                        <th class="text-center">序号</th>
-                        <th class="text-center">用户名</th>
-                        <th class="text-center">姓名</th>
-                        <th class="text-center">性别</th>
-                        <th class="text-center">身份证</th>
-                        <th class="text-center">职位</th>
-                        <th class="text-center">邮箱</th>
-                        <th class="text-center">备注</th>
+                        <th class="text-center">仓库编号</th>
+                        <th class="text-center">仓库名称</th>
+
+                        <th class="text-center">仓库地址</th>
+                        <th class="text-center">仓库负责人</th>
+                        <th class="text-center">仓库区域</th>
+
                         <th class="text-center">操作</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>mmss</td>
-                        <td>小小</td>
-                        <td>女</td>
-                        <td>12345678901</td>
-                        <td>经理</td>
-                        <td>1234567@163.com</td>
-                        <td>无</td>
+                    <tr th:each="chuguanli:${dwList}">
+                        <td th:text="${chuguanli.kwId}"></td>
+                        <td th:text="${chuguanli.kwName}"></td>
+                        <td th:text="${chuguanli.kwDz}"></td>
+                        <td th:text="${chuguanli.yuangongName}"></td>
+                        <td th:text="${chuguanli.kwQy}"></td>
+
+
                         <td>
                             <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add1">添加</a>
                             <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit">编辑</a>
@@ -166,96 +164,10 @@
                         </div>
                         <!--Modal end-->
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>mmss</td>
-                        <td>小小</td>
-                        <td>女</td>
-                        <td>12345678901</td>
-                        <td>经理</td>
-                        <td>1234567@163.com</td>
-                        <td>无</td>
-                        <td>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="添加">添加</a>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="编辑">编辑</a>
-                            <a href="#" class="btn btn-primary btn-sm">删除</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>mmss</td>
-                        <td>小小</td>
-                        <td>女</td>
-                        <td>12345678901</td>
-                        <td>经理</td>
-                        <td>1234567@163.com</td>
-                        <td>无</td>
-                        <td>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="添加">添加</a>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="编辑">编辑</a>
-                            <a href="#" class="btn btn-primary btn-sm">删除</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>mmss</td>
-                        <td>小小</td>
-                        <td>女</td>
-                        <td>12345678901</td>
-                        <td>经理</td>
-                        <td>1234567@163.com</td>
-                        <td>无</td>
-                        <td>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="添加">添加</a>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="编辑">编辑</a>
-                            <a href="#" class="btn btn-primary btn-sm">删除</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>mmss</td>
-                        <td>小小</td>
-                        <td>女</td>
-                        <td>12345678901</td>
-                        <td>经理</td>
-                        <td>1234567@163.com</td>
-                        <td>无</td>
-                        <td>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="添加">添加</a>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="编辑">编辑</a>
-                            <a href="#" class="btn btn-primary btn-sm">删除</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>mmss</td>
-                        <td>小小</td>
-                        <td>女</td>
-                        <td>12345678901</td>
-                        <td>经理</td>
-                        <td>1234567@163.com</td>
-                        <td>无</td>
-                        <td>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="添加">添加</a>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="编辑">编辑</a>
-                            <a href="#" class="btn btn-primary btn-sm">删除</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>mmss</td>
-                        <td>小小</td>
-                        <td>女</td>
-                        <td>12345678901</td>
-                        <td>经理</td>
-                        <td>1234567@163.com</td>
-                        <td>无</td>
-                        <td>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="添加">添加</a>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="编辑">编辑</a>
-                            <a href="#" class="btn btn-primary btn-sm">删除</a>
-                        </td>
-                    </tr>
+
+
+
+
                     </tbody>
                 </table>
                 <ul class="pagination right">

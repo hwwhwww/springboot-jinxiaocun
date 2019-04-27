@@ -37,27 +37,29 @@
                 <table class="table table-bordered table-striped text-center bg-info">
                     <thead >
                     <tr class="info">
-                        <th class="text-center">序号</th>
-                        <th class="text-center">用户名</th>
-                        <th class="text-center">姓名</th>
-                        <th class="text-center">性别</th>
-                        <th class="text-center">身份证</th>
-                        <th class="text-center">职位</th>
-                        <th class="text-center">邮箱</th>
-                        <th class="text-center">备注</th>
+
+                        <th class="text-center">商品编号</th>
+                        <th class="text-center">商品名称</th>
+                        <th class="text-center">商品类型</th>
+                        <th class="text-center">计量单位</th>
+                        <th class="text-center">商品备注</th>
+                        <th class="text-center">参考单价</th>
+                        <th class="text-center">销售单价</th>
                         <th class="text-center">操作</th>
+
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>mmss</td>
-                        <td>小小</td>
-                        <td>女</td>
-                        <td>12345678901</td>
-                        <td>经理</td>
-                        <td>1234567@163.com</td>
-                        <td>无</td>
+                    <tr th:each="shangpguanli:${dwList}">
+                        <td th:text="${shangpguanli.spBh}"></td>
+                        <td th:text="${shangpguanli.spName}"></td>
+                        <td th:text="${shangpguanli.splbName}"></td>
+                        <td th:text="${shangpguanli.dwName}"></td>
+                        <td th:text="${shangpguanli.spBz}"></td>
+                        <td th:text="${shangpguanli.spCgdj}"></td>
+                        <td th:text="${shangpguanli.spXsdj}"></td>
+
+
                         <td>
                             <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add1">添加</a>
                             <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit">编辑</a>
@@ -75,37 +77,34 @@
                                     <div class="modal-body">
                                         <ul>
                                             <li>
-                                                <label><span>序号 ：</span></label>
+                                                <label><span>商品编号 ：</span></label>
                                                 <input type="text"/>
                                             </li>
                                             <li>
-                                                <label><span>用户名 ：</span></label>
+                                                <label><span>商品名称 ：</span></label>
                                                 <input type="text"/>
                                             </li>
                                             <li>
-                                                <label><span>姓名 ：</span></label>
+                                                <label><span>商品类型 ：</span></label>
                                                 <input type="text"/>
                                             </li>
                                             <li>
-                                                <label><span>性别 ：</span></label>
+                                                <label><span>计量单位 ：</span></label>
                                                 <input type="text"/>
                                             </li>
                                             <li>
-                                                <label><span>身份证 ：</span></label>
+                                                <label><span>商品备注 ：</span></label>
                                                 <input type="text"/>
                                             </li>
                                             <li>
-                                                <label><span>职位 ：</span></label>
+                                                <label><span>参考单价 ：</span></label>
                                                 <input type="text"/>
                                             </li>
                                             <li>
-                                                <label><span>邮箱 ：</span></label>
+                                                <label><span>销售单价 ：</span></label>
                                                 <input type="text"/>
                                             </li>
-                                            <li>
-                                                <label><span>备注 ：</span></label>
-                                                <input type="text"/>
-                                            </li>
+
                                         </ul>
                                     </div>
                                     <div class="modal-footer">
@@ -125,37 +124,34 @@
                                     <div class="modal-body">
                                         <ul>
                                             <li>
-                                                <label><span>序号 ：</span></label>
+                                                <label><span>商品编号 ：</span></label>
                                                 <input type="text"/>
                                             </li>
                                             <li>
-                                                <label><span>用户名 ：</span></label>
+                                                <label><span>商品名称 ：</span></label>
                                                 <input type="text"/>
                                             </li>
                                             <li>
-                                                <label><span>姓名 ：</span></label>
+                                                <label><span>商品类型 ：</span></label>
                                                 <input type="text"/>
                                             </li>
                                             <li>
-                                                <label><span>性别 ：</span></label>
+                                                <label><span>计量单位 ：</span></label>
                                                 <input type="text"/>
                                             </li>
                                             <li>
-                                                <label><span>身份证 ：</span></label>
+                                                <label><span>商品备注 ：</span></label>
                                                 <input type="text"/>
                                             </li>
                                             <li>
-                                                <label><span>职位 ：</span></label>
+                                                <label><span>参考单价 ：</span></label>
                                                 <input type="text"/>
                                             </li>
                                             <li>
-                                                <label><span>邮箱 ：</span></label>
+                                                <label><span>销售单价 ：</span></label>
                                                 <input type="text"/>
                                             </li>
-                                            <li>
-                                                <label><span>备注 ：</span></label>
-                                                <input type="text"/>
-                                            </li>
+
                                         </ul>
                                     </div>
                                     <div class="modal-footer">
@@ -167,96 +163,11 @@
                         </div>
                         <!--Modal end-->
                     </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>mmss</td>
-                        <td>小小</td>
-                        <td>女</td>
-                        <td>12345678901</td>
-                        <td>经理</td>
-                        <td>1234567@163.com</td>
-                        <td>无</td>
-                        <td>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="添加">添加</a>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="编辑">编辑</a>
-                            <a href="#" class="btn btn-primary btn-sm">删除</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>mmss</td>
-                        <td>小小</td>
-                        <td>女</td>
-                        <td>12345678901</td>
-                        <td>经理</td>
-                        <td>1234567@163.com</td>
-                        <td>无</td>
-                        <td>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="添加">添加</a>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="编辑">编辑</a>
-                            <a href="#" class="btn btn-primary btn-sm">删除</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>mmss</td>
-                        <td>小小</td>
-                        <td>女</td>
-                        <td>12345678901</td>
-                        <td>经理</td>
-                        <td>1234567@163.com</td>
-                        <td>无</td>
-                        <td>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="添加">添加</a>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="编辑">编辑</a>
-                            <a href="#" class="btn btn-primary btn-sm">删除</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>mmss</td>
-                        <td>小小</td>
-                        <td>女</td>
-                        <td>12345678901</td>
-                        <td>经理</td>
-                        <td>1234567@163.com</td>
-                        <td>无</td>
-                        <td>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="添加">添加</a>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="编辑">编辑</a>
-                            <a href="#" class="btn btn-primary btn-sm">删除</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>mmss</td>
-                        <td>小小</td>
-                        <td>女</td>
-                        <td>12345678901</td>
-                        <td>经理</td>
-                        <td>1234567@163.com</td>
-                        <td>无</td>
-                        <td>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="添加">添加</a>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="编辑">编辑</a>
-                            <a href="#" class="btn btn-primary btn-sm">删除</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>mmss</td>
-                        <td>小小</td>
-                        <td>女</td>
-                        <td>12345678901</td>
-                        <td>经理</td>
-                        <td>1234567@163.com</td>
-                        <td>无</td>
-                        <td>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="添加">添加</a>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add"data-whatever="编辑">编辑</a>
-                            <a href="#" class="btn btn-primary btn-sm">删除</a>
-                        </td>
-                    </tr>
+
+
+
+
+
                     </tbody>
                 </table>
                 <ul class="pagination right">
