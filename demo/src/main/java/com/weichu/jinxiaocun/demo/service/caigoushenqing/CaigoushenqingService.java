@@ -21,4 +21,5 @@ public interface CaigoushenqingService {
 
     public Integer itriptxDeleteCaigoushenqingById(Long id)throws Exception;
 
+    public List<Caigoushenqing> getCaiGouShengQingList(String cgsqId);
 }

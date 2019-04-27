@@ -1,10 +1,10 @@
 package com.weichu.jinxiaocun.demo.service.yonghu;
-import com.weichu.jinxiaocun.demo.mapper.yonghu.YonghuMapper;
+
 import com.weichu.jinxiaocun.demo.bean.Yonghu;
+import com.weichu.jinxiaocun.demo.mapper.yonghu.YonghuMapper;
 import org.springframework.stereotype.Service;
+
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -37,6 +37,5 @@ public class YonghuServiceImpl implements YonghuService {
     public Integer itriptxDeleteYonghuById(Long id)throws Exception{
         return yonghuMapper.deleteYonghuById(id);
     }
-
 
 }

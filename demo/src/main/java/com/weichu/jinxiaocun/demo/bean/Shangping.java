@@ -23,7 +23,18 @@ public class Shangping implements Serializable {
         private double spXsdj;
         //备注
         private String spBz;
-        //get set 方法
+
+        private Danwei danwei;
+
+    public Danwei getDanwei() {
+        return danwei;
+    }
+
+    public void setDanwei(Danwei danwei) {
+        this.danwei = danwei;
+    }
+
+    //get set 方法
         public void setSpId (Integer  spId){
             this.spId=spId;
         }

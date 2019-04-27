@@ -1,5 +1,6 @@
 package com.weichu.jinxiaocun.demo.mapper.caigoudingdan;
 import com.weichu.jinxiaocun.demo.bean.Caigoudingdan;
+import com.weichu.jinxiaocun.demo.bean.Caigoushenqing;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
 import java.util.Map;
@@ -17,5 +18,5 @@ public interface CaigoudingdanMapper {
 	public Integer updateCaigoudingdan(Caigoudingdan caigoudingdan)throws Exception;
 
 	public Integer deleteCaigoudingdanById(@Param(value = "id") Long id)throws Exception;
-
+     public  List<Caigoushenqing> getCaiGouShengQingList();
 }

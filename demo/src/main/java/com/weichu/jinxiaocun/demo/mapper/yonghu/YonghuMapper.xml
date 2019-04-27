@@ -4,6 +4,31 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.weichu.jinxiaocun.demo.mapper.yonghu.YonghuMapper">
 
+    <resultMap id="ResultYongHu" type="com.weichu.jinxiaocun.demo.bean.Yonghu">
+        <id property="yhId" column="yh_id"/>
+        <result property="yhYhm" column="yh_yhm"/>
+        <result property="yhMm" column="yh_mm"/>
+        <result property="yhXm" column="yh_xm"/>
+        <result property="yhXb" column="yh_xb"/>
+        <result property="yhDh" column="yh_dh"/>
+        <result property="yhYx" column="yh_yx"/>
+        <result property="yhDz" column="yh_dz"/>
+        <result property="yhSj" column="yh_sj"/>
+        <result property="yhQq" column="yh_qq"/>
+        <result property="yhZt" column="yh_zt"/>
+        <result property="yhMs" column="yh_ms"/>
+        <collection property="jueses" ofType="com.weichu.jinxiaocun.demo.bean.Juese">
+            <result property="jsName" column="js_name"/>
+        </collection>
+    </resultMap>
+
+    <select id="loadUserByUsername" resultMap="ResultYongHu">
+        SELECT yh.*,js.`js_name` FROM yonghu yh
+        LEFT JOIN yonghu_js yj ON yh.`yh_id` = yj.`yh_id`
+        LEFT JOIN juese js ON yj.`js_id` = js.`js_id`
+        WHERE yh.`yh_yhm` = #{yhYhm}
+    </select>
+
     <select id="getYonghuById" resultType="com.weichu.jinxiaocun.demo.bean.Yonghu" >
         select
                 yh_id as yhId,
@@ -76,7 +101,7 @@
                         and yh_zt=#{yhZt}
                     </if>
         </trim>
-         order by creationDate desc
+         order by yh_sj desc
         <if test="beginPos != null and beginPos!='' and pageSize != null  and pageSize !='' ">
             limit #{beginPos},#{pageSize}
         </if>

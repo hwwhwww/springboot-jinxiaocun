@@ -1,4 +1,5 @@
 package com.weichu.jinxiaocun.demo.mapper.shangping;
+import com.weichu.jinxiaocun.demo.bean.Caigoushenqing;
 import com.weichu.jinxiaocun.demo.bean.Shangping;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
@@ -18,4 +19,5 @@ public interface ShangpingMapper {
 
 	public Integer deleteShangpingById(@Param(value = "id") Long id)throws Exception;
 
-}
+
+ }

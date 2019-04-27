@@ -1,10 +1,10 @@
 package com.weichu.jinxiaocun.demo.service.ziyuan;
-import com.weichu.jinxiaocun.demo.mapper.ziyuan.ZiyuanMapper;
+
 import com.weichu.jinxiaocun.demo.bean.Ziyuan;
+import com.weichu.jinxiaocun.demo.mapper.ziyuan.ZiyuanMapper;
 import org.springframework.stereotype.Service;
+
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -13,6 +13,11 @@ public class ZiyuanServiceImpl implements ZiyuanService {
 
     @Resource
     private ZiyuanMapper ziyuanMapper;
+
+    @Override
+    public List<Ziyuan> allZiYuan() {
+        return ziyuanMapper.allZiYuan();
+    }
 
     public Ziyuan getZiyuanById(Long id)throws Exception{
         return ziyuanMapper.getZiyuanById(id);

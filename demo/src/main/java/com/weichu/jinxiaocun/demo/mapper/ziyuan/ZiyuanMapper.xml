@@ -4,6 +4,23 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.weichu.jinxiaocun.demo.mapper.ziyuan.ZiyuanMapper">
 
+    <resultMap id="ResultZiYuan" type="com.weichu.jinxiaocun.demo.bean.Ziyuan">
+        <id property="zyId" column="zy_id"/>
+        <result property="zyUrl" column="zy_url"/>
+        <result property="zyName" column="zy_name"/>
+        <result property="zyFlId" column="zy_flId"/>
+        <result property="zyZt" column="zy_zt"/>
+        <collection property="jueses" ofType="com.weichu.jinxiaocun.demo.bean.Juese">
+            <result property="jsName" column="js_name"/>
+        </collection>
+    </resultMap>
+
+    <select id="allZiYuan" resultMap="ResultZiYuan">
+        SELECT zy.*,js.`js_name` FROM `ziyuan` zy
+        LEFT JOIN `ziyuan_js` zj ON zy.`zy_id` = zj.`zy_id`
+        LEFT JOIN `juese` js ON zj.`js_id` = js.`js_id`
+    </select>
+
     <select id="getZiyuanById" resultType="com.weichu.jinxiaocun.demo.bean.Ziyuan" >
         select
                 zy_id as zyId,
@@ -41,7 +58,6 @@
                         and zy_flId=#{zyFlId}
                     </if>
         </trim>
-         order by creationDate desc
         <if test="beginPos != null and beginPos!='' and pageSize != null  and pageSize !='' ">
             limit #{beginPos},#{pageSize}
         </if>

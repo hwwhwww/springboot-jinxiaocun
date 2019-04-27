@@ -56,14 +56,14 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>201904230002</td>
-                        <td>2019-04-23</td>
-                        <td>liuyilin</td>
-                        <td>2019-04-23</td>
-                        <td>已审核</td>
-                        <td>完全下单</td>            
-                        <td>无</td>
+                    <tr th:each="cgsq:${cgsqList}" >
+                        <td th:text="${cgsq.cgsqXh}"></td>
+                        <td th:text="${#dates.format(cgsq.cgsqRq,'yyyy-MM-dd hh:mm:ss')}"></td>
+                        <td th:text="${cgsq.yuangong.ygName}"></td>
+                        <td th:text="${#dates.format(cgsq.cgsqQx,'yyyy-MM-dd hh:mm:ss')}"></td>
+                        <td th:text="${cgsq.cgsqSh}"></td>
+                        <td th:text="无"></td>
+                        <td th:text="${cgsq.cgsqBz}"></td>
                         <td>
                             <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add1">添加</a>
                             <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit">修改</a>
@@ -80,7 +80,7 @@
                                     </div>       
                             	   <div class="modal-footer">
                                          <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">否</button>
-                                       <a href="caigouadd.html"> <button type="button" class="btn btn-primary btn-sm">是</button>   </a>
+                                       <a th:href="@{/caigoushengUpd/(cgsqId=${cgsq.cgsqId})}"> <button type="button" class="btn btn-primary btn-sm">是</button>   </a>
                                     </div>
                                 </div>
                             </div>
@@ -95,7 +95,7 @@
                                    
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
-                                       <a href="caigouUpd.html"> <button type="button" class="btn btn-primary btn-sm">修改</button></a>
+                                       <a th:href="@{/caigoushengUpd/(cgsqId=${cgsq.cgsqId})}"> <button type="button" class="btn btn-primary btn-sm">修改</button></a>
                                     </div>
                                 </div>
                             </div>
