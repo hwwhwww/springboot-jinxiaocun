@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul class="pagination right">
+    <li ><a th:href="'javascript:doPage('+${#numbers.formatDecimal(pg.pageNum-1,0,0)}+');'" aria-label="Previous" th:if="${pg.pageNum!=1}"><span aria-hidden="true">上一页</span></a>
+    </li>
+    <li th:each="k:${#numbers.sequence(1, pg.pages)}">
+        <a th:href="'javascript:doPage('+${k}+');'" th:text="${k}"></a>
+    </li>
+    <li><a th:if="${pg.pageNum!=pg.pages}" th:href="'javascript:doPage('+${#numbers.formatDecimal(pg.pageNum+1,0,0)}+');'" aria-label="Next" ><span aria-hidden="true" >下一页</span></a></li>
+</ul>
+</div>
+</body>
+</html>
