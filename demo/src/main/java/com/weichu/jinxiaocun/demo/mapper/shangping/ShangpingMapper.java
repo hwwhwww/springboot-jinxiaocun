@@ -13,11 +13,11 @@ public interface ShangpingMapper {
 
 	public Integer getShangpingCountByMap(Map<String, Object> param)throws Exception;
 
-	public Integer insertShangping(Shangping shangping)throws Exception;
+	public Integer itriptxAddShangping(Shangping shangping)throws Exception;
 
 	public Integer updateShangping(Shangping shangping)throws Exception;
 
-	public Integer deleteShangpingById(@Param(value = "id") Long id)throws Exception;
+	public Integer itriptxDeleteShangpingById(@Param(value = "id") Long id)throws Exception;
 
 
  }

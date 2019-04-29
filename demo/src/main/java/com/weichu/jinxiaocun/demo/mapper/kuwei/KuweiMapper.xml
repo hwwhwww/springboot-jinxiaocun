@@ -55,21 +55,13 @@
         </trim>
     </select>
 
-    <insert id="insertKuwei" parameterType="com.weichu.jinxiaocun.demo.bean.Kuwei">
-        insert into kuwei(
-                        kw_id,
+    <insert id="itriptxAddKuwei" parameterType="com.weichu.jinxiaocun.demo.bean.Kuwei">
+        INSERT INTO kuwei(
                         kw_name,
-                        kw_sj,
                         kw_dz,
                         kw_qy,
                         yg_id)
-        values(
-                     #{kwId},
-                     #{kwName},
-                     #{kwSj},
-                     #{kwDz},
-                     #{kwQy},
-                    #{ygId})
+        VALUES(#{kwName},#{kwDz},#{kwQy},#{ygId})
     </insert>
 
     <update id="updateKuwei" parameterType="com.weichu.jinxiaocun.demo.bean.Kuwei">
@@ -96,7 +88,7 @@
         </trim>
     </update>
 
-    <delete id="deleteKuweiById" parameterType="Long">
-        delete from kuwei where id = #{id}
+    <delete id="itriptxDeleteKuweiById" parameterType="Long">
+                 DELETE FROM kuwei WHERE `kw_id` = #{id}
     </delete>
 </mapper>

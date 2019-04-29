@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -44,13 +44,10 @@ public class shangpliebiao {
     }*/
     //查询
     @RequestMapping("/shanpleibie")
-    public String shanpleibie(Integer splb_id, String splb_name, Model model,Integer pageNo){
+    public String shanpleibie(Integer splb_id, String splb_name, Model model,@RequestParam(defaultValue = "1") Integer pageIndex){
 
-        if(pageNo==null){
-            pageNo=1;
-        }
         Map<String, Object> a = new HashMap<String, Object>();
-        PageHelper.startPage(pageNo,2);
+        PageHelper.startPage(pageIndex,4);
         if(splb_id!=null&&splb_id!=0){
             a.put("splb_id",splb_id);
         } if(splb_name!=null){
@@ -63,7 +60,33 @@ public class shangpliebiao {
             e.printStackTrace();
         }
         PageInfo<Shangpingleibie> pageInfo = new PageInfo<Shangpingleibie>(dwList);
-        model.addAttribute("pageInfo",pageInfo);
+        model.addAttribute("pg",pageInfo);
         return "shanpleibie";
     }
+    //添加
+    @RequestMapping("shanpleibieAdd")
+    public String shanpleibieAd(Shangpingleibie shangpingleibie){
+
+        try {
+            shangpingleibieService.itriptxAddShangpingleibie(shangpingleibie);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return  "redirect:shanpleibie";
+    }
+    //删除
+    @RequestMapping("/shanpliebiedelete")
+    public String shanpliebiedelete(@RequestParam("splbId")String splbId,Model model){
+        int jg = 0;
+        try {
+            jg = shangpingleibieService.itriptxDeleteShangpingleibieById(Long.parseLong(splbId));
+            if (jg > 0) {
+                model.addAttribute("msg", "删除成功");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "redirect:shanpleibie";
+    }
+
 }

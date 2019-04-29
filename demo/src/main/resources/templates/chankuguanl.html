@@ -19,9 +19,11 @@
                     <li><a href="index.html" tppabs="http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/index.html"><span class="glyphicon glyphicon-home"></span>&nbsp;后台首页</a></li>
                     <li class="active">基础资料 - 表格</li>
                 </ol>
+                <form action="/ziliao/chankuguanl" method="get" id="tj">
                 <div class="input-group line left">
                     <span class="input-group-addon" id="basic-addon2"><span class="glyphicon glyphicon-search"></span></span>
                     <input type="text" class="form-control" placeholder="输入关键字搜索" aria-describedby="basic-addon2">
+                    <input type="hidden" th:value="${pg.pageNum}" name="pageIndex" id="pageIndex">
                 </div>
                 <select class="form-control line left">
                     <option>1</option>
@@ -30,6 +32,7 @@
                     <option>4</option>
                     <option>5</option>
                 </select>
+                    </form>
                 <a href="#" class=" btn btn-primary "><span class="glyphicon glyphicon-search"></span></a>
                 <a href="#" class=" btn btn-primary "><span class="glyphicon glyphicon-download"></span></a>
                 <br/><br/>
@@ -47,7 +50,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="chuguanli:${dwList}">
+                    <tr th:each="chuguanli:${pg.list}">
                         <td th:text="${chuguanli.kwId}"></td>
                         <td th:text="${chuguanli.kwName}"></td>
                         <td th:text="${chuguanli.kwDz}"></td>
@@ -58,7 +61,7 @@
                         <td>
                             <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add1">添加</a>
                             <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit">编辑</a>
-                            <a href="#" class="btn btn-primary btn-sm" >删除</a>
+                            <a th:href="'/ziliao/chuankuguanlidelete?kwId='+${chuguanli.kwId}+''" class="btn btn-primary btn-sm" >删除</a>
                         </td>
                         <!-- Modal begin-->
                         <!--添加-->
@@ -69,46 +72,37 @@
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                         <h4 class="modal-title" id="add11">添加</h4>
                                     </div>
+                                    <form method="post" action="/ziliao/chankuguanlAdd">
                                     <div class="modal-body">
                                         <ul>
                                             <li>
-                                                <label><span>序号 ：</span></label>
+                                                <label><span>仓库编号 ：</span></label>
                                                 <input type="text"/>
                                             </li>
                                             <li>
-                                                <label><span>用户名 ：</span></label>
-                                                <input type="text"/>
+                                                <label><span>仓库名称 ：</span></label>
+                                                <input type="text" name="kwName"/>
                                             </li>
                                             <li>
-                                                <label><span>姓名 ：</span></label>
-                                                <input type="text"/>
+                                                <label><span>仓库地址 ：</span></label>
+                                                <input type="text" name="kwDz"/>
                                             </li>
                                             <li>
-                                                <label><span>性别 ：</span></label>
-                                                <input type="text"/>
+                                                <label><span>仓库负责人 ：</span></label>
+                                                <input type="text" name="ygId"/>
                                             </li>
                                             <li>
-                                                <label><span>身份证 ：</span></label>
-                                                <input type="text"/>
+                                                <label><span>仓库区域 ：</span></label>
+                                                <input type="text" name="kwQy"/>
                                             </li>
-                                            <li>
-                                                <label><span>职位 ：</span></label>
-                                                <input type="text"/>
-                                            </li>
-                                            <li>
-                                                <label><span>邮箱 ：</span></label>
-                                                <input type="text"/>
-                                            </li>
-                                            <li>
-                                                <label><span>备注 ：</span></label>
-                                                <input type="text"/>
-                                            </li>
+
                                         </ul>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
-                                        <button type="button" class="btn btn-primary btn-sm">保存</button>
+                                        <button type="submit" class="btn btn-primary btn-sm">保存</button>
                                     </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -170,20 +164,13 @@
 
                     </tbody>
                 </table>
-                <ul class="pagination right">
-                    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-                    </li>
-                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
-                </ul>
+
             </div>
             <!--右侧内容结束-->
+            <div th:include="fenye.html"></div>s
 
             <div th:include="wei.html"></div>
+
 
 </body>
 </html>

@@ -27,15 +27,15 @@ public class DanweiServiceImpl implements DanweiService {
     }
 
     public Integer itriptxAddDanwei(Danwei danwei)throws Exception{
-            return danweiMapper.insertDanwei(danwei);
+            return danweiMapper.itriptxAddDanwei(danwei);
     }
 
     public Integer itriptxModifyDanwei(Danwei danwei)throws Exception{
-        return danweiMapper.updateDanwei(danwei);
+        return danweiMapper.itriptxModifyDanwei(danwei);
     }
 
     public Integer itriptxDeleteDanweiById(Long id)throws Exception{
-        return danweiMapper.deleteDanweiById(id);
+        return danweiMapper.itriptxDeleteDanweiById(id);
     }
 
 

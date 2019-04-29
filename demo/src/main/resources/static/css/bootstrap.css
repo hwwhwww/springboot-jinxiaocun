@@ -5985,10 +5985,10 @@ button.close {
 .modal-header .close {
   margin-top: -2px;
 }
-.modal-title {
+/*.modal-title {
   margin: 0;
   line-height: 1.42857143;
-}
+}*/
 .modal-body {
   position: relative;
   padding: 15px;

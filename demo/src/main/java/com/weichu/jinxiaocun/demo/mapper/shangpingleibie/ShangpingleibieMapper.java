@@ -16,6 +16,6 @@ public interface ShangpingleibieMapper {
 
 	public Integer updateShangpingleibie(Shangpingleibie shangpingleibie)throws Exception;
 
-	public Integer deleteShangpingleibieById(@Param(value = "id") Long id)throws Exception;
+	public Integer itriptxDeleteShangpingleibieById(@Param(value = "id") Long id)throws Exception;
 
 }

@@ -64,7 +64,7 @@
         </trim>
     </update>
 
-    <delete id="deleteShangpingleibieById" parameterType="Long">
-        delete from shangpingleibie where id = #{id}
+    <delete id="itriptxDeleteShangpingleibieById" parameterType="Long">
+  DELETE FROM shangpingleibie WHERE `splb_id`= #{id}
     </delete>
 </mapper>

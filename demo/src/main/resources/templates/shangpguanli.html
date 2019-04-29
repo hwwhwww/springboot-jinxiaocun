@@ -20,9 +20,11 @@
                     <li><a href="index.html" tppabs="http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/index.html"><span class="glyphicon glyphicon-home"></span>&nbsp;后台首页</a></li>
                     <li class="active">基础资料 - 表格</li>
                 </ol>
+                <form action="/ziliao/shangpguanli" method="get" id="tj">
                 <div class="input-group line left">
                     <span class="input-group-addon" id="basic-addon2"><span class="glyphicon glyphicon-search"></span></span>
                     <input type="text" class="form-control" placeholder="输入关键字搜索" aria-describedby="basic-addon2">
+                    <input type="hidden" th:value="${pg.pageNum}" name="pageIndex" id="pageIndex">
                 </div>
                 <select class="form-control line left">
                     <option>1</option>
@@ -31,6 +33,7 @@
                     <option>4</option>
                     <option>5</option>
                 </select>
+                    </form>
                 <a href="#" class=" btn btn-primary "><span class="glyphicon glyphicon-search"></span></a>
                 <a href="#" class=" btn btn-primary "><span class="glyphicon glyphicon-download"></span></a>
                 <br/><br/>
@@ -50,7 +53,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="shangpguanli:${dwList}">
+                    <tr th:each="shangpguanli:${pg.list}">
                         <td th:text="${shangpguanli.spBh}"></td>
                         <td th:text="${shangpguanli.spName}"></td>
                         <td th:text="${shangpguanli.splbName}"></td>
@@ -58,12 +61,10 @@
                         <td th:text="${shangpguanli.spBz}"></td>
                         <td th:text="${shangpguanli.spCgdj}"></td>
                         <td th:text="${shangpguanli.spXsdj}"></td>
-
-
                         <td>
                             <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add1">添加</a>
                             <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit">编辑</a>
-                            <a href="#" class="btn btn-primary btn-sm" >删除</a>
+                            <a th:href="'/ziliao/shangpguanlidelete?spId='+${shangpguanli.spId}+''" class="btn btn-primary btn-sm" >删除</a>
                         </td>
                         <!-- Modal begin-->
                         <!--添加-->
@@ -74,43 +75,45 @@
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                         <h4 class="modal-title" id="add11">添加</h4>
                                     </div>
+                                    <form method="post" action="/ziliao/shanpAdd">
                                     <div class="modal-body">
                                         <ul>
                                             <li>
                                                 <label><span>商品编号 ：</span></label>
-                                                <input type="text"/>
+                                                <input type="text" name="spBh"/>
                                             </li>
                                             <li>
                                                 <label><span>商品名称 ：</span></label>
-                                                <input type="text"/>
+                                                <input type="text" name="spName"/>
                                             </li>
                                             <li>
                                                 <label><span>商品类型 ：</span></label>
-                                                <input type="text"/>
+                                                <input type="text" name="splbId"/>
                                             </li>
                                             <li>
                                                 <label><span>计量单位 ：</span></label>
-                                                <input type="text"/>
+                                                <input type="text" name="dwId"/>
                                             </li>
                                             <li>
                                                 <label><span>商品备注 ：</span></label>
-                                                <input type="text"/>
+                                                <input type="text" name="spBz"/>
                                             </li>
                                             <li>
                                                 <label><span>参考单价 ：</span></label>
-                                                <input type="text"/>
+                                                <input type="text" name="spCgdj"/>
                                             </li>
                                             <li>
                                                 <label><span>销售单价 ：</span></label>
-                                                <input type="text"/>
+                                                <input type="text" name="spXsdj"/>
                                             </li>
 
                                         </ul>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
-                                        <button type="button" class="btn btn-primary btn-sm">保存</button>
+                                        <button type="submit" class="btn btn-primary btn-sm">保存</button>
                                     </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -170,17 +173,9 @@
 
                     </tbody>
                 </table>
-                <ul class="pagination right">
-                    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-                    </li>
-                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
-                </ul>
+           s
             </div>
+            <div th:include="fenye.html"></div>
             <!--右侧内容结束-->
 
             <div th:include="wei.html"></div>

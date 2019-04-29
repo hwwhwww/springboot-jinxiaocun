@@ -17,6 +17,16 @@ public class Kuwei implements Serializable {
         private String kwQy;
         //员工id
         private Integer ygId;
+
+    public String getYuangongName() {
+        return yuangongName;
+    }
+
+    public void setYuangongName(String yuangongName) {
+        this.yuangongName = yuangongName;
+    }
+
+    private  String yuangongName;
         //get set 方法
         public void setKwId (Integer  kwId){
             this.kwId=kwId;

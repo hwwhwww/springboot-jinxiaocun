@@ -76,27 +76,9 @@
         </trim>
     </select>
 
-    <insert id="insertShangping" parameterType="com.weichu.jinxiaocun.demo.bean.Shangping">
-        insert into shangping(
-                        sp_id,
-                        sp_sl,
-                        sp_bh,
-                        sp_name,
-                        splb_id,
-                        dw_id,
-                        sp_cgdj,
-                        sp_xsdj,
-                        sp_bz)
-        values(
-                     #{spId},
-                     #{spSl},
-                     #{spBh},
-                     #{spName},
-                     #{splbId},
-                     #{dwId},
-                     #{spCgdj},
-                     #{spXsdj},
-                    #{spBz})
+    <insert id="itriptxAddShangping">
+               INSERT  INTO `shangping`(`sp_bh`,`sp_name`,`splb_id`,`dw_id`,`sp_cgdj`,`sp_xsdj`,`sp_bz`)
+       VALUES(#{spBh},#{spName},#{splbId},#{dwId},#{spXsdj},#{spCgdj},#{spBz})
     </insert>
 
     <update id="updateShangping" parameterType="com.weichu.jinxiaocun.demo.bean.Shangping">
@@ -132,8 +114,9 @@
         </trim>
     </update>
 
-    <delete id="deleteShangpingById" parameterType="Long">
-        delete from shangping where id = #{id}
+    <delete id="itriptxDeleteShangpingById" parameterType="Long">
+
+ DELETE FROM shangping WHERE `sp_id` = #{id}
     </delete>
 
 

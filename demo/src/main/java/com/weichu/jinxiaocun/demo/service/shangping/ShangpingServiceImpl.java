@@ -27,7 +27,7 @@ public class ShangpingServiceImpl implements ShangpingService {
     }
 
     public Integer itriptxAddShangping(Shangping shangping)throws Exception{
-            return shangpingMapper.insertShangping(shangping);
+            return shangpingMapper.itriptxAddShangping(shangping);
     }
 
     public Integer itriptxModifyShangping(Shangping shangping)throws Exception{
@@ -35,7 +35,7 @@ public class ShangpingServiceImpl implements ShangpingService {
     }
 
     public Integer itriptxDeleteShangpingById(Long id)throws Exception{
-        return shangpingMapper.deleteShangpingById(id);
+        return shangpingMapper.itriptxDeleteShangpingById(id);
     }
 
 

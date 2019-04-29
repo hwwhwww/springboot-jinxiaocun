@@ -6,16 +6,16 @@ import java.util.Map;
 
 public interface DanweiMapper {
 
-	public Danwei getDanweiById(@Param(value = "id") Long id)throws Exception;
+	public Danwei getDanweiById(@Param(value = "dwId") Long id)throws Exception;
 
 	public List<Danwei>	getDanweiListByMap(Map<String,Object> param)throws Exception;
 
 	public Integer getDanweiCountByMap(Map<String,Object> param)throws Exception;
 
-	public Integer insertDanwei(Danwei danwei)throws Exception;
+	public Integer itriptxAddDanwei(Danwei danwei)throws Exception;
 
-	public Integer updateDanwei(Danwei danwei)throws Exception;
+	public Integer itriptxModifyDanwei(Danwei danwei)throws Exception;
 
-	public Integer deleteDanweiById(@Param(value = "id") Long id)throws Exception;
+	public Integer itriptxDeleteDanweiById(@Param(value = "id") Long id)throws Exception;
 
 }
