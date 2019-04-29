@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weichu.jinxiaocun.demo.mapper.baojing.BaoJingMapper">
+
+    <resultMap id="baoJingMap" type="com.weichu.jinxiaocun.demo.bean.Baojing">
+        <result column="id" property="id"/>
+        <result column="shang" property="Shang"/>
+        <result column="xia" property="Xia"/>
+        <result column="splb_name" property="leiBie"/>
+        <result column="kw_name" property="kwName"/>
+        <result column="sp_id" property="spId"/>
+        <result column="kw_id" property="kwId"/>
+        <association property="shangping" javaType="com.weichu.jinxiaocun.demo.bean.Shangping">
+            <result column="sp_bh" property="spBh"/>
+            <result column="sp_name" property="spName"/>
+        </association>
+    </resultMap>
+    <select id="chaXun" resultMap="baoJingMap">
+        SELECT b.`id`,s.`sp_bh`,s.`sp_name`,b.`shang`,b.`xia`,lb.`splb_name`,s.`sp_id`,k.kw_id FROM baojin b,shangping s,kuwei
+        k,`shangpingleibie` lb
+        WHERE b.`sp_id`=s.`sp_id` AND k.`kw_id`=b.`kw_id` AND lb.`splb_id`=s.`splb_id`
+        AND b.`sp_id`=s.`sp_id`
+        <if test="kwId!=null">
+            AND k.`kw_id`=#{kwId}
+        </if>
+    </select>
+    <insert id="tianJia">
+INSERT INTO `baojin`(`sp_id`,`shang`,`xia`,`kw_id`)
+VALUES(#{spId},#{shang},#{xia},#{kId})
+    </insert>
+
+    <update id="xiuGai">
+        UPDATE `baojin` SET shang=#{shang},xia=#{xia}
+         WHERE sp_id=#{spId} and kw_id=#{kId}
+    </update>
+</mapper>

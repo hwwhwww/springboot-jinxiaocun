@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head th:include="cssAndjs.html">
+    <style>
+
+    </style>
+</head>
+<body>
+
+<div th:include="tou.html"></div>
+            <!--左侧导航结束-->
+            <!----------------------------------------------------------------------------------------------------->
+            <!--右侧内容开始-->
+            <div class="col-xs-10">
+                <br/>
+                <ol class="breadcrumb">
+                    <li><a href="index.html" tppabs="http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/index.html"><span class="glyphicon glyphicon-home"></span>&nbsp;后台首页</a></li>
+                    <li class="active">基础资料 - 库存报警</li>
+                </ol>
+                <form action="/ziliao/baojin" id="tj">
+
+
+                <div class="input-group line left">
+                </div>
+                    <input type="hidden" id="pageIndex" name="pageIndex" th:value="${pg.pageNum}">
+                <select id="kwId" name="kwId" class="form-control line left">
+                    <option th:each="kuwei:${kuweiList}"
+                            th:selected="${kuwei.getKwId()}==${kwId}"
+                            th:value="${kuwei.getKwId()}"
+                    th:text="${kuwei.getKwName()}"></option>
+                </select>
+                    <!--<select name="ck" class="form-control line left">-->
+                        <!--<option th:each="shangpingleibie:${splb}"-->
+                                <!--th:selected="${shangpingleibie.splbId}==${lb}"-->
+                                <!--th:value="${shangpingleibie.splbId}"-->
+                                <!--th:text="${shangpingleibie.getSplbName()}"></option>-->
+                    <!--</select>-->
+                    <input type="submit" class=" btn btn-primary" value="查询">
+                    <!--<a th:href="'/ziliao/baojin?name='+${name}+'&pageIndex='+${pg.pageNum}+'&lb='+${lb}+''" class=" btn btn-primary "><span class="glyphicon glyphicon-search"></span></a>-->
+                </form>
+
+                <br/><br/>
+                <table class="table table-bordered table-striped text-center bg-info">
+                    <thead >
+                    <tr class="info">
+                        <th class="text-center">商品</th>
+                        <th class="text-center">商品名称</th>
+                        <th class="text-center">商品类型</th>
+                        <th class="text-center">下限报警数</th>
+                        <th class="text-center">上限报警数</th>
+                        <th class="text-center">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="baojing:${pg.list}">
+                        <th class="text-center" th:text="${baojing.getShangping().getSpBh()}"></th>
+                        <th class="text-center" th:text="${baojing.getShangping().getSpName()}"></th>
+                        <th class="text-center" th:text="${baojing.getLeiBie()}"></th>
+                        <th class="text-center" th:text="${baojing.getXia()}"></th>
+                        <th class="text-center" th:text="${baojing.getShang()}"></th>
+                        <td>
+                            <!--<a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit">添加商品</a>-->
+                            <input type="button" th:onclick="'tijiao('+${baojing.getShangping().getSpId()}+')'" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add1" value="编辑">
+                        </td>
+
+                        <div class="modal fade" id="add1" tabindex="-1" role="dialog" aria-labelledby="add11">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <h4 class="modal-title" id="add11">添加</h4>
+                                    </div>
+                                    <form action="/ziliao/baojinTJ" method="post" id="bc">
+                                    <div class="modal-body">
+                                        <ul>
+                                            <li>
+                                                <label><span>下限值</span></label>
+                                                <input type="text" id="xia" name="xia"/>
+                                                <input type="hidden" name="kId" id="kId">
+                                            </li>
+                                            <li>
+                                                <label><span>上限值</span></label>
+                                                <input type="text" id="shang" name="shang"/>
+                                                <input type="hidden" name="spId" id="spId">
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    </form>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
+                                        <button type="button" id="sc" class="btn btn-primary btn-sm">保存</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </tr>
+                    </tbody>
+                </table>
+                <div th:include="fenye.html"></div>
+                <div th:include="wei.html"></div>
+
+<script src="js/jquery-1.11.3.js" tppabs="http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/js/jquery-1.11.3.js"></script>
+<script src="js/bootstrap.js" tppabs="http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/js/bootstrap.js"></script>
+<script>
+    /*Bootlint工具用于对页面中的HTML标签以及Bootstrapclass的使用进行检测*/
+    (function () {
+        var s = document.createElement("script");
+        s.onload = function () {
+            bootlint.showLintReportForCurrentDocument([]);
+        };
+        s.src = "js/bootlint.js"/*tpa=http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/js/bootlint.js*/;
+        document.body.appendChild(s)
+    })();
+
+
+    $("#sc").click(function () {
+        var kId=$("#kId").val();
+        var spId=$("#spId").val();
+        var shang=$("#shang").val();
+        var xia=$("#xia").val();
+        location="/ziliao/baojinTJ?shang="+shang+"&xia="+xia+"&kId="+kId+"&spId="+spId
+    })
+    function tijiao(zhi){
+        $.getJSON("/ziliao/baojinYB","zhi="+zhi+"&id="+$("#kwId").val(),function (data) {
+            $("#kId").val($("#kwId").val());
+            $("#spId").val(zhi);
+            $("#shang").val(data.shang);
+            $("#xia").val(data.xia);
+        })
+    }
+//    添加编辑模态框
+    $('#add').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var recipient = button.data('whatever') // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this)
+        modal.find('.modal-title').text('' + recipient)
+        modal.find('.modal-body input').val(recipient)
+    })
+</script>
+</body>
+</html>
