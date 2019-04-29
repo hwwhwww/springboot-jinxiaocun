@@ -1,12 +1,21 @@
 package com.weichu.jinxiaocun.demo.controller;
 
+import com.weichu.jinxiaocun.demo.bean.Danwei;
+import com.weichu.jinxiaocun.demo.service.danwei.DanweiService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.*;
 
 @Controller
 public class IndexController {
 
-
+    @Resource
+    private DanweiService danweiService;
 
 
     @RequestMapping("/index")
@@ -73,8 +82,6 @@ public class IndexController {
     public String diaobo(){
         return "diaobo";
     }
-
-
     @RequestMapping("/chankuguanl")
     public String chankuguanl(){
         return "chankuguanl";
@@ -89,6 +96,7 @@ public class IndexController {
     }
     @RequestMapping("/jiliandwei")
     public String jiliandwei(){
+
         return "jiliandwei";
     }
     @RequestMapping("/kehui")

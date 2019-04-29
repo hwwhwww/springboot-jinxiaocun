@@ -35,7 +35,7 @@ public class ShangpingleibieServiceImpl implements ShangpingleibieService {
     }
 
     public Integer itriptxDeleteShangpingleibieById(Long id)throws Exception{
-        return shangpingleibieMapper.deleteShangpingleibieById(id);
+        return shangpingleibieMapper.itriptxDeleteShangpingleibieById(id);
     }
 
 

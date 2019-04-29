@@ -12,10 +12,10 @@ public interface KuweiMapper {
 
 	public Integer getKuweiCountByMap(Map<String,Object> param)throws Exception;
 
-	public Integer insertKuwei(Kuwei kuwei)throws Exception;
+	public Integer itriptxAddKuwei(Kuwei kuwei)throws Exception;
 
 	public Integer updateKuwei(Kuwei kuwei)throws Exception;
 
-	public Integer deleteKuweiById(@Param(value = "id") Long id)throws Exception;
+	public Integer itriptxDeleteKuweiById(@Param(value = "id") Long id)throws Exception;
 
 }

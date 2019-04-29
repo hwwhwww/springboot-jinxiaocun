@@ -27,7 +27,7 @@ public class KuweiServiceImpl implements KuweiService {
     }
 
     public Integer itriptxAddKuwei(Kuwei kuwei)throws Exception{
-            return kuweiMapper.insertKuwei(kuwei);
+            return kuweiMapper.itriptxAddKuwei(kuwei);
     }
 
     public Integer itriptxModifyKuwei(Kuwei kuwei)throws Exception{
@@ -35,7 +35,7 @@ public class KuweiServiceImpl implements KuweiService {
     }
 
     public Integer itriptxDeleteKuweiById(Long id)throws Exception{
-        return kuweiMapper.deleteKuweiById(id);
+        return kuweiMapper.itriptxDeleteKuweiById(id);
     }
 
 

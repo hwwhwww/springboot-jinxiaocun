@@ -7,9 +7,6 @@
     </style>
 </head>
 <body>
-
-
-
             <!--左侧导航开始-->
             <div th:include="tou.html"></div>
             <!--左侧导航结束-->
@@ -21,22 +18,25 @@
                     <li><a href="index.html" tppabs="http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/index.html"><span class="glyphicon glyphicon-home"></span>&nbsp;后台首页</a></li>
                     <li class="active">基础资料</li>
                 </ol>
+                <form action="/ziliao/jiliandwei" method="get" id="tj">
                 <div class="input-group line left">
                     <span class="input-group-addon" id="basic-addon2"><span class="glyphicon glyphicon-search"></span></span>
                     <input type="text" class="form-control" placeholder="输入关键字搜索" aria-describedby="basic-addon2">
+                    <input type="hidden" th:value="${pg.pageNum}" name="pageIndex" id="pageIndex">
                 </div>
                 <select class="form-control line left">
-                    <option>吨</option>
-                    <option>kg</option>
-                    <option>包</option>
-                    <option>瓶</option>
-                    <option>件</option>
-                    <option>个</option>
-                    <option>斤</option>
-
+                    <option value="1">吨</option>
+                    <option value="2">kg</option>
+                    <option value="3">包</option>
+                    <option value="4">瓶</option>
+                    <option value="5">件</option>
+                    <option value="6">个</option>
+                    <option value="7">斤</option>
                 </select>
-                <a href="#" class=" btn btn-primary "><span class="glyphicon glyphicon-search"></span></a>
-                <a href="#" class=" btn btn-primary "><span class="glyphicon glyphicon-download"></span></a>
+
+                <a href="/ziliao/jiliandwei" class=" btn btn-primary "><span class="glyphicon glyphicon-search"></span></a>
+                </form>
+
                 <br/><br/>
                 <table class="table table-bordered table-striped text-center bg-info">
                     <thead >
@@ -44,11 +44,9 @@
                         <th class="text-center">序号</th>
                         <th class="text-center">单位名称</th>
                         <th class="text-center">单位说明</th>
-
                     </tr>
                     </thead>
                     <tbody>
-
                         <!-- Modal begin-->
                         <!--添加-->
                         <div class="modal fade" id="add1" tabindex="-1" role="dialog" aria-labelledby="add11">
@@ -56,17 +54,18 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="add11">添加</h4>
+
                                     </div>
+                                    <form method="post" action="/ziliao/jiandweAdd">
                                     <div class="modal-body">
                                         <ul>
                                             <li>
                                                 <label><span>序号 ：</span></label>
-                                                <input type="text"/>
+                                                <input type="text" th:value="${dwId}"/>
                                             </li>
                                             <li>
                                                 <label><span>单位名称 ：</span></label>
-                                                <input type="text"/>
+                                                <input type="text" name="dwName" th:value="${dwName}"/>
                                             </li>
                                             <li>
                                                 <label><span>单位说明：</span></label>
@@ -75,10 +74,12 @@
 
                                         </ul>
                                     </div>
+
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
-                                        <button type="button" class="btn btn-primary btn-sm">保存</button>
+                                        <button type="submit" class="btn btn-primary btn-sm" >保存</button>
                                     </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -89,6 +90,7 @@
                                         <button type="button" class="close" data-dismiss="edit" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                         <h4 class="modal-title" id="myModalLabel1">编辑</h4>
                                     </div>
+                                    <form action="/ziliao/xiuGai" method="post">
                                     <div class="modal-body">
                                         <ul>
                                             <li>
@@ -107,40 +109,36 @@
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
-                                        <button type="button" class="btn btn-primary btn-sm">保存</button>
+                                        <button type="submit" class="btn btn-primary btn-sm">保存</button>
                                     </div>
+                                        </form>
                                 </div>
                             </div>
                         </div>
                         <!--Modal end-->
                     </tr>
-                    <tr th:each="danwei:${danweiList}">
+                    <tr th:each="danwei:${pg.list}">
                         <td th:text="${danwei.dwId}"></td>
                         <td th:text="${danwei.dwName}"></td>
-                        <td>小小</td>
+
                         <td>
                             <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add1">添加</a>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit">编辑</a>
-                            <a href="#" class="btn btn-primary btn-sm" >删除</a>
+                            <a th:href="'/ziliao/xiuGai?dwId='+${danwei.dwId}+''" class="btn btn-primary btn-sm" >编辑</a>
+
+                            <a th:href="'/ziliao/jiandwedelete?dwId='+${danwei.dwId}+''" class="btn btn-primary btn-sm" >删除</a>
                         </td>
                     </tr>
 
                     </tbody>
                 </table>
-                <ul class="pagination right">
-                    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-                    </li>
-                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
-                </ul>
-            </div>
+                <div th:include="fenye.html"></div>
             <!--右侧内容结束-->
 
             <div th:include="wei.html"></div>
 
 </body>
 </html>
+
+
+
+
