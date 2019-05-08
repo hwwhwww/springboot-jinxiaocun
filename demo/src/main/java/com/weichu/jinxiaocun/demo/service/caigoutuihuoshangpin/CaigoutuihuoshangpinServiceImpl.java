@@ -34,8 +34,8 @@ public class CaigoutuihuoshangpinServiceImpl implements CaigoutuihuoshangpinServ
         return caigoutuihuoshangpinMapper.updateCaigoutuihuoshangpin(caigoutuihuoshangpin);
     }
 
-    public Integer itriptxDeleteCaigoutuihuoshangpinById(Long id)throws Exception{
-        return caigoutuihuoshangpinMapper.deleteCaigoutuihuoshangpinById(id);
+    public Integer itriptxDeleteCaigoutuihuoshangpinById(String[] ids)throws Exception{
+        return caigoutuihuoshangpinMapper.deleteCaigoutuihuoshangpinById(ids);
     }
 
 

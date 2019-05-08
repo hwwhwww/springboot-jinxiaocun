@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weichu.jinxiaocun.demo.mapper.caigoufukuandan.CaigoufukuandanMapper">
+
+    <resultMap id="fukuandanMap" type="com.weichu.jinxiaocun.demo.bean.Caigoufukuandan">
+        <result property="cgfkdId" column="cgfkd_id"/>
+        <result property="gysId" column="gys_id"/>
+        <result property="cgfkdBh" column="cgfkd_bh"/>
+        <result property="cgfkdRq" column="cgfkd_rq"/>
+        <result property="zjzhId" column="zjzh_id"/>
+        <result property="ygId" column="yg_id"/>
+        <result property="cgfkdYf" column="cgfkd_yf"/>
+        <result property="cgfkdSf" column="cgfkd_sf"/>
+        <result property="cgfkdBz" column="cgfkd_bz"/>
+        <result property="cgfkdSh" column="cgfkd_sh"/>
+        <association property="yuangong" javaType="com.weichu.jinxiaocun.demo.bean.Yuangong">
+            <id property="ygId" column="ygId"/>
+            <result property="ygName" column="yg_name"/>
+        </association>
+        <association property="gongyingshang" javaType="com.weichu.jinxiaocun.demo.bean.Gongyingshang">
+            <result property="gysId" column="gysId"/>
+            <result property="khflId" column="khflId"/>
+            <result property="gysName" column="gys_name"/>
+            <result property="gysDh" column="gys_dh"/>
+            <result property="gysYx" column="gys_yx"/>
+            <result property="gysLxr" column="gys_lxr"/>
+            <result property="gysDz" column="gys_dz"/>
+            <result property="gysMs" column="gys_ms"/>
+        </association>
+        <collection property="caigoufukuandanshangpins"
+                    ofType="com.weichu.jinxiaocun.demo.bean.Caigoufukuandanshangpin">
+            <result property="cgfkdspId" column="cgfkdsp_id"/>
+            <result property="cgddId" column="cgdd_id"/>
+            <result property="cgfkdId" column="cgfkd_id"/>
+            <result property="cgfkdspZje" column="cgfkdsp_zje"/>
+            <result property="cgfkdspYfk" column="cgfkdsp_yfk"/>
+            <result property="cgfkdspSyk" column="cgfkdsp_syk"/>
+            <result property="cgfkdspBz" column="cgfkdsp_bz"/>
+        </collection>
+    </resultMap>
+    <select id="chaXun" resultMap="fukuandanMap">
+        SELECT * FROM `caigoufukuandan` cgfk,`caigoufukuandanshangpin` cgfksp,gongyingshang gys
+        ,caigoudingdan cgdd
+        WHERE cgfk.cgfkd_id=cgfksp.cgfkd_id AND
+        gys.gys_id=cgfk.gys_id
+        AND cgfksp.cgdd_id = cgdd.cgdd_id
+        <if test="rqYi!=null and rqEr!=null">
+            AND #{rqYi} &lt; `cgfkd_rq` &lt;#{rqEr}
+        </if>
+    </select>
+
+    <select id="chaXunDan" resultMap="fukuandanMap">
+        SELECT * FROM `caigoufukuandan` cgfk,`caigoufukuandanshangpin` cgfksp,gongyingshang gys
+        ,caigoudingdan cgdd
+        WHERE cgfk.cgfkd_id=cgfksp.cgfkd_id AND
+        gys.gys_id=cgfk.gys_id
+        AND cgfksp.cgdd_id = cgdd.cgdd_id
+        <if test="id!=null">
+            AND cgfk.`cgfkd_id`=#{id}
+        </if>
+    </select>
+
+    <update id="xiuGai">
+
+    </update>
+
+    <delete id="shanChu">
+     DELETE FROM `caigoufukuandan`
+      WHERE cgfkd_id=#{id};
+      DELETE FROM `caigoufukuandanshangpin`
+      WHERE cgfkd_id=#{id};
+    </delete>
+
+    <insert id="tianJia">
+INSERT INTO `caigoufukuandan`(`gys_id`,`cgfkd_bh`,`yg_id`,`cgfkd_rq`,`zjzh_id`,`cgfkd_yf`,`cgfkd_sf`,`cgfkd_bz`,`cgfkd_sh`)
+VALUES(#{gysId},#{cgfkdBh},#{ygId},#{cgfkdRq},#{zjzhId},#{cgfkdYf},#{cgfkdSf},#{cgfkdBz},#{cgfkdSh})
+    </insert>
+</mapper>

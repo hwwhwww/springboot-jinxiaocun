@@ -56,10 +56,6 @@
                         and cgsq_zje=#{cgsqZje}
                     </if>
         </trim>
-         order by creationDate desc
-        <if test="beginPos != null and beginPos!='' and pageSize != null  and pageSize !='' ">
-            limit #{beginPos},#{pageSize}
-        </if>
     </select>
 
     <select id="getCaigoushenqingCountByMap" resultType="Integer"  parameterType="java.util.Map">
@@ -94,31 +90,25 @@
 
     <insert id="insertCaigoushenqing" parameterType="com.weichu.jinxiaocun.demo.bean.Caigoushenqing">
         insert into caigoushenqing(
-                        cgsq_id,
                         cgsq_xh,
                         yg_id,
                         cgsq_rq,
                         cgsq_qx,
                         cgsq_sh,
-                        cgsq_zje,
                         cgsq_bz)
         values(
-                     #{cgsqId},
                      #{cgsqXh},
                      #{ygId},
                      #{cgsqRq},
                      #{cgsqQx},
                      #{cgsqSh},
-                     #{cgsqZje},
-                    #{cgsqBz})
+                    #{cgsqBz}
+                    )
     </insert>
 
     <update id="updateCaigoushenqing" parameterType="com.weichu.jinxiaocun.demo.bean.Caigoushenqing">
         update caigoushenqing
-        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
-                    <if test="cgsqId != null and cgsqId!=''">
-                        cgsq_id=#{cgsqId},
-                    </if>
+        <trim prefix="set" suffixOverrides="," suffix="where cgsq_id=#{cgsqId}">
                     <if test="cgsqXh != null and cgsqXh!=''">
                         cgsq_xh=#{cgsqXh},
                     </if>
@@ -134,9 +124,6 @@
                     <if test="cgsqSh != null and cgsqSh!=''">
                         cgsq_sh=#{cgsqSh},
                     </if>
-                    <if test="cgsqZje != null and cgsqZje!=''">
-                        cgsq_zje=#{cgsqZje},
-                    </if>
                     <if test="cgsqBz != null and cgsqBz!=''">
                         cgsq_bz=#{cgsqBz}
                     </if>
@@ -144,7 +131,10 @@
     </update>
 
     <delete id="deleteCaigoushenqingById" parameterType="Long">
-        delete from caigoushenqing where id = #{id}
+        DELETE FROM caigoushenqing WHERE cgsq_id IN
+        <foreach collection="ids" separator="," open="(" close=")" item="id">
+            #{id}
+        </foreach>
     </delete>
 
 
@@ -172,6 +162,77 @@ SELECT c.* ,yg.yg_name,yg.yg_id AS id
         </if>
     </select>
 
+<resultMap id="chaXunMap" type="com.weichu.jinxiaocun.demo.bean.Caigoushenqing">
+    <result property="cgsqId" column="cgsq_id"/>
+    <result property="cgsqXh" column="cgsq_xh"/>
+    <result property="ygId" column="yg_id"/>
+    <result property="cgsqRq" column="cgsq_rq"/>
+    <result property="cgsqQx" column="cgsq_qx"/>
+    <result property="cgsqBz" column="cgsq_bz"/>
+    <result property="cgsqSh" column="cgsq_sh"/>
+    <result property="yuangong.ygName" column="yg_name"/>
+    <!--<association property="yuangong" javaType="com.weichu.jinxiaocun.demo.bean.Yuangong">-->
+        <!--<id property="ygId" column="yg_id"/>-->
+        <!--<result property="ygName" column="yg_name"/>-->
+    <!--</association>-->
+    <collection property="caigoushenqingshangpingList" ofType="com.weichu.jinxiaocun.demo.bean.Caigoushenqingshangping">
+        <result property="cgsqId" column="cgsq_id"/>
+        <result property="cgsqspSl" column="cgsqsp_sl"/>
+        <result property="cgsqspZg" column="cgsqsp_zg"/>
+        <result property="cgsqspJg" column="cgsqsp_jg"/>
+        <result property="shangping.spName" column="sp_name"/>
+        <result property="shangping.shangpingleibie.splbName" column="splb_name"/>
+        <result property="shangping.danwei.dwName" column="dw_name"/>
+        <!--<association property="shangping" javaType="com.weichu.jinxiaocun.demo.bean.Shangping">-->
+            <!--<result property="spId" column="sp_id"/>-->
+            <!--<result property="spBh" column="sp_bh"/>-->
+            <!--<result property="spName" column="sp_name"/>-->
+            <!--<result property="dwId" column="dw_id"/>-->
+            <!--<result property="splbId" column="splb_id"/>-->
+            <!--<result property="spCgdj" column="sp_cgdj"/>-->
+            <!--<result property="spXsdj" column="sp_xsdj"/>-->
+            <!--<result property="spBz" column="sp_bz"/>-->
+            <!--<association property="shangpingleibie" javaType="com.weichu.jinxiaocun.demo.bean.Shangpingleibie">-->
+                <!--<result property="splbName" column="splb_name"/>-->
+            <!--</association>-->
+            <!--<association property="danwei" javaType="com.weichu.jinxiaocun.demo.bean.Danwei">-->
+                <!--<result property="dwName" column="dw_name"/>-->
+            <!--</association>-->
+        <!--</association>-->
+    </collection>
+</resultMap>
+    <select id="chaXun" resultMap="chaXunMap">
+        SELECT sq.*,sgsp.`cgsqsp_id`,sgsp.`sp_id`,sgsp.`cgsqsp_sl`,sgsp.`cgsqsp_jg`,sgsp.`cgsqsp_zg`
+        ,sgsp.`cgsqsp_kp`,sgsp.`cgsqsp_bz`,d.*,lb.*,sp.*,yg.*
+        ,sp.`sp_sl`, sp.`sp_bh`, sp.`sp_name`, sp.`splb_id`, sp.`dw_id` ,sp.`sp_cgdj` ,
+        sp.`sp_xsdj`, sp.`sp_bz`,lb.`splb_name`,d.`dw_name`
+        FROM `caigoushenqing` sq,`caigoushenqingshangping` sgsp,`danwei` d
+        ,`shangpingleibie` lb,`shangping` sp,`yuangong` yg
+        WHERE sq.`cgsq_id`=sgsp.`cgsq_id` AND sq.`cgsq_sh`!=0
+        AND sp.sp_id=sgsp.sp_id AND
+        sp.`splb_id`=lb.`splb_id`
+        AND d.`dw_id`=sp.`dw_id` AND yg.yg_id=sq.yg_id
+<if test="id!=null">
+    and sq.`cgsq_id`=#{id}
+</if>
+        <if test="rqYi!=null" >
+            AND #{rqYi} &lt;=sq.`cgsq_rq`
+        </if>
+        <if test="rqEr!=null">
+            and sq.`cgsq_rq`  &lt;= #{rqEr}
+        </if>
+    </select>
 
-
+    <select id="weiYinYong" resultMap="chaXunMap">
+SELECT sq.`cgsq_id`,sq.`cgsq_xh`,sq.`yg_id`,sq.`cgsq_rq`,sp.*,sgsp.*,lb.*,d.*,yg.*
+FROM `caigoushenqing` sq,`caigoushenqingshangping` sgsp,`danwei` d,`shangpingleibie` lb,`shangping` sp,`yuangong` yg
+WHERE sq.`cgsq_id`=sgsp.`cgsq_id` AND sq.`cgsq_sh`!=0
+AND sp.sp_id=sgsp.sp_id AND
+sp.`splb_id`=lb.`splb_id`
+AND d.`dw_id`=sp.`dw_id` AND yg.yg_id=sq.yg_id
+AND sq.cgsq_id   NOT IN (SELECT cgdd.cgsq_id FROM `caigoudingdan` cgdd)
+<if test="id!=null">
+    AND sq.cgsq_id=#{id}
+</if>
+    </select>
 </mapper>

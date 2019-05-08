@@ -25,19 +25,19 @@
 							<form class="form-horizontal" role="form" >
 							<table cellpadding="2px" cellspacing="2px">
 							<tr>
-							<td><span class=" column left" style="color: #fff;">流水号</span></td>
+							<td><span class=" column left" style="color: #000000;">流水号</span></td>
 								<td><input type="text" class="form-control line left" th:value="${cgsq.cgsqXh}"/></td>
-                			<td><span class="column left" style="color: #fff;" > 申请日期</span></td>
+                			<td><span class="column left" style="color: #000000;" > 申请日期</span></td>
 								<td><input type="date" class="form-control line left" th:value="${#dates.format(cgsq.cgsqRq,'yyyy-MM-dd hh:mm:ss')}"/></td>
 							</tr>
 							<tr>
-							<td><span class=" column left" style="color: #fff;">采购人</span></td>
+							<td><span class=" column left" style="color: #000000;">采购人</span></td>
 								<td><input type="text" class="form-control line left" th:value="${cgsq.yuangong.ygName}"/></td>
-                			<td><span class="column left" style="color: #fff;" > 期限</span></td>
+                			<td><span class="column left" style="color: #000000;" > 期限</span></td>
 								<td><input type="date" class="form-control line left" th:value="${#dates.format(cgsq.cgsqQx,'yyyy-MM-dd hh:mm:ss')}"/></td>
                 			</tr>
                 			<tr>
-                			<td><span class=" column left" style="color: #fff;">备注</span></td>
+                			<td><span class=" column left" style="color: #000000;">备注</span></td>
 								<td><input type="text" class="form-control line left" th:value="${cgsq.cgsqBz}"/></td>
                 			<td></td><td> <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add1">保存申请</a></td>
                             </tr>

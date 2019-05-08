@@ -84,7 +84,8 @@
         </trim>
     </select>
 
-    <insert id="insertCaigoutuihuoshangpin" parameterType="com.weichu.jinxiaocun.demo.bean.Caigoutuihuoshangpin">
+    <insert id="insertCaigoutuihuoshangpin"
+            parameterType="com.weichu.jinxiaocun.demo.bean.Caigoutuihuoshangpin">
         insert into caigoutuihuoshangpin(
                         cgthsp_id,
                         cgth_id,
@@ -130,7 +131,10 @@
         </trim>
     </update>
 
-    <delete id="deleteCaigoutuihuoshangpinById" parameterType="Long">
-        delete from caigoutuihuoshangpin where id = #{id}
+    <delete id="deleteCaigoutuihuoshangpinById" >
+        DELETE FROM caigoutuihuoshangpin WHERE cgth_id IN
+        <foreach collection="ids" separator="," open="(" close=")" item="id">
+            #{id}
+        </foreach>
     </delete>
 </mapper>

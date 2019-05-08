@@ -16,6 +16,6 @@ public interface CaigoudingdanrukushangpinMapper {
 
 	public Integer updateCaigoudingdanrukushangpin(Caigoudingdanrukushangpin caigoudingdanrukushangpin)throws Exception;
 
-	public Integer deleteCaigoudingdanrukushangpinById(@Param(value = "id") Long id)throws Exception;
+	public Integer deleteCaigoudingdanrukushangpinById(@Param(value = "ids") String[] ids)throws Exception;
 
 }

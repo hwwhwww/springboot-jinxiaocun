@@ -25,6 +25,10 @@
         </trim>
     </select>
 
+    <select id="zuiDaZhi" resultType="int">
+         SELECT MAX(cgdd_id) FROM `caigoudingdan`
+    </select>
+
     <select id="getCaigoudingdanListByMap" resultType="com.weichu.jinxiaocun.demo.bean.Caigoudingdan" parameterType="java.util.Map">
         select
                 cgdd_id as cgddId,
@@ -182,7 +186,119 @@
         </trim>
     </update>
 
-    <delete id="deleteCaigoudingdanById" parameterType="Long">
-        delete from caigoudingdan where id = #{id}
+    <delete id="deleteCaigoudingdanById">
+        DELETE FROM caigoudingdan WHERE cgdd_id IN
+        <foreach collection="ids" separator="," open="(" close=")" item="id">
+            #{id}
+        </foreach>
     </delete>
+    <resultMap id="gongyingshangMap" type="com.weichu.jinxiaocun.demo.bean.Gongyingshang">
+        <result property="gysId" column="gys_id"/>
+        <result property="khflId" column="khfl_id"/>
+        <result property="gysName" column="gys_name"/>
+        <result property="gysDh" column="gys_dh"/>
+        <result property="gysYx" column="gys_yx"/>
+
+        <result property="gysLxr" column="gys_lxr"/>
+        <result property="gysDz" column="gys_dz"/>
+        <result property="gysMs" column="gys_ms"/>
+    </resultMap>
+
+    <resultMap id="yuangongMap" type="com.weichu.jinxiaocun.demo.bean.Yuangong">
+        <id property="ygId" column="yg_id"/>
+        <result property="ygName" column="yg_name"/>
+    </resultMap>
+
+    <resultMap id="kuweiMap" type="com.weichu.jinxiaocun.demo.bean.Kuwei">
+        <id property="kw_id" column="kwId"/>
+        <result property="kw_name" column="kwName"/>
+    </resultMap>
+
+    <resultMap id="CaiGouDingDanMap" type="com.weichu.jinxiaocun.demo.bean.Caigoudingdan">
+        <result property="cgddId" column="cgdd_id"/>
+        <result property="cgddBh" column="cgdd_bh"/>
+        <result property="gysId" column="gys_id"/>
+        <result property="ygId" column="yg_id"/>
+        <result property="cgddDdrq" column="cgdd_ddrq"/>
+        <result property="kwId" column="kw_id"/>
+        <result property="cgddSh" column="cgdd_sh"/>
+        <result property="cgddBz" column="cgdd_bz"/>
+        <result property="cgddYfk" column="cgdd_yfk"/>
+        <result property="cgddRk" column="cgdd_rk"/>
+        <result property="cgddYfje" column="cgdd_yfje"/>
+        <result property="cgddZje" column="cgdd_zje"/>
+        <result property="gongyingshang.gysName" column="gys_name"/>
+        <!--<association property="gongyingshang" javaType="com.weichu.jinxiaocun.demo.bean.Gongyingshang">-->
+            <!--<result property="gysId" column="gys_id"/>-->
+            <!--<result property="khflId" column="khfl_id"/>-->
+            <!--<result property="gysName" column="gys_name"/>-->
+            <!--<result property="gysDh" column="gys_dh"/>-->
+            <!--<result property="gysYx" column="gys_yx"/>-->
+
+            <!--<result property="gysLxr" column="gys_lxr"/>-->
+            <!--<result property="gysDz" column="gys_dz"/>-->
+            <!--<result property="gysMs" column="gys_ms"/>-->
+        <!--</association>-->
+        <result property="yuangong.ygName" column="yg_name"/>
+        <result property="kuwei.kwName" column="kw_name"/>
+        <!--<association property="yuangong" javaType="com.weichu.jinxiaocun.demo.bean.Yuangong">-->
+            <!--<id property="ygId" column="yg_id"/>-->
+            <!--<result property="ygName" column="yg_name"/>-->
+        <!--</association>-->
+        <!--<association property="kuwei" javaType="com.weichu.jinxiaocun.demo.bean.Kuwei">-->
+            <!--<id property="kw_id" column="kwId"/>-->
+            <!--<result property="kw_name" column="kwName"/>-->
+        <!--</association>-->
+        <collection property="caigoudingdanshangpings" ofType="com.weichu.jinxiaocun.demo.bean.Caigoudingdanshangping">
+            <result property="id" column="id"/>
+            <result property="cgddId" column="cgdd_id"/>
+            <result property="cgddspSl" column="cgddsp_sl"/>
+            <result property="spId" column="sp_id"/>
+            <result property="cgddspZg" column="cgddsp_zg"/>
+            <result property="cgddspJg" column="cgddsp_jg"/>
+            <result property="cgddsp_bz" column="cgddspBz"/>
+            <result property="shangping.spName" column="sp_name"/>
+            <result property="shangping.shangpingleibie.splbName" column="splb_name"/>
+            <result property="shangping.danwei.dwName" column="dw_name"/>
+        </collection>
+    </resultMap>
+    <select id="chaXun" resultMap="CaiGouDingDanMap">
+        SELECT  cgdd.*,gys.*,sp.*,cgddsp.*,lb.*,d.*,yg.*,k.*
+        FROM `caigoudingdan` cgdd,`caigoudingdanshangping` cgddsp,`danwei` d,`shangpingleibie` lb,`shangping` sp,`yuangong` yg
+        ,`gongyingshang` gys,`kuwei` k
+        WHERE cgdd.`cgdd_id`=cgddsp.`cgdd_id` AND cgdd.`cgdd_sh`!=0
+        AND cgdd.`gys_id`=gys.`gys_id`
+        AND sp.sp_id=cgddsp.sp_id AND
+        sp.`splb_id`=lb.`splb_id`
+        AND d.`dw_id`=sp.`dw_id` AND yg.yg_id=cgdd.yg_id
+        AND k.`kw_id`=cgdd.`kw_id`
+        <if test="id!=null">
+            AND cgdd.`cgdd_id`=#{id}
+        </if>
+        <if test="gysId!=null and gysId!=0">
+            AND gys.`gys_id`=#{gysId}
+        </if>
+      <if test="rqYi!=null" >
+            AND #{rqYi} &lt;= cgdd.cgdd_ddrq
+       </if>
+       <if test="rqEr!=null">
+           and cgdd.cgdd_ddrq   &lt;= #{rqEr}
+       </if>
+    </select>
+
+    <select id="chaXunMeiYou" resultMap="CaiGouDingDanMap">
+        SELECT  cgdd.*,gys.*,sp.*,cgddsp.*,lb.*,d.*,yg.*,k.*
+        FROM `caigoudingdan` cgdd,`caigoudingdanshangping` cgddsp,`danwei` d,`shangpingleibie` lb,`shangping` sp,`yuangong` yg
+        ,`gongyingshang` gys,`kuwei` k
+        WHERE cgdd.`cgdd_id`=cgddsp.`cgdd_id`  AND cgdd.`cgdd_sh`!=0
+        AND cgdd.`gys_id`=gys.`gys_id`
+        AND sp.sp_id=cgddsp.sp_id AND
+        sp.`splb_id`=lb.`splb_id`
+        AND d.`dw_id`=sp.`dw_id` AND yg.yg_id=cgdd.yg_id
+        AND k.`kw_id`=cgdd.`kw_id`
+        AND  cgdd.cgdd_id NOT IN  (SELECT cgdd_id FROM caigoudingdanruku)
+        <if test="id!=null and id!=0 and id!=''">
+            AND cgdd.cgdd_id=#{id}
+        </if>
+    </select>
 </mapper>

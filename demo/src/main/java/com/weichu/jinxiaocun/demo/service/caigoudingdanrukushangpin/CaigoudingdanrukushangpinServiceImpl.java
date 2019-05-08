@@ -34,8 +34,8 @@ public class CaigoudingdanrukushangpinServiceImpl implements Caigoudingdanrukush
         return caigoudingdanrukushangpinMapper.updateCaigoudingdanrukushangpin(caigoudingdanrukushangpin);
     }
 
-    public Integer itriptxDeleteCaigoudingdanrukushangpinById(Long id)throws Exception{
-        return caigoudingdanrukushangpinMapper.deleteCaigoudingdanrukushangpinById(id);
+    public Integer itriptxDeleteCaigoudingdanrukushangpinById(String[] ids)throws Exception{
+        return caigoudingdanrukushangpinMapper.deleteCaigoudingdanrukushangpinById(ids);
     }
 
 

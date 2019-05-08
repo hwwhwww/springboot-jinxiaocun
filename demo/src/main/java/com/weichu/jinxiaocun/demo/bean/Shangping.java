@@ -16,27 +16,18 @@ public class Shangping implements Serializable {
         //商品类别Id
         private Integer splbId;
 
-    public String getSplbName() {
-        return splbName;
+        private Shangpingleibie shangpingleibie;
+
+    public Shangpingleibie getShangpingleibie() {
+        return shangpingleibie;
     }
 
-    public void setSplbName(String splbName) {
-        this.splbName = splbName;
+    public void setShangpingleibie(Shangpingleibie shangpingleibie) {
+        this.shangpingleibie = shangpingleibie;
     }
 
-    public String getDwName() {
-        return dwName;
-    }
-
-    public void setDwName(String dwName) {
-        this.dwName = dwName;
-    }
-
-    private  String splbName;
-    private  String dwName;
     //单位Id
         private Integer dwId;
-
         //采购单价
         private double spCgdj;
         //销售订单
@@ -44,7 +35,34 @@ public class Shangping implements Serializable {
         //备注
         private String spBz;
 
-        //get set 方法
+        private Integer spShang;
+        private Integer spXia;
+        private Danwei danwei;
+
+    public Integer getSpShang() {
+        return spShang;
+    }
+
+    public void setSpShang(Integer spShang) {
+        this.spShang = spShang;
+    }
+
+    public Integer getSpXia() {
+        return spXia;
+    }
+
+    public void setSpXia(Integer spXia) {
+        this.spXia = spXia;
+    }
+    public Danwei getDanwei() {
+        return danwei;
+    }
+
+    public void setDanwei(Danwei danwei) {
+        this.danwei = danwei;
+    }
+
+    //get set 方法
         public void setSpId (Integer  spId){
             this.spId=spId;
         }

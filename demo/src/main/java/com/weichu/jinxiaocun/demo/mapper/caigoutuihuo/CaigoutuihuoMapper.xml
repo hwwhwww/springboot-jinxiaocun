@@ -4,15 +4,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.weichu.jinxiaocun.demo.mapper.caigoutuihuo.CaigoutuihuoMapper">
 
-    <select id="getCaigoutuihuoById" resultType="com.weichu.jinxiaocun.demo.bean.Caigoutuihuo" >
+    <select id="getCaigoutuihuoById" resultType="com.weichu.jinxiaocun.demo.bean.Caigoutuihuo">
         select
-                cgth_id as cgthId,
-                cgth_bh as cgthBh,
-                kw_id as kwId,
-                cgth_thrq as cgthThrq,
-                cgth_tkrq as cgthTkrq,
-                cgth_zje as cgthZje,
-                cgth_bz as cgthBz
+        cgth_id as cgthId,
+        cgth_bh as cgthBh,
+        kw_id as kwId,
+        cgth_thrq as cgthThrq,
+        cgth_tkrq as cgthTkrq,
+        cgth_zje as cgthZje,
+        cgth_bz as cgthBz
         from caigoutuihuo
         <trim prefix="where" prefixOverrides="and | or">
             <if test="id != null">
@@ -21,116 +21,217 @@
         </trim>
     </select>
 
-    <select id="getCaigoutuihuoListByMap" resultType="com.weichu.jinxiaocun.demo.bean.Caigoutuihuo" parameterType="java.util.Map">
+    <resultMap id="tuiHuoMap" type="com.weichu.jinxiaocun.demo.bean.Caigoutuihuo">
+        <result property="cgthId" column="cgth_id"/>
+        <result property="cgthBh" column="cgth_bh"/>
+        <result property="gysId" column="gys_id"/>
+        <result property="zjzhId" column="zjzh_id"/>
+        <result property="ygId" column="yg_id"/>
+        <result property="kwId" column="kw_id"/>
+        <result property="cgthThrq" column="cgth_thrq"/>
+        <result property="cgthTkrq" column="cgth_tkrq"/>
+        <result property="cgthZje" column="cgth_zje"/>
+        <result property="cgthBz" column="cgth_bz"/>
+        <result property="cgthSh" column="cgth_sh"/>
+        <result property="cgthZsl" column="cgth_zsl"/>
+        <result property="yuangong.ygName" column="yg_name"/>
+        <result property="kuwei.kwName" column="kw_name"/>
+        <result property="gongyingshang.gysName" column="gys_name"/>
+        <!--<association property="gongyingshang" javaType="com.weichu.jinxiaocun.demo.bean.Gongyingshang">-->
+            <!--<result property="gysId" column="gys_id"/>-->
+            <!--<result property="khflId" column="khfl_id"/>-->
+            <!--<result property="gysName" column="gys_name"/>-->
+            <!--<result property="gysDh" column="gys_dh"/>-->
+            <!--<result property="gysYx" column="gys_yx"/>-->
+            <!--<result property="gysLxr" column="gys_lxr"/>-->
+            <!--<result property="gysDz" column="gys_dz"/>-->
+            <!--<result property="gysMs" column="gys_ms"/>-->
+        <!--</association>-->
+        <collection property="caigoutuihuoshangpins" ofType="com.weichu.jinxiaocun.demo.bean.Caigoutuihuoshangpin">
+            <result property="cgthspId" column="cgthsp_id"/>
+            <result property="cgthId" column="cgth_id"/>
+            <result property="spId" column="sp_id"/>
+            <result property="cgthspSl" column="cgthsp_sl"/>
+            <result property="cgthspJe" column="cgthsp_je"/>
+            <result property="cgthspZj" column="cgthsp_zj"/>
+            <result property="cgthspBz" column="cgthsp_bz"/>
+            <result property="shangping.spName" column="sp_name"/>
+            <result property="shangping.shangpingleibie.splbName" column="splb_name"/>
+            <result property="shangping.danwei.dwName" column="dw_name"/>
+            <!--<association property="shangping" javaType="com.weichu.jinxiaocun.demo.bean.Shangping">-->
+                <!--<result property="spId" column="sp_id"/>-->
+                <!--<result property="spBh" column="sp_bh"/>-->
+                <!--<result property="spName" column="sp_name"/>-->
+                <!--<result property="dwId" column="dw_id"/>-->
+                <!--<result property="splbId" column="splb_id"/>-->
+                <!--<result property="spCgdj" column="sp_cgdj"/>-->
+                <!--<result property="spXsdj" column="sp_xsdj"/>-->
+                <!--<result property="spBz" column="sp_bz"/>-->
+                <!--<association property="shangpingleibie" javaType="com.weichu.jinxiaocun.demo.bean.Shangpingleibie">-->
+                    <!--<result property="splbId" column="splb_id"/>-->
+                    <!--<result property="splbName" column="splb_name"/>-->
+                <!--</association>-->
+                <!--<association property="danwei" javaType="com.weichu.jinxiaocun.demo.bean.Danwei">-->
+                    <!--<result property="dwId" column="dw_id"/>-->
+                    <!--<result property="dwName" column="dw_name"/>-->
+                <!--</association>-->
+            <!--</association>-->
+        </collection>
+    </resultMap>
+    <select id="chaXun" resultMap="tuiHuoMap">
+         SELECT * FROM `caigoutuihuo` cgth,`caigoutuihuoshangpin` cgthsp
+        ,gongyingshang gys,zijinzhanghao zjzh,kuwei kw,yuangong yg,
+        `shangping` sp,`shangpingleibie` lb ,`danwei` dw
+        WHERE cgth.cgth_id=cgthsp.cgth_id
+        AND kw.kw_id=cgth.kw_id
+        AND zjzh.zjzh_id=cgth.zjzh_id
+        AND gys.gys_id=cgth.gys_id
+        AND yg.yg_id=cgth.yg_id
+        AND sp.sp_id=cgthsp.sp_id
+        AND sp.dw_id=dw.dw_id
+        AND lb.splb_id=sp.splb_id
+        <if test="gysId!=null and gysId!=0">
+            AND gys.`gys_id`=#{gysId}
+        </if>
+        <if test="rqYi!=null" >
+            AND #{rqYi} &lt;=  cgth.cgth_thrq
+        </if>
+        <if test="rqEr!=null">
+            and  cgth.cgth_thrq   &lt;= #{rqEr}
+        </if>
+    </select>
+
+
+    <select id="chaXunDan" resultMap="tuiHuoMap">
+        SELECT * FROM `caigoutuihuo` cgth,`caigoutuihuoshangpin` cgthsp
+        ,gongyingshang gys,zijinzhanghao zjzh,kuwei kw,yuangong yg,
+        `shangping` sp,`shangpingleibie` lb ,`danwei` dw
+        WHERE cgth.cgth_id=cgthsp.cgth_id
+        AND kw.kw_id=cgth.kw_id
+        AND zjzh.zjzh_id=cgth.zjzh_id
+        AND gys.gys_id=cgth.gys_id
+        AND yg.yg_id=cgth.yg_id
+        AND sp.sp_id=cgthsp.sp_id
+        AND sp.dw_id=dw.dw_id
+        AND lb.splb_id=sp.splb_id
+        <if test="id!=null">
+            AND cgth.cgth_id=#{id}
+        </if>
+    </select>
+    <select id="getCaigoutuihuoListByMap" resultType="com.weichu.jinxiaocun.demo.bean.Caigoutuihuo"
+            parameterType="java.util.Map">
         select
-                cgth_id as cgthId,
-                cgth_bh as cgthBh,
-                kw_id as kwId,
-                cgth_thrq as cgthThrq,
-                cgth_tkrq as cgthTkrq,
-                cgth_zje as cgthZje,
-                cgth_bz as cgthBz
+        cgth_id as cgthId,
+        cgth_bh as cgthBh,
+        kw_id as kwId,
+        cgth_thrq as cgthThrq,
+        cgth_tkrq as cgthTkrq,
+        cgth_zje as cgthZje,
+        cgth_bz as cgthBz
         from caigoutuihuo
         <trim prefix="where" prefixOverrides="and | or">
-                    <if test="cgthId != null and cgthId!=''">
-                        and cgth_id=#{cgthId}
-                    </if>
-                    <if test="cgthBh != null and cgthBh!=''">
-                        and cgth_bh=#{cgthBh}
-                    </if>
-                    <if test="kwId != null and kwId!=''">
-                        and kw_id=#{kwId}
-                    </if>
-                    <if test="cgthThrq != null and cgthThrq!=''">
-                        and cgth_thrq=#{cgthThrq}
-                    </if>
-                    <if test="cgthTkrq != null and cgthTkrq!=''">
-                        and cgth_tkrq=#{cgthTkrq}
-                    </if>
-                    <if test="cgthZje != null and cgthZje!=''">
-                        and cgth_zje=#{cgthZje}
-                    </if>
+            <if test="cgthId != null and cgthId!=''">
+                and cgth_id=#{cgthId}
+            </if>
+            <if test="cgthBh != null and cgthBh!=''">
+                and cgth_bh=#{cgthBh}
+            </if>
+            <if test="kwId != null and kwId!=''">
+                and kw_id=#{kwId}
+            </if>
+            <if test="cgthThrq != null and cgthThrq!=''">
+                and cgth_thrq=#{cgthThrq}
+            </if>
+            <if test="cgthTkrq != null and cgthTkrq!=''">
+                and cgth_tkrq=#{cgthTkrq}
+            </if>
+            <if test="cgthZje != null and cgthZje!=''">
+                and cgth_zje=#{cgthZje}
+            </if>
         </trim>
-         order by creationDate desc
+        order by creationDate desc
         <if test="beginPos != null and beginPos!='' and pageSize != null  and pageSize !='' ">
             limit #{beginPos},#{pageSize}
         </if>
     </select>
 
-    <select id="getCaigoutuihuoCountByMap" resultType="Integer"  parameterType="java.util.Map">
+    <select id="getCaigoutuihuoCountByMap" resultType="Integer" parameterType="java.util.Map">
         select count(*) from caigoutuihuo
         <trim prefix="where" prefixOverrides="and | or">
-                <if test="cgthId != null and cgthId!=''">
-                    and cgth_id=#{cgthId}
-                </if>
-                <if test="cgthBh != null and cgthBh!=''">
-                    and cgth_bh=#{cgthBh}
-                </if>
-                <if test="kwId != null and kwId!=''">
-                    and kw_id=#{kwId}
-                </if>
-                <if test="cgthThrq != null and cgthThrq!=''">
-                    and cgth_thrq=#{cgthThrq}
-                </if>
-                <if test="cgthTkrq != null and cgthTkrq!=''">
-                    and cgth_tkrq=#{cgthTkrq}
-                </if>
-                <if test="cgthZje != null and cgthZje!=''">
-                    and cgth_zje=#{cgthZje}
-                </if>
-                <if test="cgthBz != null and cgthBz!=''">
-                    and cgth_bz=#{cgthBz}
-                </if>
+            <if test="cgthId != null and cgthId!=''">
+                and cgth_id=#{cgthId}
+            </if>
+            <if test="cgthBh != null and cgthBh!=''">
+                and cgth_bh=#{cgthBh}
+            </if>
+            <if test="kwId != null and kwId!=''">
+                and kw_id=#{kwId}
+            </if>
+            <if test="cgthThrq != null and cgthThrq!=''">
+                and cgth_thrq=#{cgthThrq}
+            </if>
+            <if test="cgthTkrq != null and cgthTkrq!=''">
+                and cgth_tkrq=#{cgthTkrq}
+            </if>
+            <if test="cgthZje != null and cgthZje!=''">
+                and cgth_zje=#{cgthZje}
+            </if>
+            <if test="cgthBz != null and cgthBz!=''">
+                and cgth_bz=#{cgthBz}
+            </if>
         </trim>
     </select>
 
-    <insert id="insertCaigoutuihuo" parameterType="com.weichu.jinxiaocun.demo.bean.Caigoutuihuo">
-        insert into caigoutuihuo(
-                        cgth_id,
-                        cgth_bh,
-                        kw_id,
-                        cgth_thrq,
-                        cgth_tkrq,
-                        cgth_zje,
-                        cgth_bz)
+    <insert id="insertCaigoutuihuo"
+            parameterType="com.weichu.jinxiaocun.demo.bean.Caigoutuihuo"
+            useGeneratedKeys="true" keyProperty="cgth_id" >
+       INSERT INTO `caigoutuihuo`(`cgth_bh`,`gys_id`,`zjzh_id`
+       ,`yg_id`,`kw_id`,`cgth_thrq`,`cgth_tkrq`
+       ,`cgth_zje`,`cgth_bz`,`cgth_sh`)
         values(
-                     #{cgthId},
                      #{cgthBh},
+                     #{gysId},
+                     #{zjzhId},
+                     #{ygId},
                      #{kwId},
                      #{cgthThrq},
                      #{cgthTkrq},
                      #{cgthZje},
-                    #{cgthBz})
+                    #{cgthBz},
+                    #{cgthSh})
     </insert>
 
     <update id="updateCaigoutuihuo" parameterType="com.weichu.jinxiaocun.demo.bean.Caigoutuihuo">
         update caigoutuihuo
         <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
-                    <if test="cgthId != null and cgthId!=''">
-                        cgth_id=#{cgthId},
-                    </if>
-                    <if test="cgthBh != null and cgthBh!=''">
-                        cgth_bh=#{cgthBh},
-                    </if>
-                    <if test="kwId != null and kwId!=''">
-                        kw_id=#{kwId},
-                    </if>
-                    <if test="cgthThrq != null and cgthThrq!=''">
-                        cgth_thrq=#{cgthThrq},
-                    </if>
-                    <if test="cgthTkrq != null and cgthTkrq!=''">
-                        cgth_tkrq=#{cgthTkrq},
-                    </if>
-                    <if test="cgthZje != null and cgthZje!=''">
-                        cgth_zje=#{cgthZje},
-                    </if>
-                    <if test="cgthBz != null and cgthBz!=''">
-                        cgth_bz=#{cgthBz}
-                    </if>
+            <if test="cgthId != null and cgthId!=''">
+                cgth_id=#{cgthId},
+            </if>
+            <if test="cgthBh != null and cgthBh!=''">
+                cgth_bh=#{cgthBh},
+            </if>
+            <if test="kwId != null and kwId!=''">
+                kw_id=#{kwId},
+            </if>
+            <if test="cgthThrq != null and cgthThrq!=''">
+                cgth_thrq=#{cgthThrq},
+            </if>
+            <if test="cgthTkrq != null and cgthTkrq!=''">
+                cgth_tkrq=#{cgthTkrq},
+            </if>
+            <if test="cgthZje != null and cgthZje!=''">
+                cgth_zje=#{cgthZje},
+            </if>
+            <if test="cgthBz != null and cgthBz!=''">
+                cgth_bz=#{cgthBz}
+            </if>
         </trim>
     </update>
 
-    <delete id="deleteCaigoutuihuoById" parameterType="Long">
-        delete from caigoutuihuo where id = #{id}
+    <delete id="deleteCaigoutuihuoById">
+        DELETE FROM caigoutuihuo WHERE cgth_id IN
+        <foreach collection="ids" separator="," open="(" close=")" item="id">
+            #{id}
+        </foreach>
     </delete>
 </mapper>

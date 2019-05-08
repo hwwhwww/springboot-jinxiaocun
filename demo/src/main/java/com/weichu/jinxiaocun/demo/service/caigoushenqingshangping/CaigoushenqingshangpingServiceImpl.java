@@ -14,6 +14,16 @@ public class CaigoushenqingshangpingServiceImpl implements Caigoushenqingshangpi
     @Resource
     private CaigoushenqingshangpingMapper caigoushenqingshangpingMapper;
 
+    @Override
+    public Integer tianJia(List<Caigoushenqingshangping> cgsqloyeeList) {
+        return caigoushenqingshangpingMapper.tianJia(cgsqloyeeList);
+    }
+
+    @Override
+    public Integer xiuGai(List<Caigoushenqingshangping> list) {
+        return caigoushenqingshangpingMapper.xiuGai(list);
+    }
+
     public Caigoushenqingshangping getCaigoushenqingshangpingById(Long id)throws Exception{
         return caigoushenqingshangpingMapper.getCaigoushenqingshangpingById(id);
     }
@@ -34,8 +44,8 @@ public class CaigoushenqingshangpingServiceImpl implements Caigoushenqingshangpi
         return caigoushenqingshangpingMapper.updateCaigoushenqingshangping(caigoushenqingshangping);
     }
 
-    public Integer itriptxDeleteCaigoushenqingshangpingById(Long id)throws Exception{
-        return caigoushenqingshangpingMapper.deleteCaigoushenqingshangpingById(id);
+    public Integer itriptxDeleteCaigoushenqingshangpingById(String[] ids)throws Exception{
+        return caigoushenqingshangpingMapper.deleteCaigoushenqingshangpingById(ids);
     }
 
     @Override

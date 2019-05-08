@@ -18,63 +18,85 @@
 							<li>
 								<a href="index.html" tppabs="http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/index.html"><span class="glyphicon glyphicon-home"></span>&nbsp;后台首页</a>
 							</li>
-							<li class="active">采购管理--添加成功订单入库</li>
+							<li class="active">采购管理--采购订单入库添加</li>
 						</ol>
 					
-							<form class="form-horizontal" role="form" >
+							<form class="form-horizontal" role="form" id="formDJ" >
 							<table cellpadding="2px" cellspacing="2px">
 							<tr>
-							<td><span class=" column left" style="color: #fff;">入库编号</span></td><td><input type="text" class="form-control line left"/></td>
-                			<td><span class="column left" style="color: #fff;" > 收货人</span></td><td><input type="text" class="form-control line left"/></td>
+							<td><span class=" column right" style="color: black;">入库编号：</span></td>
+								<td><input type="text" class="form-control line left"/></td>
+                			<td><span class="column right" style="color: black;" > 收货人：</span></td>
+								<td>
+									<select class="form-control line left" name="yg_id">
+										<option th:each="yuangong:${yuanGongList}" th:text="${yuangong.getYgName()}"
+										th:value="${yuangong.getYgId()}"></option>
+									</select>
+								</td>
 							</tr>
 							<tr>
-							<td><span class=" column left" style="color: #fff;">商品订单</span></td><td><input type="text" class="form-control line left"/></td>
-                			<td><span class="column left" style="color: #fff;" > 供应商</span></td><td><input type="text" class="form-control line left"/></td>
+							<td><span class=" column right" style="color: black;">商品订单：</span></td>
+								<td>
+									<select class="form-control line left" id="caigouList">
+										<option th:each="caigoudingdan:${caiGouList}"
+												th:value="${caigoudingdan.getCgddId()}"
+												th:text="${caigoudingdan.getCgddBh()}">
+										</option>
+									</select>
+									</td>
+                			<td><span class="column right" style="color: black;" > 供应商：</span></td>
+								<td><input id="gys" type="text" readonly class="form-control line left"/></td>
 							</tr>
                 			<tr>
-                			<td><span class=" column left" style="color: #fff;">仓库</span></td><td><input type="text" class="form-control line left"/></td>
-                			<td><span class=" column left" style="color: #fff;">金额</span></td><td><input type="text" class="form-control line left"/></td>
+                			<td><span class=" column right" style="color: black;">仓库：</span></td>
+								<td>
+									<select class="form-control line left">
+										<option th:each="kuwei:${kuWeiList}" th:value="${kuwei.getKwId()}" th:text="${kuwei.getKwName()}">
+										</option>
+									</select>
+
+								</td>
+                			<td><span class=" column right" style="color: black;">金额：</span></td>
+								<td><input name="cgddrk_zje" readonly id="zje" type="text" class="form-control line left"/></td>
                             </tr>
                             <tr>
-                            <td><span class=" column left" style="color: #fff;">备注</span></td>
+                            <td><span class=" column right" style="color: black;">备注：</span></td>
                             <td><input type="text" class="form-control line left"/></td>
-                            <td> <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add1">保存订单入库</a></td>
-
-                            	
+                            <td> <a  id="dianJi" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add1">保存订单入库</a></td>
                             </tr>
                 			</table>
 							</form>
-						
-
 						<br/><br/>
-						<a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit">添加商品</a>
 						<table class="table table-bordered table-striped text-center bg-info">
-							<thead>
-								   <thead >
-                    <tr class="info">
-                      
-                        <th class="text-center">商品编号</th>
-                        <th class="text-center">商品名称</th>
-                        <th class="text-center">单位</th>
-                        <th class="text-center">数量</th>
-                        <th class="text-center">单价<th>
-                        <th class="text-center">总价</th>
-                        <th class="text-center">备注</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>                     
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        
-                   	 </tr>
+							<thead >
+							<tr  class="info">
+								<th class="text-center">商品编号</th>
+								<th class="text-center">商品名称</th>
+								<th class="text-center">单位</th>
+								<th class="text-center">数量</th>
+								<th class="text-center">单价</th>
+								<th class="text-center">总价</th>
+								<th class="text-center">备注</th>
+							</tr>
+							</thead>
+							<tbody id="table">
+
 							</tbody>
 						</table>
+
+						<!--<table id="table"  class="table table-bordered table-striped text-center bg-info">-->
+
+                    <!--<tr class="info">-->
+                        <!--<th class="text-center">商品编号</th>-->
+                        <!--<th class="text-center">商品名称</th>-->
+                        <!--<th class="text-center">单位</th>-->
+                        <!--<th class="text-center">数量</th>-->
+                        <!--<th class="text-center">单价<th>-->
+                        <!--<th class="text-center">总价</th>-->
+                        <!--<th class="text-center">备注</th>-->
+                    <!--</tr>-->
+
+						<!--</table>-->
 					</div>
 					<!--右侧内容结束-->
 
@@ -82,4 +104,69 @@
 
 	</body>
 
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+	function money(obj) {
+		var zongji = 0;
+		var check = $("input[name=sl]");
+		var check2=$("input[name=dj]");
+		var check3=$("[name=zj]")
+		check.each(function(i){
+			var danHang=0;
+			danHang= parseInt($(this).val())*parseInt(check2.get(i).value);
+			check3.get(i).value=danHang;
+				zongji+=danHang
+		});
+		$("#zje").val(zongji);
+	};
+	$(function () {
+		$("#dianJi").click(function () {
+			var t = $('#formDJ').serializeArray();
+			$.getJSON("/caigou/caigoudindanarukTianJia","caigoudingdanruku="+t,function () {
+
+			})
+		})
+		var zhi=$("#caigouList").val();
+		$.getJSON("/caigou/yiBuHuoQu","zhi="+zhi,function (data) {
+				$("#gys").val(data.name);
+				$("#zje").val(data.zje);
+			    var item;
+				$.each(data.result,function(i,result){
+					item= "<tr>" +
+							"<td>"+result.shangping.spBh+"</td>" +
+							"<td>"+result.shangping.spName+"</td>" +
+							"<td>"+result.shangping.danwei.dwName+"</td>" +
+							"<td>"+"<input type='text' name='sl'  size='4' value='"+result.cgddspSl+"' onchange='money(this)'>"+"</td>" +
+							"<td><input type='text' name='dj' onchange='money(this)' size='4' value='"+result.cgddspJg+"'></td>" +
+							"<td><input type='text' readonly size='4' name='zj' value='"+result.cgddspZg+"'></td>" +
+							"<td>"+result.shangping.spBz+"</td>" +
+							"</tr>";
+					$('#table').append(item);
+			})
+		})
+		$("#caigouList").change(function () {
+			var zhi=$("#caigouList").val();
+			$.getJSON("/caigou/yiBuHuoQu","zhi="+zhi,function (data) {
+				$("#gys").val(data.name);
+			//	$("#zje").val(data.zje);
+				$('#table').html("");
+				var item;
+				$.each(data.result,function(i,result){
+					item= "<tr>" +
+							"<td>"+result.shangping.spBh+"</td>" +
+							"<td>"+result.shangping.spName+"</td>" +
+							"<td>"+result.shangping.danwei.dwName+"</td>" +
+							"<td>"+"<input type='text' name='sl'  size='4' value='"+result.cgddspSl+"' onchange='money(this)'>"+"</td>" +
+							"<td><input type='text' name='dj' onchange='money(this)' size='4' value='"+result.cgddspJg+"'></td>" +
+							"<td><input type='text' readonly size='4' name='zj' value='"+result.cgddspZg+"'></td>" +
+							"<td>"+result.shangping.spBz+"</td>" +
+							"</tr>";
+					$('#table').append(item);
+				})
+			})
+
+		})
+	})
+
+</script>
 </html>

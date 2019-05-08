@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weichu.jinxiaocun.demo.mapper.caigoufukuandanshangpin.CaigoufukuandanshangpinMapper">
+
+    <update id="xiuGai">
+    UPDATE `caigoufukuandanshangpin` SET
+        <trim prefix="set" suffixOverrides="," suffix="where cgfkdsp_id=#{cgfkdspId}">
+            <if test="cgddId != null and cgddId!=''">
+                cgdd_id=#{cgddId},
+            </if>
+            <if test="cgfkdId != null and cgfkdId!=''">
+                cgfkd_id=#{cgfkdId},
+            </if>
+            <if test="cgfkdspZje != null and cgfkdspZje!=''">
+                cgfkdsp_zje=#{cgfkdspZje},
+            </if>
+            <if test="cgfkdspYfk != null and cgfkdspYfk!=''">
+                cgfkdsp_yfk=#{cgfkdspYfk},
+            </if>
+            <if test="cgfkdspSyk != null and cgfkdspSyk!=''">
+                cgfkdsp_syk=#{cgfkdspSyk},
+            </if>
+            <if test="cgfkdspBz != null and cgfkdspBz!=''">
+                cgfkdsp_bz=#{cgfkdspBz},
+            </if>
+        </trim>
+    </update>
+    <insert id="tianJia">
+        INSERT INTO `caigoufukuandanshangpin`(`cgdd_id`,`cgfkd_id`,`cgfkdsp_zje`,`cgfkdsp_yfk`,`cgfkdsp_syk`,`cgfkdsp_bz`)
+VALUES(#{cgddId},#{cgfkdId},#{cgfkdspZje},#{cgfkdspYfk},#{cgfkdspSyk},#{cgfkdspBz})
+    </insert>
+</mapper>

@@ -130,7 +130,10 @@
         </trim>
     </update>
 
-    <delete id="deleteCaigoudingdanrukushangpinById" parameterType="Long">
-        delete from caigoudingdanrukushangpin where id = #{id}
+    <delete id="deleteCaigoudingdanrukushangpinById" >
+        DELETE FROM caigoudingdanrukushangpin WHERE cgddrk_id IN
+        <foreach collection="ids" separator="," open="(" close=")" item="id">
+            #{id}
+        </foreach>
     </delete>
 </mapper>

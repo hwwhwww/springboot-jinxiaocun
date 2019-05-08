@@ -15,112 +15,110 @@
                 <br/>
                 <ol class="breadcrumb">
                     <li><a href="index.html" tppabs="http://www.17sucai.com/preview/482277/2016-03-07/MMSS3/index.html"><span class="glyphicon glyphicon-home"></span>&nbsp;后台首页</a></li>
-                    <li class="active">采购管理--采购订单退货</li>
+                    <li class="active">采购管理---采购订单退货</li>
                 </ol>
-             <table cellpadding="2px" cellspacing="2px">
-                 <tr>
-                 <td>
-                 	<span class="column left" style="color: #fff;" >订单日期</span>&nbsp;
-                 </td>
-                 <td>
-                 	<select class="form-control line left">
-                	 <option>当天</option>
-                    <option>本周</option>
-                    <option>本月</option>
-                    <option>最近一月</option>
-                    <option>本年</option>
-                    <option>自定义</option>
-                </select>
-                </td>
-                <td>
-                <input type="date" class="form-control line left"/>
-                </td>
-                <td>
-                <input type="date" class="form-control line left"/>
-                </td>
-                  <td><a href="#" class=" btn btn-primary "><span class="glyphicon glyphicon-search"></span></a>&nbsp;</td>
-                <td><a href="#" class=" btn btn-primary "><span class="glyphicon glyphicon-download"></span></a>
-               </td>  </tr>
-                </table>
+                <form action="/caigou/caiGouTuiHuoSelect" method="get" id="tj">
+                    <div class="input-group line left">
+                        <span class="input-group-addon" id="basic-addon2">从</span>
+                        <input name="rqYi" th:value="${rqYi}" type="date" class="form-control line left"/>
+                    </div>
+                    <div class="input-group line left">
+                        <span class="input-group-addon" id="basic-addon1">至</span>
+                        <input name="rqEr"  th:value="${rqEr}" type="date" class="form-control line left"/>
+                    </div>
+                    <div class="input-group line left">
+                        <span class="input-group-addon" id="basic-addon3">相关单位</span>
+                        <select class="form-control line left" name="gysId">
+                            <option value="0">所有供应商</option>
+                            <option th:each="gongyingshang:${gysList}" th:value="${gongyingshang.gysId}"
+                                    th:text="${gongyingshang.gysName}" th:selected="${gongyingshang.gysId}==${gysId}" ></option>
+                        </select>
+                    </div>
+                    <input type="hidden" id="pageIndex" th:value="${pg.pageNum}" name="pageIndex">
+                    <input type="submit" class="btn btn-primary" value="查询">
+                    <input class="btn btn-primary" type="button" value="导出">
+                    <input class="btn btn-primary" type="button" value="打印">
+                    <input class="btn btn-primary" onclick="tianJia()" type="button" value="添加">
+                    <input class="btn btn-primary" onclick="xiuGai()" type="button" value="修改">
+                    <input class="btn btn-primary" onclick="shanChu()" type="button" value="删除">
+                    <br/><br/>
+                </form>
                 <table class="table table-bordered table-striped text-center bg-info">
                     <thead >
                     <tr class="info">
+                        <th class="text-center"></th>
                         <th class="text-center">商品退货编号</th>
                         <th class="text-center">退货日期</th>
                         <th class="text-center">仓库</th>
                         <th class="text-center">退货人</th>
-                        <th class="text-center">商品订单</th>
                         <th class="text-center">供应商</th>
-                        <th class="text-center">金额</th>
+                        <th class="text-center">总数量</th>
+                        <th class="text-center">总金额</th>
+                        <th class="text-center">审核状态</th>
+                        <th class="text-center">备注</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>CGRK201904230003</td>
-                        <td>2019-04-23</td>
-                        <td>1</td>
-                        <td>admin</td>
-                        <td>CGDD201904230003</td>
-                        <td>123</td>            
-                        <td>20.00</td>
+                    <tr th:each="caigoutuihuo:${pg.list}">
                         <td>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add1">添加</a>
-                            <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#edit">修改</a>
-                            <a href="#" class="btn btn-primary btn-sm" >删除</a>
+                            <input type="checkbox"  name="cbox"
+                                   th:value="${caigoutuihuo.cgthId}">
                         </td>
-                        <!-- Modal begin-->
-                        <!--添加-->
-                        <div class="modal fade" id="add1" tabindex="-1" role="dialog" aria-labelledby="add11">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close" ><span aria-hidden="true">&times;</span></button>
-                                      <h4>是否添加退货订单</h4>                                     
-                                    </div>       
-                            	   <div class="modal-footer">
-                                         <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
-                                       <a href="caigoudindanatuihuoadd.html"> <button type="button" class="btn btn-primary btn-sm">添加</button>   </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="edit" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <h4 class="modal-title" id="myModalLabel1">是否修改这条数据</h4>
-                                    </div>
-                                   
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">取消</button>
-                                    <a href="caigoudindanatuihouUpd.html"><button type="button" class="btn btn-primary btn-sm">修改</button></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Modal end-->
+                        <td th:text="${caigoutuihuo.cgthBh}"></td>
+                        <td th:text="${#dates.format(caigoutuihuo.cgthThrq,'yyyy-MM-dd hh:mm:ss')}"></td>
+                        <td th:text="${caigoutuihuo.kuwei.kwName}"></td>
+                        <td th:text="${caigoutuihuo.yuangong.ygName}"></td>
+                        <td th:text="${caigoutuihuo.gongyingshang.getGysName()}"></td>
+                        <td th:text="${caigoutuihuo.cgthZsl}"></td>
+                        <td th:text="${caigoutuihuo.cgthZje}"></td>
+                        <td th:text="${caigoutuihuo.cgthSh}=='1'?'已审核':'未审核'">
+                        </td>
+                        <td th:text="${caigoutuihuo.cgthBz}"></td>
                     </tr>
                  
                     </tbody>
                 </table>
-                <ul class="pagination right">
-                    <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a>
-                    </li>
-                    <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
-                </ul>
-                
-                
-                </table>
-            </div>
-            <!--右侧内容结束-->
 
-<div th:include="wei.html"></div>
+                
+                <div th:include="fenye.html"></div>
+                <!--右侧内容结束-->
+                <div th:include="wei.html"></div>
 
 </body>
+<script>
+    function shanChu(){
+
+        if(confirm("您确定要删除此条记录？")){
+            var check = $("input[name=cbox]:checked");
+            var ids="";
+            check.each(function (i) {
+                ids+=$(this).val()+",";
+            })
+            location="/caigou/caiGouTuiHuoDel?ids="+ids;
+        }
+
+        //  alert(ids);
+        // $.getJSON("/caigou/caiGouDingDanDel","ids="+ids,function (data) {
+        //     check.each(function (i) {
+        //         ids+=$(this).val()+",";
+        //     })
+        // })
+
+    }
+    function  tianJia() {
+        location="/caigou/caiGouTuiHuoAdd";
+    }
+    function xiuGai() {
+        var check = $("input[name=cbox]:checked");
+        if(check.length==1){
+            location="/caigou/caiGouTuiHuoUpd/"+check.get(0).value;
+        }else{
+            alert("只能选中一条信息！");
+        }
+    }
+
+    // $(function () {
+    //     alert(123);
+    // })
+</script>
 </html>

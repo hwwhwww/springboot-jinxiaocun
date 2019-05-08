@@ -4,15 +4,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.weichu.jinxiaocun.demo.mapper.caigoudingdanshangping.CaigoudingdanshangpingMapper">
 
-    <select id="getCaigoudingdanshangpingById" resultType="com.weichu.jinxiaocun.demo.bean.Caigoudingdanshangping" >
+    <select id="getCaigoudingdanshangpingById" resultType="com.weichu.jinxiaocun.demo.bean.Caigoudingdanshangping">
         select
-                cgdd_id as cgddId,
-                sp_id as spId,
-                cgddsp_sl as cgddspSl,
-                cgddsp_jg as cgddspJg,
-                cgddsp_zg as cgddspZg,
-                cgddsp_fp as cgddspFp,
-                cgddsp_bz as cgddspBz
+        cgdd_id as cgddId,
+        sp_id as spId,
+        cgddsp_sl as cgddspSl,
+        cgddsp_jg as cgddspJg,
+        cgddsp_zg as cgddspZg,
+        cgddsp_fp as cgddspFp,
+        cgddsp_bz as cgddspBz
         from caigoudingdanshangping
         <trim prefix="where" prefixOverrides="and | or">
             <if test="id != null">
@@ -21,66 +21,67 @@
         </trim>
     </select>
 
-    <select id="getCaigoudingdanshangpingListByMap" resultType="com.weichu.jinxiaocun.demo.bean.Caigoudingdanshangping" parameterType="java.util.Map">
+    <select id="getCaigoudingdanshangpingListByMap" resultType="com.weichu.jinxiaocun.demo.bean.Caigoudingdanshangping"
+            parameterType="java.util.Map">
         select
-                cgdd_id as cgddId,
-                sp_id as spId,
-                cgddsp_sl as cgddspSl,
-                cgddsp_jg as cgddspJg,
-                cgddsp_zg as cgddspZg,
-                cgddsp_fp as cgddspFp,
-                cgddsp_bz as cgddspBz
+        cgdd_id as cgddId,
+        sp_id as spId,
+        cgddsp_sl as cgddspSl,
+        cgddsp_jg as cgddspJg,
+        cgddsp_zg as cgddspZg,
+        cgddsp_fp as cgddspFp,
+        cgddsp_bz as cgddspBz
         from caigoudingdanshangping
         <trim prefix="where" prefixOverrides="and | or">
-                    <if test="cgddId != null and cgddId!=''">
-                        and cgdd_id=#{cgddId}
-                    </if>
-                    <if test="spId != null and spId!=''">
-                        and sp_id=#{spId}
-                    </if>
-                    <if test="cgddspSl != null and cgddspSl!=''">
-                        and cgddsp_sl=#{cgddspSl}
-                    </if>
-                    <if test="cgddspJg != null and cgddspJg!=''">
-                        and cgddsp_jg=#{cgddspJg}
-                    </if>
-                    <if test="cgddspZg != null and cgddspZg!=''">
-                        and cgddsp_zg=#{cgddspZg}
-                    </if>
-                    <if test="cgddspFp != null and cgddspFp!=''">
-                        and cgddsp_fp=#{cgddspFp}
-                    </if>
+            <if test="cgddId != null and cgddId!=''">
+                and cgdd_id=#{cgddId}
+            </if>
+            <if test="spId != null and spId!=''">
+                and sp_id=#{spId}
+            </if>
+            <if test="cgddspSl != null and cgddspSl!=''">
+                and cgddsp_sl=#{cgddspSl}
+            </if>
+            <if test="cgddspJg != null and cgddspJg!=''">
+                and cgddsp_jg=#{cgddspJg}
+            </if>
+            <if test="cgddspZg != null and cgddspZg!=''">
+                and cgddsp_zg=#{cgddspZg}
+            </if>
+            <if test="cgddspFp != null and cgddspFp!=''">
+                and cgddsp_fp=#{cgddspFp}
+            </if>
         </trim>
-         order by creationDate desc
+        order by creationDate desc
         <if test="beginPos != null and beginPos!='' and pageSize != null  and pageSize !='' ">
             limit #{beginPos},#{pageSize}
         </if>
     </select>
 
-    <select id="getCaigoudingdanshangpingCountByMap" resultType="Integer"  parameterType="java.util.Map">
+    <select id="getCaigoudingdanshangpingCountByMap" resultType="Integer" parameterType="java.util.Map">
         select count(*) from caigoudingdanshangping
         <trim prefix="where" prefixOverrides="and | or">
-                <if test="cgddId != null and cgddId!=''">
-                    and cgdd_id=#{cgddId}
-                </if>
-                <if test="spId != null and spId!=''">
-                    and sp_id=#{spId}
-                </if>
-                <if test="cgddspSl != null and cgddspSl!=''">
-                    and cgddsp_sl=#{cgddspSl}
-                </if>
-                <if test="cgddspJg != null and cgddspJg!=''">
-                    and cgddsp_jg=#{cgddspJg}
-                </if>
-                <if test="cgddspZg != null and cgddspZg!=''">
-                    and cgddsp_zg=#{cgddspZg}
-                </if>
-                <if test="cgddspFp != null and cgddspFp!=''">
-                    and cgddsp_fp=#{cgddspFp}
-                </if>
-                <if test="cgddspBz != null and cgddspBz!=''">
-                    and cgddsp_bz=#{cgddspBz}
-                </if>
+            <if test="cgddId != null and cgddId!=''">
+                and cgdd_id=#{cgddId}
+            </if>
+            <if test="spId != null and spId!=''">
+                and sp_id=#{spId}
+            </if>
+            <if test="cgddspSl != null and cgddspSl!=''">
+                and cgddsp_sl=#{cgddspSl}
+            </if>
+            <if test="cgddspJg != null and cgddspJg!=''">
+                and cgddsp_jg=#{cgddspJg}
+            </if>
+            <if test="cgddspZg != null and cgddspZg!=''">
+                and cgddsp_zg=#{cgddspZg}
+            </if>
+            <if test="cgddspFp != null and cgddspFp!=''">
+                and cgddsp_fp=#{cgddspFp}
+            </if>
+            <if test="cgddspBz != null and cgddspBz!=''">
+                and cgddsp_bz=#{cgddspBz}
+            </if>
         </trim>
     </select>
 
@@ -106,31 +107,87 @@
     <update id="updateCaigoudingdanshangping" parameterType="com.weichu.jinxiaocun.demo.bean.Caigoudingdanshangping">
         update caigoudingdanshangping
         <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
-                    <if test="cgddId != null and cgddId!=''">
-                        cgdd_id=#{cgddId},
-                    </if>
-                    <if test="spId != null and spId!=''">
-                        sp_id=#{spId},
-                    </if>
-                    <if test="cgddspSl != null and cgddspSl!=''">
-                        cgddsp_sl=#{cgddspSl},
-                    </if>
-                    <if test="cgddspJg != null and cgddspJg!=''">
-                        cgddsp_jg=#{cgddspJg},
-                    </if>
-                    <if test="cgddspZg != null and cgddspZg!=''">
-                        cgddsp_zg=#{cgddspZg},
-                    </if>
-                    <if test="cgddspFp != null and cgddspFp!=''">
-                        cgddsp_fp=#{cgddspFp},
-                    </if>
-                    <if test="cgddspBz != null and cgddspBz!=''">
-                        cgddsp_bz=#{cgddspBz}
-                    </if>
+            <if test="cgddId != null and cgddId!=''">
+                cgdd_id=#{cgddId},
+            </if>
+            <if test="spId != null and spId!=''">
+                sp_id=#{spId},
+            </if>
+            <if test="cgddspSl != null and cgddspSl!=''">
+                cgddsp_sl=#{cgddspSl},
+            </if>
+            <if test="cgddspJg != null and cgddspJg!=''">
+                cgddsp_jg=#{cgddspJg},
+            </if>
+            <if test="cgddspZg != null and cgddspZg!=''">
+                cgddsp_zg=#{cgddspZg},
+            </if>
+            <if test="cgddspFp != null and cgddspFp!=''">
+                cgddsp_fp=#{cgddspFp},
+            </if>
+            <if test="cgddspBz != null and cgddspBz!=''">
+                cgddsp_bz=#{cgddspBz}
+            </if>
         </trim>
     </update>
 
-    <delete id="deleteCaigoudingdanshangpingById" parameterType="Long">
-        delete from caigoudingdanshangping where id = #{id}
+    <delete id="deleteCaigoudingdanshangpingById">
+        DELETE FROM caigoudingdanshangping WHERE cgdd_id IN
+        <foreach collection="ids" separator="," open="(" close=")" item="id">
+            #{id}
+        </foreach>
     </delete>
+
+    <delete id="shanChu">
+        delete from caigoudingdanshangping where cgdd_id = #{id}
+        and sp_id=#{spId}
+    </delete>
+    <update id="xiuGai" parameterType="list">
+        <foreach collection="list" item="cgddsq" separator=";">
+            UPDATE caigoudingdanshangping
+            <set>
+                <if test="cgddsq.cgddId != null and cgddsq.cgddId!=''">
+                    cgdd_id=#{cgddsq.cgddId},
+                </if>
+                <if test="cgddsq.spId != null and cgddsq.spId!=''">
+                    sp_id=#{cgddsq.spId},
+                </if>
+                <if test="cgddsq.cgddspSl != null and cgddsq.cgddspSl!=''">
+                    cgddsp_sl=#{cgddsq.cgddspSl},
+                </if>
+                <if test="cgddsq.cgddspJg != null and cgddsq.cgddspJg!=''">
+                    cgddsp_jg=#{cgddsq.cgddspJg},
+                </if>
+                <if test="cgddsq.cgddspZg != null and cgddsq.cgddspZg!=''">
+                    cgddsp_zg=#{cgddsq.cgddspZg},
+                </if>
+                <if test="cgddsq.cgddspFp != null and cgddsq.cgddspFp!=''">
+                    cgddsp_fp=#{cgddsq.cgddspFp},
+                </if>
+                <if test="cgddsq.cgddspBz != null and cgddsq.cgddspBz!=''">
+                    cgddsp_bz=#{cgddsq.cgddspBz},
+                </if>
+            </set>
+            WHERE id=#{cgddsq.id}
+        </foreach>
+    </update>
+
+    <insert id="tianJia" parameterType="list">
+        insert into caigoudingdanshangping(
+                        cgdd_id,
+                        sp_id,
+                        cgddsp_sl,
+                        cgddsp_jg,
+                        cgddsp_zg,
+                        cgddsp_fp,
+                        cgddsp_bz)
+        values
+        <foreach collection="list" item="cgddsp" separator=",">
+            (#{cgddsp.cgdd_id}, #{cgddsp.sp_id},
+            #{cgddsp.cgddsp_sl}, #{cgddsp.cgddsp_jg}, #{cgddsp.cgddsp_zg},
+            #{cgddsp.cgddsp_fp},
+            #{cgddsp.cgddsp_bz},
+            )
+        </foreach>
+    </insert>
 </mapper>

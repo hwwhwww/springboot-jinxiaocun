@@ -1,5 +1,7 @@
 package com.weichu.jinxiaocun.demo.service.caigoutuihuo;
 import com.weichu.jinxiaocun.demo.bean.Caigoutuihuo;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 import java.util.Map;
 import java.util.List;
@@ -19,6 +21,10 @@ public interface CaigoutuihuoService {
 
     public Integer itriptxModifyCaigoutuihuo(Caigoutuihuo caigoutuihuo)throws Exception;
 
-    public Integer itriptxDeleteCaigoutuihuoById(Long id)throws Exception;
+    public Integer itriptxDeleteCaigoutuihuoById(String ids)throws Exception;
+
+    public List<Caigoutuihuo> chaXun(Map<String,Object> map);
+
+    public Caigoutuihuo chaXunDan(@Param("id")Integer id);
 
 }

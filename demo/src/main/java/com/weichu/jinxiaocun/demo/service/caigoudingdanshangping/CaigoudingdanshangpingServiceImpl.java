@@ -14,6 +14,11 @@ public class CaigoudingdanshangpingServiceImpl implements Caigoudingdanshangping
     @Resource
     private CaigoudingdanshangpingMapper caigoudingdanshangpingMapper;
 
+    @Override
+    public Integer shanChu(Integer id,Integer spId) {
+        return caigoudingdanshangpingMapper.shanChu(id,spId);
+    }
+
     public Caigoudingdanshangping getCaigoudingdanshangpingById(Long id)throws Exception{
         return caigoudingdanshangpingMapper.getCaigoudingdanshangpingById(id);
     }
@@ -34,7 +39,7 @@ public class CaigoudingdanshangpingServiceImpl implements Caigoudingdanshangping
         return caigoudingdanshangpingMapper.updateCaigoudingdanshangping(caigoudingdanshangping);
     }
 
-    public Integer itriptxDeleteCaigoudingdanshangpingById(Long id)throws Exception{
+    public Integer itriptxDeleteCaigoudingdanshangpingById(String[] id)throws Exception{
         return caigoudingdanshangpingMapper.deleteCaigoudingdanshangpingById(id);
     }
 

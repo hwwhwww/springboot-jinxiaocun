@@ -1,6 +1,8 @@
 package com.weichu.jinxiaocun.demo.service.caigoudingdanruku;
+import com.weichu.jinxiaocun.demo.comment.DateUtil;
 import com.weichu.jinxiaocun.demo.mapper.caigoudingdanruku.CaigoudingdanrukuMapper;
 import com.weichu.jinxiaocun.demo.bean.Caigoudingdanruku;
+import com.weichu.jinxiaocun.demo.mapper.caigoudingdanrukushangpin.CaigoudingdanrukushangpinMapper;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -13,6 +15,21 @@ public class CaigoudingdanrukuServiceImpl implements CaigoudingdanrukuService {
 
     @Resource
     private CaigoudingdanrukuMapper caigoudingdanrukuMapper;
+
+    @Resource
+    private CaigoudingdanrukushangpinMapper caigoudingdanrukushangpinMapper;
+
+    public List<Caigoudingdanruku> chaXun(Integer id, Integer gysId, String rqYi, String rqEr) {
+//        String yi=null;
+//        String er=null;
+//        if(rqYi!=null){
+//            yi= DateUtil.getDefaultTime2DateStr(rqYi)     ;
+//        }
+//        if(rqEr!=null){
+//            er=DateUtil.getDefaultTime2DateStr(rqEr);
+//        }
+        return caigoudingdanrukuMapper.chaXun( id,  gysId,  rqYi,  rqEr);
+    }
 
     public Caigoudingdanruku getCaigoudingdanrukuById(Long id)throws Exception{
         return caigoudingdanrukuMapper.getCaigoudingdanrukuById(id);
@@ -34,8 +51,10 @@ public class CaigoudingdanrukuServiceImpl implements CaigoudingdanrukuService {
         return caigoudingdanrukuMapper.updateCaigoudingdanruku(caigoudingdanruku);
     }
 
-    public Integer itriptxDeleteCaigoudingdanrukuById(Long id)throws Exception{
-        return caigoudingdanrukuMapper.deleteCaigoudingdanrukuById(id);
+    public Integer itriptxDeleteCaigoudingdanrukuById(String ids)throws Exception{
+        String[] split = ids.trim().split(",");
+        caigoudingdanrukushangpinMapper.deleteCaigoudingdanrukushangpinById(split);
+        return caigoudingdanrukuMapper.deleteCaigoudingdanrukuById(split);
     }
 
 

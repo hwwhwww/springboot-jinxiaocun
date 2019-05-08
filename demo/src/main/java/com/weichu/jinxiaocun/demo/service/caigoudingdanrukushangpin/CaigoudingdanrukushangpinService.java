@@ -19,6 +19,6 @@ public interface CaigoudingdanrukushangpinService {
 
     public Integer itriptxModifyCaigoudingdanrukushangpin(Caigoudingdanrukushangpin caigoudingdanrukushangpin)throws Exception;
 
-    public Integer itriptxDeleteCaigoudingdanrukushangpinById(Long id)throws Exception;
+    public Integer itriptxDeleteCaigoudingdanrukushangpinById(String[] ids)throws Exception;
 
 }

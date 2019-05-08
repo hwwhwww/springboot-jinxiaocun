@@ -113,6 +113,56 @@
                     #{cgsqspBz})
     </insert>
 
+    <insert id="tianJia">
+        insert into caigoushenqingshangping(
+        cgsq_id,
+        sp_id,
+        cgsqsp_sl,
+        cgsqsp_jg,
+        cgsqsp_zg,
+        cgsqsp_kp,
+        cgsqsp_bz)
+        values
+        <foreach collection="list" item="cgsq" separator=",">
+            (#{cgsq.cgsqId}, #{cgsq.spId},
+            #{cgsq.cgsqspSl}, #{cgsq.cgsqspJg}, #{cgsq.cgsqspZg},
+            #{cgsq.cgsqspKp},
+            #{cgsq.cgsqspBz}
+            )
+        </foreach>
+    </insert>
+
+    <update id="xiuGai" parameterType="list">
+        <foreach collection="list" item="cgsqsp" separator=";">
+            UPDATE caigoushenqingshangping
+            <set>
+                <if test="cgsqsp.cgsqId != null and cgsqsp.cgsqId!=''">
+                    cgsq_id=#{cgsqsp.cgsqId},
+                </if>
+                <if test="cgsqsp.spId != null and cgsqsp.spId!=''">
+                    sp_id=#{spId},
+                </if>
+                <if test="cgsqsp.cgsqspSl != null and cgsqsp.cgsqspSl!=''">
+                    cgsqsp_sl=#{cgsqsp.cgsqspSl},
+                </if>
+                <if test="cgsqsp.cgsqspJg != null and cgsqsp.cgsqspJg!=''">
+                    cgsqsp_jg=#{cgsqsp.cgsqspJg},
+                </if>
+                <if test="cgsqsp.cgsqspZg != null and cgsqsp.cgsqspZg!=''">
+                    cgsqsp_zg=#{cgsqsp.cgsqspZg},
+                </if>
+                <if test="cgsqsp.cgsqspKp != null and cgsqsp.cgsqspKp!=''">
+                    cgsqsp_kp=#{cgsqsp.cgsqspKp},
+                </if>
+                <if test="cgsqsp.cgsqspBz != null and cgsqsp.cgsqspBz!=''">
+                    cgsqsp_bz=#{cgsqsp.cgsqspBz}
+                </if>
+            </set>
+            WHERE cgsqsp_id=#{cgsqsp.cgsqspId}
+        </foreach>
+    </update>
+
+
     <update id="updateCaigoushenqingshangping" parameterType="com.weichu.jinxiaocun.demo.bean.Caigoushenqingshangping">
         update caigoushenqingshangping
         <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
@@ -143,8 +193,11 @@
         </trim>
     </update>
 
-    <delete id="deleteCaigoushenqingshangpingById" parameterType="Long">
-        delete from caigoushenqingshangping where id = #{id}
+    <delete id="deleteCaigoushenqingshangpingById">
+        DELETE FROM caigoushenqingshangping WHERE cgsq_id IN
+        <foreach collection="ids" separator="," open="(" close=")" item="id">
+            #{id}
+        </foreach>
     </delete>
 
 

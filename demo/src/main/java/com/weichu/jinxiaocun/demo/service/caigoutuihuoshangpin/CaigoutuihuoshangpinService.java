@@ -19,6 +19,6 @@ public interface CaigoutuihuoshangpinService {
 
     public Integer itriptxModifyCaigoutuihuoshangpin(Caigoutuihuoshangpin caigoutuihuoshangpin)throws Exception;
 
-    public Integer itriptxDeleteCaigoutuihuoshangpinById(Long id)throws Exception;
+    public Integer itriptxDeleteCaigoutuihuoshangpinById(String[] ids)throws Exception;
 
 }

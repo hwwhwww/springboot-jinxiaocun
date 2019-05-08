@@ -23,43 +23,40 @@
     </select>
 
     <select id="getGongyingshangListByMap" resultType="com.weichu.jinxiaocun.demo.bean.Gongyingshang" parameterType="java.util.Map">
-        select
-                gys_id as gysId,
-                khfl_id as khflId,
-                gys_name as gysName,
-                gys_dh as gysDh,
-                gys_yx as gysYx,
-                gys_lxr as gysLxr,
-                gys_dz as gysDz,
-                gys_ms as gysMs
-        from gongyingshang
-        <trim prefix="where" prefixOverrides="and | or">
-                    <if test="gysId != null and gysId!=''">
-                        and gys_id=#{gysId}
-                    </if>
-                    <if test="khflId != null and khflId!=''">
-                        and khfl_id=#{khflId}
-                    </if>
-                    <if test="gysName != null and gysName!=''">
-                        and gys_name=#{gysName}
-                    </if>
-                    <if test="gysDh != null and gysDh!=''">
-                        and gys_dh=#{gysDh}
-                    </if>
-                    <if test="gysYx != null and gysYx!=''">
-                        and gys_yx=#{gysYx}
-                    </if>
-                    <if test="gysLxr != null and gysLxr!=''">
-                        and gys_lxr=#{gysLxr}
-                    </if>
-                    <if test="gysDz != null and gysDz!=''">
-                        and gys_dz=#{gysDz}
-                    </if>
-        </trim>
-         order by creationDate desc
-        <if test="beginPos != null and beginPos!='' and pageSize != null  and pageSize !='' ">
-            limit #{beginPos},#{pageSize}
-        </if>
+       select * from gongyingshang
+        <!--select-->
+                <!--gys_id as gysId,-->
+                <!--khfl_id as khflId,-->
+                <!--gys_name as gysName,-->
+                <!--gys_dh as gysDh,-->
+                <!--gys_yx as gysYx,-->
+                <!--gys_lxr as gysLxr,-->
+                <!--gys_dz as gysDz,-->
+                <!--gys_ms as gysMs-->
+        <!--from gongyingshang-->
+        <!--<trim prefix="where" prefixOverrides="and | or">-->
+                    <!--<if test="gysId != null and gysId!=''">-->
+                        <!--and gys_id=#{gysId}-->
+                    <!--</if>-->
+                    <!--<if test="khflId != null and khflId!=''">-->
+                        <!--and khfl_id=#{khflId}-->
+                    <!--</if>-->
+                    <!--<if test="gysName != null and gysName!=''">-->
+                        <!--and gys_name=#{gysName}-->
+                    <!--</if>-->
+                    <!--<if test="gysDh != null and gysDh!=''">-->
+                        <!--and gys_dh=#{gysDh}-->
+                    <!--</if>-->
+                    <!--<if test="gysYx != null and gysYx!=''">-->
+                        <!--and gys_yx=#{gysYx}-->
+                    <!--</if>-->
+                    <!--<if test="gysLxr != null and gysLxr!=''">-->
+                        <!--and gys_lxr=#{gysLxr}-->
+                    <!--</if>-->
+                    <!--<if test="gysDz != null and gysDz!=''">-->
+                        <!--and gys_dz=#{gysDz}-->
+                    <!--</if>-->
+        <!--</trim>-->
     </select>
 
     <select id="getGongyingshangCountByMap" resultType="Integer"  parameterType="java.util.Map">

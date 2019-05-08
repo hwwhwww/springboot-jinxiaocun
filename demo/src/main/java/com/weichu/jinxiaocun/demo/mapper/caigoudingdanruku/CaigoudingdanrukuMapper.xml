@@ -4,15 +4,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.weichu.jinxiaocun.demo.mapper.caigoudingdanruku.CaigoudingdanrukuMapper">
 
-    <select id="getCaigoudingdanrukuById" resultType="com.weichu.jinxiaocun.demo.bean.Caigoudingdanruku" >
+    <select id="getCaigoudingdanrukuById" resultType="com.weichu.jinxiaocun.demo.bean.Caigoudingdanruku">
         select
-                cgddrk_id as cgddrkId,
-                cgddrk_bh as cgddrkBh,
-                cgdd_id as cgddId,
-                yg_id as ygId,
-                kw_id as kwId,
-                cgddrk_rq as cgddrkRq,
-                cgddrk_zje as cgddrkZje
+        cgddrk_id as cgddrkId,
+        cgddrk_bh as cgddrkBh,
+        cgdd_id as cgddId,
+        yg_id as ygId,
+        kw_id as kwId,
+        cgddrk_rq as cgddrkRq,
+        cgddrk_zje as cgddrkZje
         from caigoudingdanruku
         <trim prefix="where" prefixOverrides="and | or">
             <if test="id != null">
@@ -21,116 +21,218 @@
         </trim>
     </select>
 
-    <select id="getCaigoudingdanrukuListByMap" resultType="com.weichu.jinxiaocun.demo.bean.Caigoudingdanruku" parameterType="java.util.Map">
+    <select id="getCaigoudingdanrukuListByMap" resultType="com.weichu.jinxiaocun.demo.bean.Caigoudingdanruku"
+            parameterType="java.util.Map">
         select
-                cgddrk_id as cgddrkId,
-                cgddrk_bh as cgddrkBh,
-                cgdd_id as cgddId,
-                yg_id as ygId,
-                kw_id as kwId,
-                cgddrk_rq as cgddrkRq,
-                cgddrk_zje as cgddrkZje
+        cgddrk_id as cgddrkId,
+        cgddrk_bh as cgddrkBh,
+        cgdd_id as cgddId,
+        yg_id as ygId,
+        kw_id as kwId,
+        cgddrk_rq as cgddrkRq,
+        cgddrk_zje as cgddrkZje
         from caigoudingdanruku
         <trim prefix="where" prefixOverrides="and | or">
-                    <if test="cgddrkId != null and cgddrkId!=''">
-                        and cgddrk_id=#{cgddrkId}
-                    </if>
-                    <if test="cgddrkBh != null and cgddrkBh!=''">
-                        and cgddrk_bh=#{cgddrkBh}
-                    </if>
-                    <if test="cgddId != null and cgddId!=''">
-                        and cgdd_id=#{cgddId}
-                    </if>
-                    <if test="ygId != null and ygId!=''">
-                        and yg_id=#{ygId}
-                    </if>
-                    <if test="kwId != null and kwId!=''">
-                        and kw_id=#{kwId}
-                    </if>
-                    <if test="cgddrkRq != null and cgddrkRq!=''">
-                        and cgddrk_rq=#{cgddrkRq}
-                    </if>
+            <if test="cgddrkId != null and cgddrkId!=''">
+                and cgddrk_id=#{cgddrkId}
+            </if>
+            <if test="cgddrkBh != null and cgddrkBh!=''">
+                and cgddrk_bh=#{cgddrkBh}
+            </if>
+            <if test="cgddId != null and cgddId!=''">
+                and cgdd_id=#{cgddId}
+            </if>
+            <if test="ygId != null and ygId!=''">
+                and yg_id=#{ygId}
+            </if>
+            <if test="kwId != null and kwId!=''">
+                and kw_id=#{kwId}
+            </if>
+            <if test="cgddrkRq != null and cgddrkRq!=''">
+                and cgddrk_rq=#{cgddrkRq}
+            </if>
         </trim>
-         order by creationDate desc
+        order by creationDate desc
         <if test="beginPos != null and beginPos!='' and pageSize != null  and pageSize !='' ">
             limit #{beginPos},#{pageSize}
         </if>
     </select>
 
-    <select id="getCaigoudingdanrukuCountByMap" resultType="Integer"  parameterType="java.util.Map">
+    <select id="getCaigoudingdanrukuCountByMap" resultType="Integer" parameterType="java.util.Map">
         select count(*) from caigoudingdanruku
         <trim prefix="where" prefixOverrides="and | or">
-                <if test="cgddrkId != null and cgddrkId!=''">
-                    and cgddrk_id=#{cgddrkId}
-                </if>
-                <if test="cgddrkBh != null and cgddrkBh!=''">
-                    and cgddrk_bh=#{cgddrkBh}
-                </if>
-                <if test="cgddId != null and cgddId!=''">
-                    and cgdd_id=#{cgddId}
-                </if>
-                <if test="ygId != null and ygId!=''">
-                    and yg_id=#{ygId}
-                </if>
-                <if test="kwId != null and kwId!=''">
-                    and kw_id=#{kwId}
-                </if>
-                <if test="cgddrkRq != null and cgddrkRq!=''">
-                    and cgddrk_rq=#{cgddrkRq}
-                </if>
-                <if test="cgddrkZje != null and cgddrkZje!=''">
-                    and cgddrk_zje=#{cgddrkZje}
-                </if>
+            <if test="cgddrkId != null and cgddrkId!=''">
+                and cgddrk_id=#{cgddrkId}
+            </if>
+            <if test="cgddrkBh != null and cgddrkBh!=''">
+                and cgddrk_bh=#{cgddrkBh}
+            </if>
+            <if test="cgddId != null and cgddId!=''">
+                and cgdd_id=#{cgddId}
+            </if>
+            <if test="ygId != null and ygId!=''">
+                and yg_id=#{ygId}
+            </if>
+            <if test="kwId != null and kwId!=''">
+                and kw_id=#{kwId}
+            </if>
+            <if test="cgddrkRq != null and cgddrkRq!=''">
+                and cgddrk_rq=#{cgddrkRq}
+            </if>
+            <if test="cgddrkZje != null and cgddrkZje!=''">
+                and cgddrk_zje=#{cgddrkZje}
+            </if>
         </trim>
     </select>
 
     <insert id="insertCaigoudingdanruku" parameterType="com.weichu.jinxiaocun.demo.bean.Caigoudingdanruku">
         insert into caigoudingdanruku(
-                        cgddrk_id,
                         cgddrk_bh,
                         cgdd_id,
                         yg_id,
                         kw_id,
                         cgddrk_rq,
-                        cgddrk_zje)
+                        cgddrk_zje,
+                        cgddrk_zsl)
         values(
-                     #{cgddrkId},
                      #{cgddrkBh},
                      #{cgddId},
                      #{ygId},
                      #{kwId},
                      #{cgddrkRq},
-                    #{cgddrkZje})
+                    #{cgddrkZje},
+                    #{cgddrkZsl})
     </insert>
 
     <update id="updateCaigoudingdanruku" parameterType="com.weichu.jinxiaocun.demo.bean.Caigoudingdanruku">
         update caigoudingdanruku
-        <trim prefix="set" suffixOverrides="," suffix="where id=#{id}">
-                    <if test="cgddrkId != null and cgddrkId!=''">
-                        cgddrk_id=#{cgddrkId},
-                    </if>
-                    <if test="cgddrkBh != null and cgddrkBh!=''">
-                        cgddrk_bh=#{cgddrkBh},
-                    </if>
-                    <if test="cgddId != null and cgddId!=''">
-                        cgdd_id=#{cgddId},
-                    </if>
-                    <if test="ygId != null and ygId!=''">
-                        yg_id=#{ygId},
-                    </if>
-                    <if test="kwId != null and kwId!=''">
-                        kw_id=#{kwId},
-                    </if>
-                    <if test="cgddrkRq != null and cgddrkRq!=''">
-                        cgddrk_rq=#{cgddrkRq},
-                    </if>
-                    <if test="cgddrkZje != null and cgddrkZje!=''">
-                        cgddrk_zje=#{cgddrkZje}
-                    </if>
+        <trim prefix="set" suffixOverrides="," suffix="where cgddrk_id=#{cgddrkId}">
+            <if test="cgddrkBh != null and cgddrkBh!=''">
+                cgddrk_bh=#{cgddrkBh},
+            </if>
+            <if test="ygId != null and ygId!=''">
+                yg_id=#{ygId},
+            </if>
+            <if test="kwId != null and kwId!=''">
+                kw_id=#{kwId},
+            </if>
+            <if test="cgddrkRq != null and cgddrkRq!=''">
+                cgddrk_rq=#{cgddrkRq},
+            </if>
+            <if test="cgddrkZje != null and cgddrkZje!=''">
+                cgddrk_zje=#{cgddrkZje}
+            </if>
         </trim>
     </update>
 
-    <delete id="deleteCaigoudingdanrukuById" parameterType="Long">
-        delete from caigoudingdanruku where id = #{id}
+    <delete id="deleteCaigoudingdanrukuById" >
+        DELETE FROM caigoudingdanruku WHERE cgddrk_id IN
+        <foreach collection="ids" separator="," open="(" close=")" item="id">
+            #{id}
+        </foreach>
     </delete>
-</mapper>
+
+
+    <resultMap id="caiGouRuKuMap" type="com.weichu.jinxiaocun.demo.bean.Caigoudingdanruku">
+        <id property="cgddrkId" column="cgddrk_id"/>
+        <result property="cgddrkBh" column="cgddrk_bh"/>
+        <result property="cgddId" column="cgdd_id"/>
+        <result property="ygId" column="yg_id"/>
+        <result property="kwId" column="kw_id"/>
+        <result property="cgddrkRq" column="cgddrk_rq"/>
+        <result property="cgddrkZje" column="cgddrk_zje"/>
+        <result property="cgddrkZsl" column="cgddrk_zsl"/>
+        <result property="cgddrkSh" column="cgddrk_sh"/>
+        <result property="yuangong.ygName" column="yg_name"/>
+        <result property="kuwei.kwName" column="kw_name"/>
+        <result property="caigoudingdan.cgddBh" column="cgdd_bh"/>
+        <result property="caigoudingdan.gongyingshang.gysName" column="gys_name"/>
+        <collection property="caigoudingdanrukushangpins" ofType="com.weichu.jinxiaocun.demo.bean.Caigoudingdanrukushangpin">
+            <result property="id" column="id"/>
+            <result property="cgddrkId" column="cgddrk_id"/>
+            <result property="spId" column="sp_id"/>
+            <result property="cgddrkspDj" column="cgddrksp_dj"/>
+            <result property="cgddrkspZj" column="cgddrksp_zj"/>
+            <result property="cgddrkspSl" column="cgddrksp_sl"/>
+            <result property="cgddrkspBz" column="cgddrksp_bz"/>
+        </collection>
+        <!--<association property="caigoudingdan" javaType="com.weichu.jinxiaocun.demo.bean.Caigoudingdan">-->
+            <!--<id property="cgddId" column="cgdd_id"/>-->
+            <!--<result property="cgddBh" column="cgdd_bh"/>-->
+            <!--<result property="gysId" column="gys_id"/>-->
+            <!--<result property="ygId" column="yg_id"/>-->
+            <!--<result property="cgddDdrq" column="cgdd_ddrq"/>-->
+            <!--<result property="kwId" column="kw_id"/>-->
+            <!--<result property="cgddSh" column="cgdd_sh"/>-->
+            <!--<result property="cgddBz" column="cgdd_bz"/>-->
+            <!--<result property="cgddYfk" column="cgdd_yfk"/>-->
+            <!--<result property="cgddRk" column="cgdd_rk"/>-->
+            <!--<association property="yuangong" javaType="com.weichu.jinxiaocun.demo.bean.Yuangong">-->
+                <!--<id property="ygId" column="yg_id"/>-->
+                <!--<result property="ygName" column="yg_name"/>-->
+            <!--</association>-->
+            <!--<association property="kuwei" javaType="com.weichu.jinxiaocun.demo.bean.Kuwei">-->
+                <!--<id property="kw_id" column="kwId"/>-->
+                <!--<result property="kw_name" column="kwName"/>-->
+            <!--</association>-->
+            <!--<collection property="caigoudingdanshangpings" ofType="com.weichu.jinxiaocun.demo.bean.Caigoudingdanshangping">-->
+                <!--<result property="id" column="id"/>-->
+                <!--<result property="cgddId" column="cgdd_id"/>-->
+                <!--<result property="cgddspSl" column="cgddsp_sl"/>-->
+                <!--<result property="spId" column="sp_id"/>-->
+                <!--<result property="cgddspZg" column="cgddsp_zg"/>-->
+                <!--<result property="cgddspJg" column="cgddsp_jg"/>-->
+                <!--<association property="shangping" javaType="com.weichu.jinxiaocun.demo.bean.Shangping">-->
+                    <!--<result property="spId" column="sp_id"/>-->
+                    <!--<result property="spBh" column="sp_bh"/>-->
+                    <!--<result property="spName" column="sp_name"/>-->
+                    <!--<result property="dwId" column="dw_id"/>-->
+                    <!--<result property="splbId" column="splb_id"/>-->
+                    <!--<result property="spCgdj" column="sp_cgdj"/>-->
+                    <!--<result property="spXsdj" column="sp_xsdj"/>-->
+                    <!--<result property="spBz" column="sp_bz"/>-->
+                    <!--<association property="shangpingleibie" javaType="com.weichu.jinxiaocun.demo.bean.Shangpingleibie">-->
+                        <!--<result property="splbId" column="splb_id"/>-->
+                        <!--<result property="splbName" column="splb_name"/>-->
+                    <!--</association>-->
+                    <!--<association property="danwei" javaType="com.weichu.jinxiaocun.demo.bean.Danwei">-->
+                        <!--<result property="dwId" column="dw_id"/>-->
+                        <!--<result property="dwName" column="dw_name"/>-->
+                    <!--</association>-->
+                <!--</association>-->
+            <!--</collection>-->
+        <!--</association>-->
+        <!---->
+
+
+    </resultMap>
+    <select id="chaXun" resultMap="caiGouRuKuMap">
+        <!--       SELECT * FROM `caigoudingdanruku` rk,`caigoudingdan` dd,
+              `caigoudingdanrukushangpin` rksp,`kuwei` k,`yuangong` yg,`gongyingshang` gys
+             ,`caigoudingdanshangping` cgddsp
+              WHERE rk.cgdd_id=dd.cgdd_id AND k.kw_id=rk.kw_id AND yg.yg_id=rk.yg_id
+             AND gys.gys_id=dd.gys_id and rk.cgddrk_sh!=0
+              and dd.`cgdd_id`=cgddsp.`cgdd_id` AND rksp.cgddrk_id=rk.cgddrk_id*/-->
+               SELECT * FROM `caigoudingdanruku` rk,shangping sp,
+               `caigoudingdanrukushangpin` rksp,`kuwei` k,`yuangong` yg,`gongyingshang` gys,`caigoudingdan` cgdd
+               WHERE  k.kw_id=rk.kw_id AND yg.yg_id=rk.yg_id
+               AND rk.cgddrk_sh!=0
+               AND rksp.cgddrk_id=rk.cgddrk_id
+               AND rksp.sp_id=sp.`sp_id`
+               AND cgdd.cgdd_id=rk.cgdd_id
+               AND cgdd.gys_id=gys.gys_id
+               <if test="id!=null and id!=0">
+                   and sq.`cgddrk_id`=#{id}
+               </if>
+               <if test="gysId!=null and gysId!=0">
+                   AND gys.`gys_id`=#{gysId}
+               </if>
+        <if test="rqYi!=null" >
+            AND #{rqYi} &lt;= rk.cgddrk_rq
+        </if>
+        <if test="rqEr!=null">
+            and rk.cgddrk_rq   &lt;= #{rqEr}
+        </if>
+           </select>
+
+       </mapper>

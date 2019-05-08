@@ -7,6 +7,10 @@ import java.util.Map;
 
 public interface CaigoudingdanMapper {
 
+	public Integer zuiDaZhi();
+
+	public List<Caigoudingdan> chaXunMeiYou(@Param(value = "id") Integer id);
+
 	public Caigoudingdan getCaigoudingdanById(@Param(value = "id") Long id)throws Exception;
 
 	public List<Caigoudingdan>	getCaigoudingdanListByMap(Map<String,Object> param)throws Exception;
@@ -17,6 +21,12 @@ public interface CaigoudingdanMapper {
 
 	public Integer updateCaigoudingdan(Caigoudingdan caigoudingdan)throws Exception;
 
-	public Integer deleteCaigoudingdanById(@Param(value = "id") Long id)throws Exception;
+
+	public List<Caigoudingdan> chaXun(@Param("id")Integer id,
+									  @Param("gysId")Integer gysId,
+									  @Param("rqYi")String rqYi,
+									  @Param("rqEr")String rqEr);
+
+		public Integer deleteCaigoudingdanById(@Param("ids")String[] ids)throws Exception;
      public  List<Caigoushenqing> getCaiGouShengQingList();
 }

@@ -16,6 +16,10 @@ public interface CaigoutuihuoMapper {
 
 	public Integer updateCaigoutuihuo(Caigoutuihuo caigoutuihuo)throws Exception;
 
-	public Integer deleteCaigoutuihuoById(@Param(value = "id") Long id)throws Exception;
+	public Integer deleteCaigoutuihuoById(@Param(value = "ids") String[] ids)throws Exception;
+
+	public List<Caigoutuihuo> chaXun(Map<String,Object> map);
+
+	public Caigoutuihuo chaXunDan(@Param("id")Integer id);
 
 }

@@ -24,19 +24,19 @@
 							<form class="form-horizontal" role="form" >
 							<table cellpadding="2px" cellspacing="2px">
 							<tr>
-							<td><span class=" column left" style="color: #fff;">入库编号</span></td><td><input type="text" class="form-control line left"/></td>
-                			<td><span class="column left" style="color: #fff;" > 收货人</span></td><td><input type="text" class="form-control line left"/></td>
+							<td><span class=" column left" style="color: #000000;">入库编号</span></td><td><input type="text" class="form-control line left"/></td>
+                			<td><span class="column left" style="color: #000000;" > 收货人</span></td><td><input type="text" class="form-control line left"/></td>
 							</tr>
 							<tr>
-							<td><span class=" column left" style="color: #fff;">商品订单</span></td><td><input type="text" class="form-control line left"/></td>
-                			<td><span class="column left" style="color: #fff;" > 供应商</span></td><td><input type="text" class="form-control line left"/></td>
+							<td><span class=" column left" style="color: #000000;">商品订单</span></td><td><input type="text" class="form-control line left"/></td>
+                			<td><span class="column left" style="color: #000000;" > 供应商</span></td><td><input type="text" class="form-control line left"/></td>
 							</tr>
                 			<tr>
-                			<td><span class=" column left" style="color: #fff;">仓库</span></td><td><input type="text" class="form-control line left"/></td>
-                			<td><span class=" column left" style="color: #fff;">金额</span></td><td><input type="text" class="form-control line left"/></td>
+                			<td><span class=" column left" style="color: #000000;">仓库</span></td><td><input type="text" class="form-control line left"/></td>
+                			<td><span class=" column left" style="color: #000000;">金额</span></td><td><input type="text" class="form-control line left"/></td>
                             </tr>
                             <tr>
-                            <td><span class=" column left" style="color: #fff;">备注</span></td>
+                            <td><span class=" column left" style="color: #000000;">备注</span></td>
                             <td><input type="text" class="form-control line left"/></td>
                             <td> <a href="#" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#add1">修改订单入库</a></td>
 
@@ -75,11 +75,40 @@
                    	 </tr>
 							</tbody>
 						</table>
-					</div>
-					<!--右侧内容结束-->
-
-					<div th:include="wei.html"></div>
+						<div th:include="fenye.html"></div>
+						<!--右侧内容结束-->
+						<div th:include="wei.html"></div>
 
 	</body>
+<script src="js/jquery-1.11.3.js"></script>
+<script>
+	function money(obj) {
+		var zongji = 0;
+		var check = $("input[name=sl]");
+		var check2=$("input[name=dj]");
+		var check3=$("[name=zj]")
+		check.each(function(i){
+			var danHang=0;
+			danHang= parseInt($(this).val())*parseInt(check2.get(i).value);
+			check3.get(i).value=danHang;
+			zongji+=danHang
+		});
+		$("#cgddZje").val(zongji);
+	};
+	$(function () {
+		$("#cgspId").change(function () {
+			$.getJSON("/caigou/yiBuShangPing","id="+$(this).val(),function (data) {
+				$('#tableTr').html("");
+				var item;
+				$.each(data.result,function(i,result) {
+					item = "<tr>" +
+							"<td>" + result.cgsqId + "</td>" +
 
+							"</tr>";
+					$('#tableTr').append(item);
+				})
+			})
+		})
+	})
+</script>
 </html>
